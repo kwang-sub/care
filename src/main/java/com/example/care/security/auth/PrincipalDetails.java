@@ -1,6 +1,6 @@
 package com.example.care.security.auth;
 
-import com.example.care.user.dto.UserJoinDTO;
+import com.example.care.user.dto.UserDTO;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,14 +13,14 @@ import java.util.Map;
 @Data
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
-    private UserJoinDTO user;
+    private UserDTO user;
     private Map<String, Object> attributes;
 
-    public PrincipalDetails(UserJoinDTO user) {
+    public PrincipalDetails(UserDTO user) {
         this.user = user;
     }
 
-    public PrincipalDetails(UserJoinDTO user, Map<String, Object> attributes) {
+    public PrincipalDetails(UserDTO user, Map<String, Object> attributes) {
         this.user = user;
         this.attributes = attributes;
     }

@@ -35,6 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.mockito:mockito-core'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 }
 
 tasks.named('test') {
