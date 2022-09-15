@@ -1,7 +1,7 @@
 package com.example.care.user.service;
 
 import com.example.care.user.domain.User;
-import com.example.care.user.dto.UserJoinDTO;
+import com.example.care.user.dto.UserDTO;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.exception.DuplicateUserException;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +21,19 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public UserJoinDTO userJoin(UserJoinDTO userJoinDto) {
-        Optional<User> findUser = userRepository.findByUsername(userJoinDto.getUsername());
+    public UserDTO userJoin(UserDTO userDto) {
+        Optional<User> findUser = userRepository.findByUsername(userDto.getUsername());
         if (!findUser.isEmpty()) {
             throw new DuplicateUserException("중복 회원입니다.");
         }
-        userJoinDto.setPassword(bCryptPasswordEncoder.encode(userJoinDto.getPassword()));
-        User user = userJoinDTOToEntity(userJoinDto);
+        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        User user = userJoinDTOToEntity(userDto);
         userRepository.save(user);
-        return userJoinDto;
+        return userDto;
     }
 
     @Override
-    public UserJoinDTO findUserByName(String username) {
+    public UserDTO findUserByName(String username) {
         User user = userRepository.findByUsername(username).orElse(null);
         return userEntityToJoin2DTO(user);
     }

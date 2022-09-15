@@ -5,7 +5,7 @@ import com.example.care.security.oauth.provider.GoogleUserInfo;
 import com.example.care.security.oauth.provider.NaverUserInfo;
 import com.example.care.security.oauth.provider.OAuth2UserInfo;
 import com.example.care.user.domain.Role;
-import com.example.care.user.dto.UserJoinDTO;
+import com.example.care.user.dto.UserDTO;
 import com.example.care.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +30,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
+        log.info("OAuth2 회원가입 로직 {}", userRequest.getClientRegistration().getRegistrationId());
         OAuth2User oAuth2User = super.loadUser(userRequest);
-        log.info("OAuth2 회원가입 로직 {}", oAuth2User.getAttributes());
         OAuth2UserInfo userInfo = null;
         if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
             userInfo = new GoogleUserInfo(oAuth2User.getAttributes());
@@ -46,10 +46,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         String password = encoder.encode(UUID.randomUUID().toString());
         String name = provider + "_" + providerId;
 
-        UserJoinDTO user = userService.findUserByName(name);
+        UserDTO user = userService.findUserByName(name);
 
         if (user == null) {
-            user = userService.userJoin(UserJoinDTO.builder(  )
+            user = userService.userJoin(UserDTO.builder(  )
                     .username(name)
                     .nickname(nickname)
                     .password(password)

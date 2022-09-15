@@ -6,22 +6,22 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="icon" href="img/favicon.png" type="/sample/image/png" />
+  <link rel="icon" href="/img/favicon.png" type="/sample/image/png" />
   <title>Eiser ecommerce</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/sample/css/bootstrap.css" />
-  <link rel="stylesheet" href="/sample/vendors/linericon/style.css" />
-  <link rel="stylesheet" href="/sample/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="/sample/css/themify-icons.css" />
-  <link rel="stylesheet" href="/sample/css/flaticon.css" />
-  <link rel="stylesheet" href="/sample/vendors/owl-carousel/owl.carousel.min.css" />
-  <link rel="stylesheet" href="/sample/vendors/lightbox/simpleLightbox.css" />
-  <link rel="stylesheet" href="/sample/vendors/nice-select/css/nice-select.css" />
-  <link rel="stylesheet" href="/sample/vendors/animate-css/animate.css" />
-  <link rel="stylesheet" href="/sample/vendors/jquery-ui/jquery-ui.css" />
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/vendors/linericon/style.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/themify-icons.css" />
+  <link rel="stylesheet" href="/css/flaticon.css" />
+  <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css" />
+  <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css" />
+  <link rel="stylesheet" href="/vendors/animate-css/animate.css" />
+  <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.css" />
   <!-- main css -->
-  <link rel="stylesheet" href="/sample/css/style.css" />
-  <link rel="stylesheet" href="/sample/css/responsive.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
   <!--care css-->
   <link rel="stylesheet" href="/css/care.css" />
 </head>
@@ -244,22 +244,31 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="/sample/js/jquery-3.2.1.min.js"></script>
-<script src="/sample/js/popper.js"></script>
-<script src="/sample/js/bootstrap.min.js"></script>
-<script src="/sample/js/stellar.js"></script>
-<script src="/sample/vendors/lightbox/simpleLightbox.min.js"></script>
-<script src="/sample/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-<script src="/sample/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-<script src="/sample/vendors/isotope/isotope-min.js"></script>
-<script src="/sample/vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="/sample/js/jquery.ajaxchimp.min.js"></script>
-<script src="/sample/vendors/counter-up/jquery.waypoints.min.js"></script>
-<script src="/sample/vendors/counter-up/jquery.counterup.js"></script>
-<script src="/sample/js/mail-script.js"></script>
-<script src="/sample/js/theme.js"></script>
-</body>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/stellar.js"></script>
+<script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+<script src="/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+<script src="/vendors/isotope/isotope-min.js"></script>
+<script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/vendors/counter-up/jquery.waypoints.min.js"></script>
+<script src="/vendors/counter-up/jquery.counterup.js"></script>
+<script src="/js/mail-script.js"></script>
+<script src="/js/theme.js"></script>
+<script src="/js/sweetalert.js"></script>
 
-</html>
+<script th:inline="javascript">
+  var swalMessage = [[${swal}]];
+  swal({
+    title : swalMessage.title,
+    text : swalMessage.text,
+    icon : swalMessage.icon.toLowerCase()
+  })
+</script>
+
+</body>
 </th:block>
 </html>

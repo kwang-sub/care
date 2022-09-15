@@ -1,6 +1,6 @@
 package com.example.care.security.auth;
 
-import com.example.care.user.dto.UserJoinDTO;
+import com.example.care.user.dto.UserDTO;
 import com.example.care.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserJoinDTO user = userService.findUserByName(username);
+        UserDTO user = userService.findUserByName(username);
         if (user != null) {
             return new PrincipalDetails(user);
         }

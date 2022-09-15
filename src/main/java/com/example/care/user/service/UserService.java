@@ -2,30 +2,30 @@ package com.example.care.user.service;
 
 import com.example.care.user.domain.Role;
 import com.example.care.user.domain.User;
-import com.example.care.user.dto.UserJoinDTO;
+import com.example.care.user.dto.UserDTO;
 
 public interface UserService {
 
 
-    UserJoinDTO userJoin(UserJoinDTO userJoinDto);
+    UserDTO userJoin(UserDTO userDto);
 
-    UserJoinDTO findUserByName(String name);
+    UserDTO findUserByName(String name);
 
-    default User userJoinDTOToEntity(UserJoinDTO userJoinDTO) {
+    default User userJoinDTOToEntity(UserDTO userDTO) {
         User user = User.builder()
-                .username(userJoinDTO.getUsername())
-                .nickname(userJoinDTO.getNickname())
-                .password(userJoinDTO.getPassword())
-                .email(userJoinDTO.getEmail())
+                .username(userDTO.getUsername())
+                .nickname(userDTO.getNickname())
+                .password(userDTO.getPassword())
+                .email(userDTO.getEmail())
                 .role(Role.USER)
-                .provider(userJoinDTO.getProvider())
+                .provider(userDTO.getProvider())
                 .build();
         return user;
     }
 
-    default UserJoinDTO userEntityToJoin2DTO(User userEntity) {
+    default UserDTO userEntityToJoin2DTO(User userEntity) {
         if (userEntity != null) {
-            UserJoinDTO userJoinDTO = UserJoinDTO.builder()
+            UserDTO userDTO = UserDTO.builder()
                     .username(userEntity.getUsername())
                     .password(userEntity.getPassword())
                     .nickname(userEntity.getNickname())
@@ -33,7 +33,7 @@ public interface UserService {
                     .role(userEntity.getRole())
                     .provider(userEntity.getProvider())
                     .build();
-            return userJoinDTO;
+            return userDTO;
         }
         return null;
     }
