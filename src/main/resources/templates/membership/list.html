@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <section class="feature_product_area section_gap_bottom_custom">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="main_title">
+                            <h2><span>MEMBERSHIP SERVICE</span></h2>
+                            <p>Bring called seed first of third give itself now ment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:each="membership : ${membershipList}" class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-product">
+                            <div class="product-img">
+                                <img class="img-fluid w-100" src="img/product/feature-product/f-p-1.jpg" alt="" />
+                                <div class="p_icon">
+                                    카카오페이 간편결제
+                                    <a href="#">
+                                        <i class="ti-credit-card"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="product-btm">
+                                <div>
+                                    <a href="#" class="d-block">
+                                        <h1 style="color: #4ABF60" th:text="${membership.grade}">등급</h1>
+                                    </a>
+                                </div>
+                                <span th:text="'$'+${#numbers.formatInteger(membership.price, 3, 'COMMA') + '/'}" th:fo>가격</span><sub style="color: black">월</sub>
+
+                            </div>
+                            <ul th:each="detail, index : ${membership.membershipDetailDTOs}" class="list-group">
+                                <li class="list-group-item" th:text="|${detail.title} ${detail.number}회|"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </th:block>
+</th:block>
+</html>
