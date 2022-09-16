@@ -23,20 +23,20 @@ public class MembershipServiceImpl implements MembershipService{
 
     @Override
     public List<MembershipDTO> membershipList() {
-        List<Membership> membershipAll = membershipRepository.findMembershipAll();
+        List<Membership> memberships = membershipRepository.findMembershipAll();
 
-        List<MembershipDTO> membershipDTOS = membershipAll.stream()
+        List<MembershipDTO> membershipDTOList = memberships.stream()
                 .map(membership -> {
-                    List<MembershipDetailDTO> membershipDetailDTOS = membership.getMembershipDetails()
+                    List<MembershipDetailDTO> membershipDetailDTOList = membership.getMembershipDetails()
                             .stream()
                             .map(membershipDetail -> detailEntityToDTO(membershipDetail))
                             .collect(Collectors.toList());
 
-                    MembershipDTO membershipDTO = membershipEntityToDTO(membership, membershipDetailDTOS);
+                    MembershipDTO membershipDTO = membershipEntityToDTO(membership, membershipDetailDTOList);
                     return membershipDTO;
                 })
                 .collect(Collectors.toList());
-        return membershipDTOS;
+        return membershipDTOList;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MembershipServiceImpl implements MembershipService{
         Membership membership = membershipDTOToEntity(membershipDTO);
         membershipRepository.save(membership);
 
-        membershipDTO.getMembershipDetailDTOS().stream()
+        membershipDTO.getMembershipDetailDTOs().stream()
                 .forEach(membershipDetailDTO -> {
                     MembershipDetail membershipDetail = detailDTOToEntity(membership, membershipDetailDTO);
                     membershipDetailRepository.save(membershipDetail);
@@ -60,12 +60,12 @@ public class MembershipServiceImpl implements MembershipService{
                 .build();
     }
 
-    private MembershipDTO membershipEntityToDTO(Membership membership, List<MembershipDetailDTO> membershipDetailDTOS) {
+    private MembershipDTO membershipEntityToDTO(Membership membership, List<MembershipDetailDTO> membershipDetailDTOList) {
         return MembershipDTO.builder()
                 .id(membership.getId())
                 .grade(membership.getGrade())
                 .price(membership.getPrice())
-                .membershipDetailDTOS(membershipDetailDTOS)
+                .membershipDetailDTOs(membershipDetailDTOList)
                 .build();
     }
 
@@ -79,7 +79,7 @@ public class MembershipServiceImpl implements MembershipService{
                 .build();
     }
 
-    private static MembershipDetailDTO detailEntityToDTO(MembershipDetail membershipDetail) {
+    private MembershipDetailDTO detailEntityToDTO(MembershipDetail membershipDetail) {
         return MembershipDetailDTO.builder()
                 .id(membershipDetail.getId())
                 .title(membershipDetail.getTitle())

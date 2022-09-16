@@ -1,11 +1,9 @@
 package com.example.care.membership.service;
 
 import com.example.care.membership.domain.Grade;
-import com.example.care.membership.domain.Membership;
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipDetailDTO;
 import com.example.care.membership.repository.MembershipRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +38,7 @@ class MembershipServiceTest {
         MembershipDTO membershipDTO = MembershipDTO.builder()
                 .grade(Grade.BRONZE)
                 .price(10000)
-                .membershipDetailDTOS(membershipDetailDTOS)
+                .membershipDetailDTOs(membershipDetailDTOS)
                 .build();
 
         //when
@@ -52,6 +50,6 @@ class MembershipServiceTest {
 
         MembershipDTO findDTO = membershipDTOS.get(0);
         assertThat(findDTO.getGrade()).isEqualTo(membershipDTO.getGrade());
-        assertThat(findDTO.getMembershipDetailDTOS().size()).isEqualTo(3);
+        assertThat(findDTO.getMembershipDetailDTOs().size()).isEqualTo(3);
     }
 }
