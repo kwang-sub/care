@@ -37,7 +37,7 @@ class UserServiceTest {
         //when
         userService.userJoin(userDTO);
         //then
-        UserDTO findUser = userService.findUserByName(userDTO.getUsername());
+        UserDTO findUser = userService.userSearch(userDTO.getUsername());
         assertThat(findUser).isNotNull();
         assertThat(findUser.getUsername()).isEqualTo(userDTO.getUsername());
     }
@@ -48,7 +48,7 @@ class UserServiceTest {
         //when
         userService.userJoin(userDTO);
         //then
-        UserDTO findUser = userService.findUserByName(userDTO.getUsername());
+        UserDTO findUser = userService.userSearch(userDTO.getUsername());
         assertThat(findUser.getRoleKey()).isEqualTo("ROLE_USER");
     }
 
@@ -64,7 +64,7 @@ class UserServiceTest {
         //when
         userService.userJoin(userDTO);
         //then
-        UserDTO findUser = userService.findUserByName(userDTO.getUsername());
+        UserDTO findUser = userService.userSearch(userDTO.getUsername());
         assertThat(bCryptPasswordEncoder.matches(password, findUser.getPassword())).isTrue();
     }
 

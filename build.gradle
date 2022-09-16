@@ -1,7 +1,14 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.7.3'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.example'
@@ -27,17 +34,47 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    /*개발용 DB*/
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    /*소셜로그인*/
     compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    /*테스트 코드 mock*/
     implementation 'org.mockito:mockito-core'
+    /*테스트 DB h2*/
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    /*query dsl*/
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+/*아래는 query dsl 설정 부분*/
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl { 
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets { 
+    main.java.srcDir querydslDir
+}
+
+configurations { 
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl { 
+    options.annotationProcessorPath = configurations.querydsl
 }

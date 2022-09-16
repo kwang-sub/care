@@ -1,5 +1,6 @@
 package com.example.care.user.service;
 
+import com.example.care.user.domain.Role;
 import com.example.care.user.domain.User;
 import com.example.care.user.dto.UserDTO;
 import com.example.care.user.repository.UserRepository;
@@ -33,8 +34,35 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO findUserByName(String username) {
+    public UserDTO userSearch(String username) {
         User user = userRepository.findByUsername(username).orElse(null);
         return userEntityToJoin2DTO(user);
+    }
+
+    private User userJoinDTOToEntity(UserDTO userDTO) {
+        User user = User.builder()
+                .username(userDTO.getUsername())
+                .nickname(userDTO.getNickname())
+                .password(userDTO.getPassword())
+                .email(userDTO.getEmail())
+                .role(Role.USER)
+                .provider(userDTO.getProvider())
+                .build();
+        return user;
+    }
+
+    private UserDTO userEntityToJoin2DTO(User userEntity) {
+        if (userEntity != null) {
+            UserDTO userDTO = UserDTO.builder()
+                    .username(userEntity.getUsername())
+                    .password(userEntity.getPassword())
+                    .nickname(userEntity.getNickname())
+                    .email(userEntity.getEmail())
+                    .role(userEntity.getRole())
+                    .provider(userEntity.getProvider())
+                    .build();
+            return userDTO;
+        }
+        return null;
     }
 }

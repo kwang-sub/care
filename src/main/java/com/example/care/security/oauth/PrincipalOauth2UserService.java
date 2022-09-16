@@ -46,7 +46,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         String password = encoder.encode(UUID.randomUUID().toString());
         String name = provider + "_" + providerId;
 
-        UserDTO user = userService.findUserByName(name);
+        UserDTO user = userService.userSearch(name);
 
         if (user == null) {
             user = userService.userJoin(UserDTO.builder(  )
