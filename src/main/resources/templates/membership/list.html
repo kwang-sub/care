@@ -12,7 +12,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div th:each="membership : ${membershipList}" class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="single-product">
@@ -20,13 +19,14 @@
                                 <img class="img-fluid w-100" src="img/product/feature-product/f-p-1.jpg" alt="" />
                                 <div class="p_icon">
                                     카카오페이 간편결제
-                                    <a href="#">
+                                    <a class="pay-button">
                                         <i class="ti-credit-card"></i>
+                                        <input type="hidden" id="grade" name="grade" th:value="${membership.grade}">
+                                        <input type="hidden" id="price" name="price" th:value="${membership.price}">
                                     </a>
+
                                 </div>
-
                             </div>
-
                             <div class="product-btm">
                                 <div>
                                     <a href="#" class="d-block">
@@ -34,7 +34,6 @@
                                     </a>
                                 </div>
                                 <span th:text="'$'+${#numbers.formatInteger(membership.price, 3, 'COMMA') + '/'}" th:fo>가격</span><sub style="color: black">월</sub>
-
                             </div>
                             <ul th:each="detail, index : ${membership.membershipDetailDTOs}" class="list-group">
                                 <li class="list-group-item" th:text="|${detail.title} ${detail.number}회|"></li>
@@ -46,4 +45,22 @@
         </section>
     </th:block>
 </th:block>
+<script type="text/javascript" src="/js/kakao.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('.pay-button').click(this, function () {
+            var priceNode = this.lastChild;
+            var gradeNode = priceNode.previousSibling;
+            var grade = gradeNode.previousElementSibling.defaultValue;
+            var price = priceNode.previousElementSibling.defaultValue;
+
+            $.post("/pay/kakao", {
+                grade: grade,
+                price: price
+            }, function () {
+                console.log("dsaf");
+            });
+        });
+    });
+</script>
 </html>
