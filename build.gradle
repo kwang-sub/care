@@ -50,6 +50,9 @@ dependencies {
     /*query dsl*/
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+    /*외부 api 사용 web client*/
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 tasks.named('test') {

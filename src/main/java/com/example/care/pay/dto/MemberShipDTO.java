@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class KaKaoPayDTO {
+public class MemberShipDTO {
     public Grade grade;
     public Integer price;
 }

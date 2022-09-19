@@ -12,8 +12,8 @@
                         </div>
                     </div>
                 </div>
-                <div th:each="membership : ${membershipList}" class="row">
-                    <div class="col-lg-4 col-md-6">
+                <div class="row">
+                    <div th:each="membership : ${membershipList}" class="col-lg-4 col-md-6">
                         <div class="single-product">
                             <div class="product-img">
                                 <img class="img-fluid w-100" src="img/product/feature-product/f-p-1.jpg" alt="" />
@@ -57,9 +57,17 @@
             $.post("/pay/kakao", {
                 grade: grade,
                 price: price
-            }, function () {
-                console.log("dsaf");
-            });
+            })
+                .done(function (data) {
+                    console.log(data)
+                    url = data.next_redirect_pc_url;
+                    window.location.href = url;
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 400) {
+                        window.location.href = "/user/login"
+                    }
+                });
         });
     });
 </script>

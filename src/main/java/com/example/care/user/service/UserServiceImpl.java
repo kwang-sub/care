@@ -10,8 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -23,8 +21,8 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public UserDTO userJoin(UserDTO userDto) {
-        Optional<User> findUser = userRepository.findByUsername(userDto.getUsername());
-        if (!findUser.isEmpty()) {
+        User findUser = userRepository.findByUsername(userDto.getUsername());
+        if (findUser != null) {
             throw new DuplicateUserException("중복 회원입니다.");
         }
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
@@ -35,7 +33,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO userSearch(String username) {
-        User user = userRepository.findByUsername(username).orElse(null);
+        User user = userRepository.findByUsername(username);
         return userEntityToJoin2DTO(user);
     }
 

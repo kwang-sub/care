@@ -20,7 +20,7 @@ public class MembershipRepositoryImpl implements MembershipRepositoryCustom {
         List<Membership> memberships = queryFactory
                 .selectFrom(membership)
                 .distinct()
-                .join(membership.membershipDetails, membershipDetail).fetchJoin()
+                .leftJoin(membership.membershipDetails, membershipDetail).fetchJoin()
                 .fetch();
         return memberships;
     }

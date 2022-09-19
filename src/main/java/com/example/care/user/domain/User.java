@@ -23,7 +23,6 @@ public class User {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @CreationTimestamp
     private LocalDateTime createDate;
     private String provider;
