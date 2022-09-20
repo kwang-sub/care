@@ -65,6 +65,8 @@
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.status == 400) {
+                        window.location.href = "/membership/dup"
+                    } else if (jqXHR.status == 401) {
                         window.location.href = "/user/login"
                     }
                 });

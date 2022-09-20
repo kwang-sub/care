@@ -7,7 +7,8 @@ public interface PayService {
 
     void saveTid(TidDTO tidDTO);
 
-    String searchTid(String orderId);
+    String findTid(String orderId);
 
-    void completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO);
+    String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO);
+
 }

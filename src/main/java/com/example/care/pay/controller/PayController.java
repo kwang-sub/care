@@ -1,9 +1,8 @@
 package com.example.care.pay.controller;
 
-import com.example.care.pay.dto.KaKaoPayApproveDTO;
-import com.example.care.pay.dto.KaKaoPayReadyDTO;
-import com.example.care.pay.dto.MemberShipDTO;
-import com.example.care.pay.dto.TidDTO;
+import com.example.care.membership.dto.MembershipHistoryDTO;
+import com.example.care.membership.service.MembershipService;
+import com.example.care.pay.dto.*;
 import com.example.care.pay.service.PayService;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
@@ -12,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,38 +27,40 @@ public class PayController {
 
     private final PayService payService;
     private final WebClient webClient;
+    private final MembershipService membershipService;
 
     @PostMapping("/pay/kakao")
     @ResponseBody
-    public ResponseEntity<KaKaoPayReadyDTO> kakaoPayStart(MemberShipDTO MemberShipDTO, Principal principal) {
+    public ResponseEntity<KaKaoPayReadyDTO> kakaoPayStart(MemberShipDTO memberShipDTO, Principal principal) {
         if (principal == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String username = principal.getName();
+
+//        유효한 멤버쉽이력 조회
+        MembershipHistoryDTO membershipHistoryDTO = membershipService.findValidMembership(username);
+        if (membershipHistoryDTO != null && membershipHistoryDTO.getMembership()
+                .getGrade().equals(memberShipDTO.getGrade())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        String userId = principal.getName();
-        String orderId = userId + "_" + MemberShipDTO.getGrade().name() + "_" + UUID.randomUUID();
-        String parameter = "cid=TCSUBSCRIP&" + //가맹점코드
-                "sid=S1234567890987654321&" + //정기결제 키
-                "partner_order_id=" + orderId + "&" + //가맹점 주문번호
-                "partner_user_id=" + userId + "&" + //가맹점회원 id
-                "item_name=" + MemberShipDTO.getGrade().name() + "&" + //상품명
-                "quantity=1&" + //상품수량
-                "total_amount=" + MemberShipDTO.getPrice() + "&" +//상품총액
-                "tax_free_amount=0&" +//상품 비과세 금액
-                "approval_url=http://localhost:8080/pay/ok?orderId=" + orderId + "&" + //성공 url
-                "cancel_url=http://localhost:8080/pay/cancel&" + //취소 url
-                "fail_url=http://localhost:8080/pay/fail";//실패 url
 
-        KaKaoPayReadyDTO result = webClient.mutate()
-                .build()
-                .post()
-                .uri("/v1/payment/ready")
-                .bodyValue(parameter)
-                .retrieve()
-                .bodyToMono(KaKaoPayReadyDTO.class)
-                .flux()
-                .toStream()
-                .findFirst()
-                .orElse(null);
+        String orderId = username + "_" + memberShipDTO.getGrade().name() + "_" + UUID.randomUUID();
+        MultiValueMap<String, String> param = new LinkedMultiValueMap();
+        param.add("cid", "TCSUBSCRIP");
+        param.add("sid", "S1234567890987654321");
+        param.add("partner_order_id", orderId);
+        param.add("partner_user_id", username);
+        param.add("item_name", memberShipDTO.getGrade().name());
+        param.add("quantity", "1");
+        param.add("total_amount", memberShipDTO.getPrice().toString());
+        param.add("tax_free_amount", "0");
+        param.add("approval_url", "http://localhost:8080/pay/ok?orderId=" + orderId);
+        param.add("cancel_url", "http://localhost:8080/pay/cancel");
+        param.add("fail_url", "http://localhost:8080/pay/fail");
+
+        KaKaoPayReadyDTO result = kakaoWebClient("/v1/payment/ready", param,
+                KaKaoPayReadyDTO.class);
         result.setOrderId(orderId);
 
         TidDTO tidDTO = TidDTO
@@ -71,33 +74,39 @@ public class PayController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+
     @GetMapping("/pay/ok")
     public String payApprove(String orderId, @RequestParam("pg_token") String pgToken, Principal principal,
                              RedirectAttributes redirectAttributes) {
         log.debug("결제 승인 로직 {}", orderId);
-        String tid = payService.searchTid(orderId);
+        String tid = payService.findTid(orderId);
         String username = principal.getName();
+        String uri;
+        MultiValueMap<String, String> param = new LinkedMultiValueMap();
 
-        String parameter = "cid=TCSUBSCRIP&" +
-                "tid=" + tid + "&" +
-                "partner_order_id=" + orderId + "&" +
-                "partner_user_id=" + username + "&" +
-                "pg_token=" + pgToken;
+        param.add("cid", "TCSUBSCRIP");
+        param.add("tid", tid);
+        param.add("partner_order_id", orderId);
+        param.add("partner_user_id", username);
+        param.add("pg_token", pgToken);
+
 
 //        정기 결제 승인 api 호출
-        KaKaoPayApproveDTO kaKaoPayApproveDTO = webClient.mutate()
-                .build()
-                .post()
-                .uri("/v1/payment/approve")
-                .bodyValue(parameter)
-                .retrieve()
-                .bodyToMono(KaKaoPayApproveDTO.class)
-                .flux()
-                .toStream()
-                .findFirst()
-                .orElse(null);
+        uri = "/v1/payment/approve";
+        KaKaoPayApproveDTO kaKaoPayApproveDTO = kakaoWebClient(uri, param,
+                KaKaoPayApproveDTO.class);
 
-        payService.completePayment(kaKaoPayApproveDTO);
+//        결제 저장 완료후 이전 멤버쉽 있을 경우 정기결제 비활성화하기 위해 sid 반환하도록 설계
+        String sid = payService.completePayment(kaKaoPayApproveDTO);
+        if (sid != null) {
+            param.clear();
+            param.add("cid", "TCSUBSCRIP");
+            param.add("sid", sid);
+            uri = "/v1/payment/manage/subscription/inactive";
+            KaKaoPayDisabledDTO kaKaoPayDisabledDTO = kakaoWebClient(uri, param,
+                    KaKaoPayDisabledDTO.class);
+            log.debug("이전 정기결제 비활성화 결과값 {}", kaKaoPayDisabledDTO);
+        }
 
         redirectAttributes.addFlashAttribute("swal",
                 new SwalMessage("Success", "결제 완료하였습니다.", SwalIcon.SUCCESS));
@@ -119,5 +128,19 @@ public class PayController {
                 new SwalMessage("Fail", "결제 실패하였습니다.", SwalIcon.ERROR));
 
         return "redirect:/membership";
+    }
+
+    private <T> T kakaoWebClient(String uri, MultiValueMap param, Class<T> type) {
+        return webClient.mutate()
+                .build()
+                .post()
+                .uri(uri)
+                .bodyValue(param)
+                .retrieve()
+                .bodyToMono(type)
+                .flux()
+                .toStream()
+                .findFirst()
+                .orElse(null);
     }
 }
