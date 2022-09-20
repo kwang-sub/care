@@ -2,10 +2,13 @@ package com.example.care.membership.service;
 
 import com.example.care.membership.domain.Membership;
 import com.example.care.membership.domain.MembershipDetail;
+import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipDetailDTO;
+import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.repository.MembershipDetailRepository;
-import com.example.care.membership.repository.MembershipRepository;
+import com.example.care.membership.repository.history.MembershipHistoryRepository;
+import com.example.care.membership.repository.membership.MembershipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,21 +23,14 @@ public class MembershipServiceImpl implements MembershipService{
 
     private final MembershipRepository membershipRepository;
     private final MembershipDetailRepository membershipDetailRepository;
+    private final MembershipHistoryRepository membershipHistoryRepository;
 
     @Override
     public List<MembershipDTO> membershipList() {
         List<Membership> memberships = membershipRepository.findMembershipAll();
 
         List<MembershipDTO> membershipDTOList = memberships.stream()
-                .map(membership -> {
-                    List<MembershipDetailDTO> membershipDetailDTOList = membership.getMembershipDetails()
-                            .stream()
-                            .map(membershipDetail -> detailEntityToDTO(membershipDetail))
-                            .collect(Collectors.toList());
-
-                    MembershipDTO membershipDTO = membershipEntityToDTO(membership, membershipDetailDTOList);
-                    return membershipDTO;
-                })
+                .map(this::membershipEntityToDTO)
                 .collect(Collectors.toList());
         return membershipDTOList;
     }
@@ -52,6 +48,19 @@ public class MembershipServiceImpl implements MembershipService{
                 });
     }
 
+    @Override
+    public MembershipHistoryDTO findValidMembership(String username) {
+        MembershipHistory availableMembership = membershipHistoryRepository.findValidMembership(username);
+
+        return availableMembership != null ? MembershipHistoryDTO.builder()
+                .user(availableMembership.getUser())
+                .membership(availableMembership.getMembership())
+                .status(availableMembership.getStatus())
+                .regDate(availableMembership.getRegDate())
+                .id(availableMembership.getId())
+                .build() : null;
+    }
+
     private Membership membershipDTOToEntity(MembershipDTO membershipDTO) {
         return Membership.builder()
                 .id(membershipDTO.getId())
@@ -60,13 +69,19 @@ public class MembershipServiceImpl implements MembershipService{
                 .build();
     }
 
-    private MembershipDTO membershipEntityToDTO(Membership membership, List<MembershipDetailDTO> membershipDetailDTOList) {
-        return MembershipDTO.builder()
+    private MembershipDTO membershipEntityToDTO(Membership membership) {
+        List<MembershipDetailDTO> membershipDetailDTOList = membership.getMembershipDetails()
+                .stream()
+                .map(this::detailEntityToDTO)
+                .collect(Collectors.toList());
+
+        MembershipDTO membershipDTO = MembershipDTO.builder()
                 .id(membership.getId())
                 .grade(membership.getGrade())
                 .price(membership.getPrice())
                 .membershipDetailDTOs(membershipDetailDTOList)
                 .build();
+        return membershipDTO;
     }
 
     private MembershipDetail detailDTOToEntity(Membership membership, MembershipDetailDTO membershipDetailDTO) {

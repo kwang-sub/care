@@ -228,12 +228,15 @@
 <script src="/js/sweetalert.js"></script>
 
 <script th:inline="javascript">
-  var swalMessage = [[${swal}]];
-  swal({
-    title : swalMessage.title,
-    text : swalMessage.text,
-    icon : swalMessage.icon.toLowerCase()
-  })
+
+  $(document).ready(function () {
+    var swalMessage = [[${swal}]];
+    swal({
+      title : swalMessage.title,
+      text : swalMessage.text,
+      icon : swalMessage.icon.toLowerCase()
+    })
+  });
 </script>
 
 </body>
