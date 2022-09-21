@@ -27,12 +27,4 @@ public class MembershipController {
 
         return "/membership/list";
     }
-
-    @GetMapping("/membership/dup")
-    public String membershipDup(RedirectAttributes redirectAttributes) {
-
-        redirectAttributes.addFlashAttribute("swal",
-                new SwalMessage("Duplication", "이미 가입하신 멤버쉽 입니다.", SwalIcon.INFO));
-        return "redirect:/membership";
-    }
 }

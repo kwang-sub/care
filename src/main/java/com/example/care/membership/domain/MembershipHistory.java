@@ -1,6 +1,6 @@
 package com.example.care.membership.domain;
 
-import com.example.care.pay.domain.Payment;
+import com.example.care.payment.domain.Payment;
 import com.example.care.user.domain.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,6 +27,10 @@ public class MembershipHistory {
     private LocalDate endDate;
     @Enumerated(EnumType.STRING)
     private MembershipStatus status;
+    private Integer transportUseNum;
+    private Integer cleanUseNum;
+    private Integer counselUseNum;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "USER_ID")
@@ -41,32 +45,36 @@ public class MembershipHistory {
     private Membership membership;
 
     @Builder
-    public MembershipHistory(LocalDateTime regDate, MembershipStatus status, User user, Payment payment, Membership membership) {
+    public MembershipHistory(LocalDateTime regDate, MembershipStatus status, Integer transportUseNum,
+                             Integer cleanUseNum, Integer counselUseNum, User user, Payment payment, Membership membership) {
         this.regDate = regDate;
         this.status = status;
+        this.transportUseNum = transportUseNum;
+        this.cleanUseNum = cleanUseNum;
+        this.counselUseNum = counselUseNum;
         this.user = user;
         this.payment = payment;
         this.membership = membership;
+        setEndDate();
+    }
+
+    private void setEndDate() {
+        LocalDate now = LocalDate.now();
+        if (now.getMonthValue() == 12) {
+            endDate = LocalDate.of(now.getYear() + 1, 1, now.getDayOfMonth());
+            return;
+        }
+
+        LocalDate next = LocalDate.of(now.getYear(), now.getMonthValue() + 1, 1);
+
+        if (now.getDayOfMonth() > next.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth()) {
+            endDate = next.with(TemporalAdjusters.lastDayOfMonth());
+        } else {
+            endDate = LocalDate.of(now.getYear(), now.getMonthValue() + 1, now.getDayOfMonth());
+        }
     }
 
     public void membershipCancel() {
         this.status = MembershipStatus.CANCEL;
-        LocalDate now = LocalDate.now();
-        if (now.getMonthValue() == 12) {
-            if (regDate.getDayOfMonth() >= now.getDayOfMonth()) {
-                endDate = LocalDate.of(now.getYear(), 12, regDate.getDayOfMonth());
-            } else {
-                endDate = LocalDate.of(now.getYear() + 1, 1, regDate.getDayOfMonth());
-            }
-
-        } else if (regDate.getDayOfMonth() >= now.getDayOfMonth()) {
-            if (regDate.getDayOfMonth() >= now.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth()){
-                endDate = now.with(TemporalAdjusters.lastDayOfMonth());
-            } else{
-                endDate = LocalDate.of(now.getYear(), now.getMonth(), regDate.getDayOfMonth());
-            }
-        } else {
-            endDate = LocalDate.of(now.getYear(), now.getMonthValue() + 1, regDate.getDayOfMonth());
-        }
     }
 }

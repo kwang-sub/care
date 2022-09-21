@@ -3,11 +3,8 @@ package com.example.care.membership.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -24,14 +21,17 @@ public class Membership {
 
     private Integer price;
 
-    @OneToMany(mappedBy = "membership")
-    private List<MembershipDetail> membershipDetails = new ArrayList<>();
+    private Integer transportNum;
+    private Integer cleanNum;
+    private Integer counselNum;
 
     @Builder
-    public Membership(Long id, Grade grade, Integer price, List<MembershipDetail> membershipDetails) {
+    public Membership(Long id, Grade grade, Integer price, Integer transportNum, Integer cleanNum, Integer counselNum) {
         this.id = id;
         this.grade = grade;
         this.price = price;
-        this.membershipDetails = membershipDetails;
+        this.transportNum = transportNum;
+        this.cleanNum = cleanNum;
+        this.counselNum = counselNum;
     }
 }

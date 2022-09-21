@@ -1,4 +1,4 @@
-package com.example.care.pay.service;
+package com.example.care.payment.service;
 
 import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.Membership;
@@ -6,17 +6,19 @@ import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.domain.MembershipStatus;
 import com.example.care.membership.repository.history.MembershipHistoryRepository;
 import com.example.care.membership.repository.membership.MembershipRepository;
-import com.example.care.pay.domain.Payment;
-import com.example.care.pay.domain.Tid;
-import com.example.care.pay.dto.KaKaoPayApproveDTO;
-import com.example.care.pay.dto.TidDTO;
-import com.example.care.pay.repository.PaymentRepository;
-import com.example.care.pay.repository.TidRepository;
+import com.example.care.payment.domain.Payment;
+import com.example.care.payment.domain.Tid;
+import com.example.care.payment.dto.KaKaoPayApproveDTO;
+import com.example.care.payment.dto.TidDTO;
+import com.example.care.payment.repository.PaymentRepository;
+import com.example.care.payment.repository.TidRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Service
 @Transactional(readOnly = true)
@@ -75,6 +77,10 @@ public class PayServiceImpl implements PayService {
                 .user(user)
                 .payment(payment)
                 .membership(membership)
+                .cleanUseNum(0)
+                .transportUseNum(0)
+                .counselUseNum(0)
+                .regDate(LocalDateTime.now())
                 .build();
     }
 

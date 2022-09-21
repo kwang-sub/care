@@ -6,9 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static com.example.care.membership.domain.QMembership.*;
-import static com.example.care.membership.domain.QMembershipDetail.*;
-
 @RequiredArgsConstructor
 public class MembershipRepositoryImpl implements MembershipRepositoryCustom {
 
@@ -16,11 +13,6 @@ public class MembershipRepositoryImpl implements MembershipRepositoryCustom {
 
     @Override
     public List<Membership> findMembershipAll() {
-        List<Membership> memberships = queryFactory
-                .selectFrom(membership)
-                .distinct()
-                .leftJoin(membership.membershipDetails, membershipDetail).fetchJoin()
-                .fetch();
-        return memberships;
+        return null;
     }
 }

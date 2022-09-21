@@ -1,4 +1,4 @@
-package com.example.care.pay.domain;
+package com.example.care.payment.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
