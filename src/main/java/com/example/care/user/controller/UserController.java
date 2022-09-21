@@ -14,19 +14,20 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public String userLoginForm(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session) {
         if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
             return "redirect:/";
@@ -35,7 +36,7 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/user/join")
+    @GetMapping("/join")
     public String userJoinForm(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session) {
         if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
             return "redirect:/";
@@ -44,7 +45,7 @@ public class UserController {
         return "/user/joinForm";
     }
 
-    @PostMapping("/user")
+    @PostMapping
     public String userJoin(@Validated UserDTO userDTO, BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
         if (!userDTO.getPassword().equals(userDTO.getCheckPassword())) {

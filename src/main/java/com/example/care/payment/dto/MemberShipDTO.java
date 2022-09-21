@@ -1,4 +1,4 @@
-package com.example.care.pay.dto;
+package com.example.care.payment.dto;
 
 import com.example.care.membership.domain.Grade;
 import lombok.Data;

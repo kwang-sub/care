@@ -1,8 +1,7 @@
-package com.example.care.pay.dto;
+package com.example.care.payment.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Builder

@@ -1,7 +1,7 @@
-package com.example.care.pay.service;
+package com.example.care.payment.service;
 
-import com.example.care.pay.dto.KaKaoPayApproveDTO;
-import com.example.care.pay.dto.TidDTO;
+import com.example.care.payment.dto.KaKaoPayApproveDTO;
+import com.example.care.payment.dto.TidDTO;
 
 public interface PayService {
 

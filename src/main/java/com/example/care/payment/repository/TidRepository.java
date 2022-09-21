@@ -1,6 +1,6 @@
-package com.example.care.pay.repository;
+package com.example.care.payment.repository;
 
-import com.example.care.pay.domain.Tid;
+import com.example.care.payment.domain.Tid;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TidRepository extends JpaRepository<Tid,Long> {

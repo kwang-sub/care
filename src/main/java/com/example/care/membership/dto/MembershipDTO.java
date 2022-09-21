@@ -4,8 +4,6 @@ import com.example.care.membership.domain.Grade;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
 public class MembershipDTO {
@@ -13,5 +11,7 @@ public class MembershipDTO {
     private Long id;
     private Grade grade;
     private Integer price;
-    private List<MembershipDetailDTO> membershipDetailDTOs;
+    private Integer transportNum;
+    private Integer cleanNum;
+    private Integer counselNum;
 }

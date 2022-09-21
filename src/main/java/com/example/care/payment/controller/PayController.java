@@ -1,9 +1,9 @@
-package com.example.care.pay.controller;
+package com.example.care.payment.controller;
 
 import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.service.MembershipService;
-import com.example.care.pay.dto.*;
-import com.example.care.pay.service.PayService;
+import com.example.care.payment.dto.*;
+import com.example.care.payment.service.PayService;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +22,7 @@ import java.util.UUID;
 
 @Slf4j
 @Controller
+@RequestMapping("/payment")
 @RequiredArgsConstructor
 public class PayController {
 
@@ -29,7 +30,7 @@ public class PayController {
     private final WebClient webClient;
     private final MembershipService membershipService;
 
-    @PostMapping("/pay/kakao")
+    @PostMapping("/kakao")
     @ResponseBody
     public ResponseEntity<KaKaoPayReadyDTO> kakaoPayStart(MemberShipDTO memberShipDTO, Principal principal) {
         if (principal == null) {
@@ -45,7 +46,7 @@ public class PayController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        String orderId = username + "_" + memberShipDTO.getGrade().name() + "_" + UUID.randomUUID();
+        String orderId = memberShipDTO.getGrade().name() + "_" + UUID.randomUUID();
         MultiValueMap<String, String> param = new LinkedMultiValueMap();
         param.add("cid", "TCSUBSCRIP");
         param.add("sid", "S1234567890987654321");
@@ -55,9 +56,9 @@ public class PayController {
         param.add("quantity", "1");
         param.add("total_amount", memberShipDTO.getPrice().toString());
         param.add("tax_free_amount", "0");
-        param.add("approval_url", "http://localhost:8080/pay/ok?orderId=" + orderId);
-        param.add("cancel_url", "http://localhost:8080/pay/cancel");
-        param.add("fail_url", "http://localhost:8080/pay/fail");
+        param.add("approval_url", "http://localhost:8080/payment/approve?orderId=" + orderId);
+        param.add("cancel_url", "http://localhost:8080/payment/cancel");
+        param.add("fail_url", "http://localhost:8080/payment/fail");
 
         KaKaoPayReadyDTO result = kakaoWebClient("/v1/payment/ready", param,
                 KaKaoPayReadyDTO.class);
@@ -75,7 +76,7 @@ public class PayController {
     }
 
 
-    @GetMapping("/pay/ok")
+    @GetMapping("/approve")
     public String payApprove(String orderId, @RequestParam("pg_token") String pgToken, Principal principal,
                              RedirectAttributes redirectAttributes) {
         log.debug("결제 승인 로직 {}", orderId);
@@ -89,7 +90,6 @@ public class PayController {
         param.add("partner_order_id", orderId);
         param.add("partner_user_id", username);
         param.add("pg_token", pgToken);
-
 
 //        정기 결제 승인 api 호출
         uri = "/v1/payment/approve";
@@ -114,7 +114,7 @@ public class PayController {
         return "redirect:/membership";
     }
 
-    @GetMapping("/pay/cancel")
+    @GetMapping("/cancel")
     public String payCancel(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("swal",
                 new SwalMessage("Cancel", "결제 취소하였습니다.", SwalIcon.WARNING));
@@ -122,7 +122,7 @@ public class PayController {
         return "redirect:/membership";
     }
 
-    @GetMapping("/pay/fail")
+    @GetMapping("/fail")
     public String payFail(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("swal",
                 new SwalMessage("Fail", "결제 실패하였습니다.", SwalIcon.ERROR));

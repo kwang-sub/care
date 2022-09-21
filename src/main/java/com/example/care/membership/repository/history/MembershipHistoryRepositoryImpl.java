@@ -1,5 +1,6 @@
 package com.example.care.membership.repository.history;
 
+import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.domain.MembershipStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -19,7 +20,8 @@ public class MembershipHistoryRepositoryImpl implements MembershipHistoryReposit
         return queryFactory.selectFrom(membershipHistory)
                 .join(membershipHistory.user, user).fetchJoin()
                 .join(membershipHistory.membership, membership).fetchJoin()
-                .where(membershipHistory.user.username.eq(username).and(membershipHistory.status.eq(MembershipStatus.ORDER)))
+                .where(membershipHistory.user.username.eq(username)
+                        .and(membershipHistory.status.eq(MembershipStatus.ORDER)))
                 .fetchFirst();
     }
 }
