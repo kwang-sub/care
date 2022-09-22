@@ -22,6 +22,10 @@ public class QMembershipHistory extends EntityPathBase<MembershipHistory> {
 
     public static final QMembershipHistory membershipHistory = new QMembershipHistory("membershipHistory");
 
+    public final NumberPath<Integer> cleanUseNum = createNumber("cleanUseNum", Integer.class);
+
+    public final NumberPath<Integer> counselUseNum = createNumber("counselUseNum", Integer.class);
+
     public final DatePath<java.time.LocalDate> endDate = createDate("endDate", java.time.LocalDate.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -33,6 +37,8 @@ public class QMembershipHistory extends EntityPathBase<MembershipHistory> {
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
 
     public final EnumPath<MembershipStatus> status = createEnum("status", MembershipStatus.class);
+
+    public final NumberPath<Integer> transportUseNum = createNumber("transportUseNum", Integer.class);
 
     public final com.example.care.user.domain.QUser user;
 

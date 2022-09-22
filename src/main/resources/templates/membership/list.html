@@ -35,10 +35,9 @@
                                 </div>
                                 <span th:text="'$'+${#numbers.formatInteger(membership.price, 3, 'COMMA') + '/'}" th:fo>가격</span><sub style="color: black">월</sub>
                             </div>
-                            <ul  class="list-group">
-                                <li class="list-group-item" th:text="|청소 서비스 ${membership.cleanNum}회|"></li>
-                                <li class="list-group-item" th:text="|상담사 방문 서비스 ${membership.counselNum}회|"></li>
-                                <li class="list-group-item" th:text="|교통 수단 서비스 ${membership.transportNum}회|"></li>
+                            <ul th:each="product : ${membership.productDTOList}"  class="list-group">
+                                <li class="list-group-item" th:text="|${product.title} ${product.maxNum}회|"></li>
+
                             </ul>
                         </div>
                     </div>

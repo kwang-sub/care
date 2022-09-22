@@ -7,6 +7,8 @@ import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.repository.history.MembershipHistoryRepository;
 import com.example.care.membership.repository.membership.MembershipRepository;
+import com.example.care.product.domain.ProductMembership;
+import com.example.care.product.dto.ProductDTO;
 import com.example.care.util.exception.DuplicateMembershipException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ public class MembershipServiceImpl implements MembershipService{
 
     @Override
     public List<MembershipDTO> membershipList() {
-        List<Membership> membershipList = membershipRepository.findAll();
+        List<Membership> membershipList = membershipRepository.findMembershipList();
 
         return membershipList.stream()
                 .map(this::membershipEntityToDTO)
@@ -38,9 +40,6 @@ public class MembershipServiceImpl implements MembershipService{
                 .id(membershipDTO.getId())
                 .price(membershipDTO.getPrice())
                 .grade(membershipDTO.getGrade())
-                .cleanNum(membershipDTO.getCleanNum())
-                .counselNum(membershipDTO.getCounselNum())
-                .transportNum(membershipDTO.getTransportNum())
                 .build();
 
         membershipRepository.save(membership);
@@ -51,9 +50,10 @@ public class MembershipServiceImpl implements MembershipService{
                 .id(membership.getId())
                 .price(membership.getPrice())
                 .grade(membership.getGrade())
-                .cleanNum(membership.getCleanNum())
-                .counselNum(membership.getCounselNum())
-                .transportNum(membership.getTransportNum())
+                .productDTOList(membership.getProductMembershipList()
+                        .stream()
+                        .map(this::productEntityToDTO)
+                        .collect(Collectors.toList()))
                 .build();
     }
 
@@ -64,5 +64,15 @@ public class MembershipServiceImpl implements MembershipService{
         return membership != null ? MembershipHistoryDTO.builder()
                 .membership(membership.getMembership())
                 .build() : null;
+    }
+
+    private ProductDTO productEntityToDTO(ProductMembership productMembership) {
+        return ProductDTO.builder()
+                .id(productMembership.getProduct().getId())
+                .code(productMembership.getProduct().getCode())
+                .title(productMembership.getProduct().getTitle())
+                .description(productMembership.getProduct().getDescription())
+                .maxNum(productMembership.getMaxNum())
+                .build();
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MembershipRepositoryCustom {
 
-    List<Membership> findMembershipAll();
+    List<Membership> findMembershipList();
 }

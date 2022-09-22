@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+    <section class="blog-area section-gap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="main_title">
+              <h2><span>Product</span></h2>
+              <p>Bring called seed first of third give itself now ment</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single-blog">
+              <div class="thumb">
+                <img class="img-fluid" src="/img/service/clean.jpg" alt="">
+              </div>
+              <div class="short_details">
+                  <a href="#"><h4>공간 청소 서비스</h4></a>
+                <div class="text-wrap">
+                  <p>
+                    청소 전문가들의 공간 청소!
+                  </p>
+                </div>
+                <a href="#" class="blog_btn">예약하기 <span class="ml-2 ti-arrow-right"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="single-blog">
+              <div class="thumb">
+                <img class="img-fluid" src="/img/service/cousel.jpg" alt="">
+              </div>
+              <div class="short_details">
+                <a th:href="@{/reserve/form?type=cou}"><h4>상담 서비스</h4></a>
+                <div class="text-wrap">
+                  <p>
+                    심리 전문가의 상담서비스!
+                  </p>
+                </div>
+                <a href="#" class="blog_btn">예약하기 <span class="ml-2 ti-arrow-right"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="single-blog">
+              <div class="thumb">
+                <img class="img-fluid" src="/img/service/transport.jpg" alt="">
+              </div>
+              <div class="short_details">
+                <a href="#"><h4>교통 서비스</h4></a>
+                <div class="text-wrap">
+                  <p>
+                    필요한 시간에 이용하는 교통 서비스!
+                  </p>
+                </div>
+                <a href="#" class="blog_btn">예약하기 <span class="ml-2 ti-arrow-right"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </th:block>
+</th:block>
+</html>

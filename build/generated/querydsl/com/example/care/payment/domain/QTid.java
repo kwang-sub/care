@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QTid extends EntityPathBase<Tid> {
 
-    private static final long serialVersionUID = 1193551959L;
+    private static final long serialVersionUID = -103589319L;
 
     public static final QTid tid1 = new QTid("tid1");
 
