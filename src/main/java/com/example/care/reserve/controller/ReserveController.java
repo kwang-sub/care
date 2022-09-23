@@ -7,11 +7,14 @@ import com.example.care.product.dto.ProductDTO;
 import com.example.care.reserve.dto.ReserveConfirmDTO;
 import com.example.care.reserve.dto.ReserveDTO;
 import com.example.care.reserve.service.ReserveService;
+import com.example.care.security.auth.PrincipalDetails;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +36,7 @@ public class ReserveController {
     private final ReserveService reserveService;
 
     @GetMapping
-    public String reserveForm(@ModelAttribute("reserveDTO") ReserveDTO reserveDTO, ProductDTO productDTO,
+    public String reserveForm(@ModelAttribute("productDTO") ProductDTO productDTO, Model model,
                               Principal principal, RedirectAttributes redirectAttributes) {
         MembershipHistoryDTO validMembership = membershipService.findValidMembership(principal.getName());
         if (validMembership == null) {
@@ -43,13 +46,18 @@ public class ReserveController {
             return "redirect:/membership";
         }
 
+        ReserveDTO reserveDTO = new ReserveDTO();
         reserveDTO.setProductDTO(productDTO);
+
+        model.addAttribute("reserveDTO", reserveDTO);
+
         return "/reserve/reserveForm";
     }
 
     @PostMapping
-    public String reserve(@Validated ReserveDTO reserveDTO, BindingResult bindingResult) {
-        if (!reserveDTO.getProductDTO().getCode().equals(ProductCode.COUNSEL) && 
+    public String reserve(@Validated ReserveDTO reserveDTO, BindingResult bindingResult,
+                          @AuthenticationPrincipal PrincipalDetails principalDetails ) {
+        if (!reserveDTO.getProductDTO().getCode().equals(ProductCode.COUNSEL) &&
                 reserveDTO.getDetailAddress().isEmpty() && reserveDTO.getPostcode().isEmpty()) {
             bindingResult.addError(new FieldError("reserveDTO",
                     "detailAddress", "주소를 입력해주세요"));
@@ -60,7 +68,9 @@ public class ReserveController {
             return "/reserve/reserveForm";
         }
 
-        reserveService.reserve(reserveDTO);
+        Long userId = principalDetails.getUser().getId();
+
+        reserveService.reserve(reserveDTO, userId);
 
 
         return "redirect:/product";

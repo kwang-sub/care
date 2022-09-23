@@ -73,6 +73,7 @@
                         <div class="col-md-12 form-group">
                             <button id="reserve-btn" type="submit" class="btn submit_btn">예약하기</button>
                         </div>
+                        <input type="hidden" th:field="*{productDTO.id}">
                         <input type="hidden" th:field="*{productDTO.code}">
                         <input type="hidden" th:field="*{productDTO.title}">
                     </form>

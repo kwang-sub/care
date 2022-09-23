@@ -2,11 +2,16 @@ package com.example.care.membership.repository.history;
 
 import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.domain.MembershipStatus;
+import com.example.care.product.domain.ProductCode;
+import com.example.care.product.domain.QProduct;
+import com.example.care.product.domain.QProductMembership;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import static com.example.care.membership.domain.QMembership.membership;
 import static com.example.care.membership.domain.QMembershipHistory.membershipHistory;
+import static com.example.care.product.domain.QProduct.product;
+import static com.example.care.product.domain.QProductMembership.productMembership;
 import static com.example.care.user.domain.QUser.user;
 
 @RequiredArgsConstructor

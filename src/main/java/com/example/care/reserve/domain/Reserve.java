@@ -3,6 +3,7 @@ package com.example.care.reserve.domain;
 import com.example.care.product.domain.Product;
 import com.example.care.user.domain.User;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Reserve {
 

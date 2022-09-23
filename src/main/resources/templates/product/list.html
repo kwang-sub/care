@@ -21,11 +21,11 @@
                 <img class="img-fluid" th:src="|/img/product/${product.code}.jpg|" alt="">
               </div>
               <div class="short_details">
-                  <a th:href="|/reserve?code=${product.code}&title=${product.title}|"><h4 th:text="${product.title}"></h4></a>
+                  <a th:href="|/reserve?code=${product.code}&title=${product.title}&id=${product.id}|"><h4 th:text="${product.title}"></h4></a>
                 <div class="text-wrap">
                   <p th:text="${product.description}"></p>
                 </div>
-                <a th:href="|/reserve?code=${product.code}&title=${product.title}|" class="blog_btn">예약하기 <span class="ml-2 ti-arrow-right"></span></a>
+                <a th:href="|/reserve?code=${product.code}&title=${product.title}&id=${product.id}|" class="blog_btn">예약하기 <span class="ml-2 ti-arrow-right"></span></a>
               </div>
             </div>
           </div>

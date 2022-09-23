@@ -1,7 +1,9 @@
 package com.example.care.product.domain;
 
 import com.example.care.membership.domain.Membership;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class ProductMembership {
 
     @Id
@@ -25,4 +28,11 @@ public class ProductMembership {
     @ManyToOne
     @JoinColumn(name = "MEMBERSHIP_ID")
     private Membership membership;
+
+    @Builder
+    public ProductMembership(Integer maxNum, Product product, Membership membership) {
+        this.maxNum = maxNum;
+        this.product = product;
+        this.membership = membership;
+    }
 }

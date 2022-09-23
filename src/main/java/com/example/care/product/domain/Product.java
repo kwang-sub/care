@@ -1,6 +1,8 @@
 package com.example.care.product.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -27,4 +29,13 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ProductMembership> productMembershipList = new ArrayList<>();
+
+    @Builder
+    public Product(ProductCode code, String title, String description, Integer startTime, Integer endTime) {
+        this.code = code;
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }
