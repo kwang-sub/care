@@ -49,7 +49,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         UserDTO user = userService.userSearch(name);
 
         if (user == null) {
-            user = userService.userJoin(UserDTO.builder(  )
+            user = userService.userJoin(UserDTO.builder()
                     .username(name)
                     .nickname(nickname)
                     .password(password)

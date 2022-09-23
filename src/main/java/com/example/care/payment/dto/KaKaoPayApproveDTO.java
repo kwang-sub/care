@@ -6,7 +6,6 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 public class KaKaoPayApproveDTO {
 
     private String aid;

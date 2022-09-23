@@ -9,6 +9,6 @@ public interface PayService {
 
     String findTid(String orderId);
 
-    String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO);
+    String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId);
 
 }

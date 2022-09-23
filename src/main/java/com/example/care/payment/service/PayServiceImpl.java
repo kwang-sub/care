@@ -50,7 +50,7 @@ public class PayServiceImpl implements PayService {
 
     @Override
     @Transactional
-    public String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO) {
+    public String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId) {
 //        이전 유효한 가입내역 상태 값 변경
         MembershipHistory validMembership = membershipHistoryRepository.
                 findValidMembership(kaKaoPayApproveDTO.getPartner_user_id());
@@ -62,7 +62,7 @@ public class PayServiceImpl implements PayService {
         Payment payment = payDTOToEntity(kaKaoPayApproveDTO);
         paymentRepository.save(payment);
 
-        User user = userRepository.findByUsername(kaKaoPayApproveDTO.getPartner_user_id());
+        User user = userRepository.getReferenceById(userId);
         Membership membership = membershipRepository.findByGrade(Grade.valueOf(kaKaoPayApproveDTO.getItem_name()));
 
         MembershipHistory membershipHistory = createMembershipHistory(payment, user, membership);

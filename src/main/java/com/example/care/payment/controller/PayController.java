@@ -4,12 +4,14 @@ import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.service.MembershipService;
 import com.example.care.payment.dto.*;
 import com.example.care.payment.service.PayService;
+import com.example.care.security.auth.PrincipalDetails;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -77,11 +79,12 @@ public class PayController {
 
 
     @GetMapping("/approve")
-    public String payApprove(String orderId, @RequestParam("pg_token") String pgToken, Principal principal,
-                             RedirectAttributes redirectAttributes) {
+    public String payApprove(String orderId, @RequestParam("pg_token") String pgToken,
+                             @AuthenticationPrincipal PrincipalDetails principalDetails, RedirectAttributes redirectAttributes) {
         log.debug("결제 승인 로직 {}", orderId);
         String tid = payService.findTid(orderId);
-        String username = principal.getName();
+        Long userId = principalDetails.getUser().getId();
+        String username = principalDetails.getUser().getUsername();
         String uri;
         MultiValueMap<String, String> param = new LinkedMultiValueMap();
 
@@ -97,7 +100,7 @@ public class PayController {
                 KaKaoPayApproveDTO.class);
 
 //        결제 저장 완료후 이전 멤버쉽 있을 경우 정기결제 비활성화하기 위해 sid 반환하도록 설계
-        String sid = payService.completePayment(kaKaoPayApproveDTO);
+        String sid = payService.completePayment(kaKaoPayApproveDTO, userId);
         if (sid != null) {
             param.clear();
             param.add("cid", "TCSUBSCRIP");
