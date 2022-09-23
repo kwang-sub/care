@@ -26,18 +26,19 @@ public class UserServiceImpl implements UserService{
             throw new DuplicateUserException("중복 회원입니다.");
         }
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        User user = userJoinDTOToEntity(userDto);
+        User user = userDTOToEntity(userDto);
         userRepository.save(user);
+        userDto.setId(userDto.getId());
         return userDto;
     }
 
     @Override
     public UserDTO userSearch(String username) {
         User user = userRepository.findByUsername(username);
-        return userEntityToJoin2DTO(user);
+        return userEntityToDTO(user);
     }
 
-    private User userJoinDTOToEntity(UserDTO userDTO) {
+    private User userDTOToEntity(UserDTO userDTO) {
         User user = User.builder()
                 .username(userDTO.getUsername())
                 .nickname(userDTO.getNickname())
@@ -49,9 +50,10 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    private UserDTO userEntityToJoin2DTO(User userEntity) {
+    private UserDTO userEntityToDTO(User userEntity) {
         if (userEntity != null) {
             UserDTO userDTO = UserDTO.builder()
+                    .id(userEntity.getId())
                     .username(userEntity.getUsername())
                     .password(userEntity.getPassword())
                     .nickname(userEntity.getNickname())

@@ -12,6 +12,7 @@ import javax.validation.constraints.Pattern;
 @Builder
 public class UserDTO {
 
+    private Long id;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z]{1}[a-zA-Z0-9]{4,11}$" )
     private String username;
