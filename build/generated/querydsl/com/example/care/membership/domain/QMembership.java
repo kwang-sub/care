@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -19,17 +20,13 @@ public class QMembership extends EntityPathBase<Membership> {
 
     public static final QMembership membership = new QMembership("membership");
 
-    public final NumberPath<Integer> CleanNum = createNumber("CleanNum", Integer.class);
-
-    public final NumberPath<Integer> CounselNum = createNumber("CounselNum", Integer.class);
-
     public final EnumPath<Grade> grade = createEnum("grade", Grade.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 
-    public final NumberPath<Integer> TransportNum = createNumber("TransportNum", Integer.class);
+    public final ListPath<com.example.care.product.domain.ProductMembership, com.example.care.product.domain.QProductMembership> productMembershipList = this.<com.example.care.product.domain.ProductMembership, com.example.care.product.domain.QProductMembership>createList("productMembershipList", com.example.care.product.domain.ProductMembership.class, com.example.care.product.domain.QProductMembership.class, PathInits.DIRECT2);
 
     public QMembership(String variable) {
         super(Membership.class, forVariable(variable));

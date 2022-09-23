@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="icon" href="/img/favicon.png" type="/sample/image/png" />
   <title>Eiser ecommerce</title>
+  <script src="/js/jquery-3.6.1.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css" />
   <link rel="stylesheet" href="/vendors/linericon/style.css" />
@@ -24,10 +26,9 @@
   <link rel="stylesheet" href="/css/responsive.css" />
   <!--care css-->
   <link rel="stylesheet" href="/css/care.css" />
+  <link rel="stylesheet" href="/css/datepicker.css" />
 </head>
-
 <body>
-<!--================Header Menu Area =================-->
 <header class="header_area">
   <div class="top_menu">
     <div class="container">
@@ -86,7 +87,7 @@
                   <a class="nav-link" th:href="@{/membership}">Membership</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Service</a>
+                  <a class="nav-link" th:href="@{/product}">Product</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Community</a>
@@ -211,7 +212,6 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/popper.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/stellar.js"></script>

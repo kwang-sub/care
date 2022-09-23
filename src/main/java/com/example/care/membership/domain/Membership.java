@@ -1,10 +1,13 @@
 package com.example.care.membership.domain;
 
+import com.example.care.product.domain.ProductMembership;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,17 +24,13 @@ public class Membership {
 
     private Integer price;
 
-    private Integer transportNum;
-    private Integer cleanNum;
-    private Integer counselNum;
+    @OneToMany(mappedBy = "membership")
+    private List<ProductMembership> productMembershipList = new ArrayList<>();
 
     @Builder
-    public Membership(Long id, Grade grade, Integer price, Integer transportNum, Integer cleanNum, Integer counselNum) {
+    public Membership(Long id, Grade grade, Integer price) {
         this.id = id;
         this.grade = grade;
         this.price = price;
-        this.transportNum = transportNum;
-        this.cleanNum = cleanNum;
-        this.counselNum = counselNum;
     }
 }

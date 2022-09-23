@@ -1,14 +1,13 @@
 package com.example.care.membership.repository.history;
 
-import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.domain.MembershipStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import static com.example.care.membership.domain.QMembership.membership;
-import static com.example.care.membership.domain.QMembershipHistory.*;
-import static com.example.care.user.domain.QUser.*;
+import static com.example.care.membership.domain.QMembershipHistory.membershipHistory;
+import static com.example.care.user.domain.QUser.user;
 
 @RequiredArgsConstructor
 public class MembershipHistoryRepositoryImpl implements MembershipHistoryRepositoryCustom{

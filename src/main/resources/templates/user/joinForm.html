@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-        <!--================Home Banner Area =================-->
         <section class="banner_area">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
@@ -19,43 +18,39 @@
                 </div>
             </div>
         </section>
-        <!--================End Home Banner Area =================-->
-
-        <!--================Tracking Box Area =================-->
         <section class="tracking_box_area section_gap">
             <div class="container">
                 <div class="tracking_box_inner">
                     <form class="row tracking_form" th:action="@{/user}" th:object="${userDTO}" th:method="post" novalidate="novalidate">
                         <div class="col-md-12 form-group">
-                            <label for="username" th:text="#{user.id}">ID</label>
-                            <input type="text" class="form-control" id="username" th:field="*{username}" th:errorclass="field-error" placeholder="User ID">
+                            <label th:for="username" th:text="#{user.id}">ID</label>
+                            <input type="text" class="form-control" th:field="*{username}" th:errorclass="field-error" placeholder="User ID">
                             <div class="field-error" th:errors="*{username}"></div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="nickname" th:text="#{user.nickname}">nickname</label>
-                            <input type="text" class="form-control" id="nickname" th:field="*{nickname}" th:errorclass="field-error" placeholder="Nickname">
+                            <label th:for="nickname" th:text="#{user.nickname}">nickname</label>
+                            <input type="text" class="form-control" th:field="*{nickname}" th:errorclass="field-error" placeholder="Nickname">
                             <div class="field-error" th:errors="*{nickname}"></div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="password" th:text="#{user.password}">password</label>
-                            <input type="password" class="form-control" id="password" th:field="*{password}" th:errorclass="field-error" placeholder="Password">
+                            <label th:for="password" th:text="#{user.password}">password</label>
+                            <input type="password" class="form-control" th:field="*{password}" th:errorclass="field-error" placeholder="Password">
                             <div class="field-error" th:errors="*{password}"></div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="checkPassword" th:text="#{user.checkPassword}">password</label>
-                            <input type="password" class="form-control" id="checkPassword" th:field="*{checkPassword}" th:errorclass="field-error" placeholder="Password">
+                            <label th:for="checkPassword" th:text="#{user.checkPassword}">password</label>
+                            <input type="password" class="form-control" th:field="*{checkPassword}" th:errorclass="field-error" placeholder="Password">
                             <div class="field-error" th:errors="*{checkPassword}"></div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label for="email" th:text="#{user.email}">email</label>
-                            <input type="email" class="form-control" id="email" th:field="*{email}" th:errorclass="field-error" placeholder="email">
+                            <label th:for="email" th:text="#{user.email}">email</label>
+                            <input type="email" class="form-control" th:field="*{email}" th:errorclass="field-error" placeholder="email">
                             <div class="field-error" th:errors="*{email}"></div>
                         </div>
                         <div class="col-md-12 form-group">
                             <a th:href="@{/user/login}"><button type="button" value="submit" class="btn submit_btn">취소</button></a>
                             <button type="submit" value="submit" class="btn submit_btn" th:text="#{user.singUp}">회원가입</button>
                         </div>
-
                         <div th:if="${#fields.hasGlobalErrors()}">
                             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
                         </div>

@@ -1,5 +1,7 @@
 package com.example.care.user.domain;
 
+import com.example.care.membership.domain.MembershipHistory;
+import com.example.care.reserve.domain.Reserve;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,9 +30,17 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createDate;
     private String provider;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reserve> reserveList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
+
     @Builder
-    public User(String username, String nickname, String password, String email, Role role,
-                LocalDateTime createDate, String provider) {
+    public User(Long id, String username, String nickname, String password, String email, Role role, LocalDateTime createDate,
+                String provider, List<Reserve> reserveList, List<MembershipHistory> membershipHistoryList) {
+        this.id = id;
         this.username = username;
         this.nickname = nickname;
         this.password = password;
@@ -36,7 +48,10 @@ public class User {
         this.role = role;
         this.createDate = createDate;
         this.provider = provider;
+        this.reserveList = reserveList;
+        this.membershipHistoryList = membershipHistoryList;
     }
+
 
     public String getRoleKey() {
         return this.role.getKey();

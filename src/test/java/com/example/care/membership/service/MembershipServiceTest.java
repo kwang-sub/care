@@ -41,9 +41,6 @@ class MembershipServiceTest {
     void membershipSaveTest() {
         MembershipDTO membershipDTO = MembershipDTO.builder()
                 .grade(Grade.BRONZE)
-                .transportNum(3)
-                .cleanNum(3)
-                .counselNum(3)
                 .price(15000)
                 .build();
         membershipService.membershipSave(membershipDTO);
