@@ -20,11 +20,17 @@ public class QProduct extends EntityPathBase<Product> {
 
     public static final QProduct product = new QProduct("product");
 
+    public final EnumPath<ProductCode> code = createEnum("code", ProductCode.class);
+
     public final StringPath description = createString("description");
+
+    public final NumberPath<Integer> endTime = createNumber("endTime", Integer.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final ListPath<ProductMembership, QProductMembership> productMembershipList = this.<ProductMembership, QProductMembership>createList("productMembershipList", ProductMembership.class, QProductMembership.class, PathInits.DIRECT2);
+
+    public final NumberPath<Integer> startTime = createNumber("startTime", Integer.class);
 
     public final StringPath title = createString("title");
 

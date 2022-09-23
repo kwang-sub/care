@@ -54,7 +54,7 @@ public class PayController {
         param.add("partner_user_id", username);
         param.add("item_name", memberShipDTO.getGrade().name());
         param.add("quantity", "1");
-        param.add("total_amount", memberShipDTO.getPrice().toString());
+        param.add("total_amount", String.valueOf(memberShipDTO.getPrice()));
         param.add("tax_free_amount", "0");
         param.add("approval_url", "http://localhost:8080/payment/approve?orderId=" + orderId);
         param.add("cancel_url", "http://localhost:8080/payment/cancel");

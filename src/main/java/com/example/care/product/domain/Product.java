@@ -22,6 +22,8 @@ public class Product {
     private String title;
     @Lob
     private String description;
+    private Integer startTime;
+    private Integer endTime;
 
     @OneToMany(mappedBy = "product")
     private List<ProductMembership> productMembershipList = new ArrayList<>();

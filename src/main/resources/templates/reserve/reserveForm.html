@@ -41,8 +41,8 @@
                         <span class="col-md-6 form-group">
                             <label th:for="phoneNumber">예약시간</label>
                             <div class="default-select" id="default-select">
-                                <select th:field="*{reserveTime}" style="display: none;" text="시간을 선택해주세요">
-                                    <option value="1">1</option>
+                                <select th:field="*{reserveTime}" style="display: none;" required>
+                                    <option  id="dis-option" value="" selected>예약시간 선택</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -85,6 +85,27 @@
             if (product == 'COUNSEL'){
                 $('.address').remove();
             }
+            $.datepicker.setDefaults({
+                minDate: 0,
+                dateFormat: 'yy-mm-dd',
+                prevText: '이전 달',
+                nextText: '다음 달',
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                showMonthAfterYear: true,
+                yearSuffix: '년',
+                onSelect:function(date){
+                    $.post("/reserve/confirm", {
+                        reserveDate: date,
+                        productCode: product
+                    }, function () {
+                        console.log("성공");
+                    });
+                }
+            });
         </script>
 
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -131,22 +152,7 @@
                 });
             });
 
-            $.datepicker.setDefaults({
-                minDate: 0,
-                dateFormat: 'yy-mm-dd',
-                prevText: '이전 달',
-                nextText: '다음 달',
-                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                showMonthAfterYear: true,
-                yearSuffix: '년',
-                onSelect:function(){
-                    console.log("atertwa")
-                }
-            });
+
         </script>
     </th:block>
 </th:block>
