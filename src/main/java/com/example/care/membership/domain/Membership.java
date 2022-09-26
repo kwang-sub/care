@@ -1,6 +1,6 @@
 package com.example.care.membership.domain;
 
-import com.example.care.product.domain.ProductMembership;
+import com.example.care.product.domain.MembershipProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class Membership {
     private Integer price;
 
     @OneToMany(mappedBy = "membership")
-    private List<ProductMembership> productMembershipList = new ArrayList<>();
+    private List<MembershipProduct> membershipProductList = new ArrayList<>();
 
     @Builder
     public Membership(Long id, Grade grade, Integer price) {

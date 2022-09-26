@@ -11,8 +11,8 @@
                             <p>Very us move be blessed multiply night</p>
                         </div>
                         <div class="page_link">
-                            <a th:text="#{home}" th:href="@{/static}">Home</a>
-                            <a th:text="#{user.login}" th:href="@{/user/login}">Order Tracking</a>
+                            <a th:text="#{home}" th:href="@{/}">Home</a>
+                            <a th:text="#{list}" th:href="@{/product}">Order Tracking</a>
                         </div>
                     </div>
                 </div>
@@ -39,23 +39,17 @@
                             <div class="field-error" th:errors="*{reserveDate}"></div>
                         </span>
                         <span class="col-md-6 form-group">
-                            <label th:for="phoneNumber">예약시간</label>
-                            <div class="default-select" id="default-select">
-                                <select th:field="*{reserveTime}" style="display: none;" required>
-                                    <option  id="dis-option" value="" selected>예약시간 선택</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <div class="field-error" th:errors="*{reserveTime}"></div>
-                            </div>
+                            <label th:for="phoneNumber">예약시간</label><br>
+                            <select th:field="*{reserveTime}" id="reserve-time" class="form-control">
+                                <option class="time-options" value="" selected hidden>예약시간 선택</option>
+                            </select>
+                            <div class="field-error" th:errors="*{reserveTime}"></div>
                         </span>
                         <div class="col-md-12 form-group address">
-                            <label for="postcode">주소</label>
+                            <label th:for="postcode">주소</label>
                         </div>
                         <span class="col-md-5 form-group address">
-                            <input type="text" class="form-control" id="postcode" th:field="*{postcode}" placeholder="우편번호" readonly>
+                            <input type="text" class="form-control" th:field="*{postcode}" placeholder="우편번호" readonly>
                         </span>
                         <span class="col-md-4 form-group address">
                             <a href="#" class="genric-btn default-border" id="search-addr-btn">우편번호 찾기</a>
@@ -73,6 +67,7 @@
                         <div class="col-md-12 form-group">
                             <button id="reserve-btn" type="submit" class="btn submit_btn">예약하기</button>
                         </div>
+                        <input type="hidden" th:field="*{productDTO.id}">
                         <input type="hidden" th:field="*{productDTO.code}">
                         <input type="hidden" th:field="*{productDTO.title}">
                     </form>
@@ -82,6 +77,7 @@
 
         <script th:inline="javascript">
             var product = [[${reserveDTO.productDTO.code}]];
+            var productId = [[${reserveDTO.productDTO.id}]];
             if (product == 'COUNSEL'){
                 $('.address').remove();
             }
@@ -98,11 +94,22 @@
                 showMonthAfterYear: true,
                 yearSuffix: '년',
                 onSelect:function(date){
-                    $.post("/reserve/confirm", {
+                    $.post("/reserve/time", {
                         reserveDate: date,
                         productCode: product
-                    }, function () {
-                        console.log("성공");
+                    }, function (data) {
+                        $("#reserve-time option").remove();
+                        var html = "<option  value='' selected hidden>예약시간 선택</option>";
+                        for (var i = data.startTime; i <= data.endTime; i++) {
+                            var reserveTimeList = data.reserveTimeList;
+                            if (reserveTimeList.indexOf(i) == -1) {
+                                html += "<option  value='" + i + "' >" + i + ":00</option>";
+                            } else {
+                                html += "<option value='' disabled>" + i + ":00</option>";
+                            }
+                        }
+
+                        $("#reserve-time").append(html);
                     });
                 }
             });

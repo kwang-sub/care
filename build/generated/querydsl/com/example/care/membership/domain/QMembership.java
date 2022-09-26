@@ -24,9 +24,9 @@ public class QMembership extends EntityPathBase<Membership> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Integer> price = createNumber("price", Integer.class);
+    public final ListPath<com.example.care.product.domain.MembershipProduct, com.example.care.product.domain.QMembershipProduct> membershipProductList = this.<com.example.care.product.domain.MembershipProduct, com.example.care.product.domain.QMembershipProduct>createList("membershipProductList", com.example.care.product.domain.MembershipProduct.class, com.example.care.product.domain.QMembershipProduct.class, PathInits.DIRECT2);
 
-    public final ListPath<com.example.care.product.domain.ProductMembership, com.example.care.product.domain.QProductMembership> productMembershipList = this.<com.example.care.product.domain.ProductMembership, com.example.care.product.domain.QProductMembership>createList("productMembershipList", com.example.care.product.domain.ProductMembership.class, com.example.care.product.domain.QProductMembership.class, PathInits.DIRECT2);
+    public final NumberPath<Integer> price = createNumber("price", Integer.class);
 
     public QMembership(String variable) {
         super(Membership.class, forVariable(variable));

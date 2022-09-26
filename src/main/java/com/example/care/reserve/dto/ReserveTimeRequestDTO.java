@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class ReserveConfirmDTO {
+public class ReserveTimeRequestDTO {
 
     private ProductCode productCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

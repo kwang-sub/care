@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
 public class ProductDTO {
 
     private Long id;

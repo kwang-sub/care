@@ -3,12 +3,12 @@ package com.example.care.payment.service;
 import com.example.care.payment.dto.KaKaoPayApproveDTO;
 import com.example.care.payment.dto.TidDTO;
 
-public interface PayService {
+public interface PaymentService {
 
     void saveTid(TidDTO tidDTO);
 
     String findTid(String orderId);
 
-    String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId);
+    String createPayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId);
 
 }
