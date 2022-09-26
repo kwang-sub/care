@@ -28,7 +28,9 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<ProductMembership, QProductMembership> productMembershipList = this.<ProductMembership, QProductMembership>createList("productMembershipList", ProductMembership.class, QProductMembership.class, PathInits.DIRECT2);
+    public final ListPath<MembershipProduct, QMembershipProduct> membershipProductList = this.<MembershipProduct, QMembershipProduct>createList("membershipProductList", MembershipProduct.class, QMembershipProduct.class, PathInits.DIRECT2);
+
+    public final ListPath<com.example.care.reserve.domain.Reserve, com.example.care.reserve.domain.QReserve> reserveList = this.<com.example.care.reserve.domain.Reserve, com.example.care.reserve.domain.QReserve>createList("reserveList", com.example.care.reserve.domain.Reserve.class, com.example.care.reserve.domain.QReserve.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> startTime = createNumber("startTime", Integer.class);
 

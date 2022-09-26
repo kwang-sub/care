@@ -31,7 +31,7 @@ public class Reserve {
     private String extraAddress;
     private LocalDateTime regDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     private Product product;
 
@@ -40,13 +40,13 @@ public class Reserve {
     private User user;
 
     @Builder
-    public Reserve(Long id, String name, String phoneNumber, LocalDate reserveDate, Integer reserveTime, String postcode,
+    public Reserve(Long id, String name, String phoneNumber, LocalDate reserveDate, Integer reserveTime, String postcode, ReserveStatus reserveStatus,
                    String address, String detailAddress, String extraAddress, LocalDateTime regDate, Product product, User user) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.reserveDate = reserveDate;
-        ReserveTime = reserveTime;
+        this.ReserveTime = reserveTime;
         this.postcode = postcode;
         this.address = address;
         this.detailAddress = detailAddress;
@@ -54,5 +54,6 @@ public class Reserve {
         this.regDate = regDate;
         this.product = product;
         this.user = user;
+        this.reserveStatus = reserveStatus;
     }
 }

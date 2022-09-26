@@ -1,9 +1,9 @@
 package com.example.care.product.domain;
 
+import com.example.care.reserve.domain.Reserve;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +28,9 @@ public class Product {
     private Integer endTime;
 
     @OneToMany(mappedBy = "product")
-    private List<ProductMembership> productMembershipList = new ArrayList<>();
+    private List<MembershipProduct> membershipProductList = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private List<Reserve> reserveList = new ArrayList<>();
 
     @Builder
     public Product(ProductCode code, String title, String description, Integer startTime, Integer endTime) {

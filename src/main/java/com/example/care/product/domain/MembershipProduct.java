@@ -6,13 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class ProductMembership {
+public class MembershipProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +28,7 @@ public class ProductMembership {
     private Membership membership;
 
     @Builder
-    public ProductMembership(Integer maxNum, Product product, Membership membership) {
+    public MembershipProduct(Integer maxNum, Product product, Membership membership) {
         this.maxNum = maxNum;
         this.product = product;
         this.membership = membership;

@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MembershipRepository extends JpaRepository<Membership, Long>, MembershipRepositoryCustom {
 
     Membership findByGrade(Grade grade);
+
 }

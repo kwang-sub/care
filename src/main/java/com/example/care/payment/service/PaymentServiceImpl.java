@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class PayServiceImpl implements PayService {
+public class PaymentServiceImpl implements PaymentService {
 
     private final TidRepository tidRepository;
     private final PaymentRepository paymentRepository;
@@ -50,7 +50,7 @@ public class PayServiceImpl implements PayService {
 
     @Override
     @Transactional
-    public String completePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId) {
+    public String createPayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId) {
 //        이전 유효한 가입내역 상태 값 변경
         MembershipHistory validMembership = membershipHistoryRepository.
                 findValidMembership(kaKaoPayApproveDTO.getPartner_user_id());

@@ -11,6 +11,7 @@ import com.example.care.payment.domain.Payment;
 import com.example.care.payment.repository.PaymentRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,37 @@ class MembershipServiceTest {
     private MembershipHistoryRepository membershipHistoryRepository;
     @Autowired
     private PaymentRepository paymentRepository;
+    private User user;
+    private Membership membership;
+    private Payment payment;
+
+    @BeforeEach
+    void setup() {
+        user = User.builder()
+                .username("test")
+                .build();
+        userRepository.save(user);
+
+        membership = Membership.builder()
+                .grade(Grade.BRONZE)
+                .price(10000)
+                .build();
+        membershipRepository.save(membership);
+
+        payment = Payment.builder()
+                .build();
+        paymentRepository.save(payment);
+    }
 
     @Test
     @DisplayName("멤버쉽 저장 테스트")
     void membershipSaveTest() {
         MembershipDTO membershipDTO = MembershipDTO.builder()
-                .grade(Grade.BRONZE)
+                .grade(Grade.SILVER)
                 .price(15000)
                 .build();
         membershipService.membershipSave(membershipDTO);
-        Membership findMembership = membershipRepository.findByGrade(Grade.BRONZE);
+        Membership findMembership = membershipRepository.findByGrade(Grade.SILVER);
         assertThat(findMembership).isNotNull();
         assertThat(findMembership.getPrice()).isEqualTo(15000);
     }
@@ -53,21 +75,6 @@ class MembershipServiceTest {
     @DisplayName("현재 유효한 멤버쉽 조회")
     void userValidMembershipTest() {
 //        given
-        User user = User.builder()
-                .username("test")
-                .build();
-        userRepository.save(user);
-
-        Membership membership = Membership.builder()
-                .grade(Grade.BRONZE)
-                .price(10000)
-                .build();
-        membershipRepository.save(membership);
-
-        Payment payment = Payment.builder()
-                .build();
-        paymentRepository.save(payment);
-
         MembershipHistory membershipHistory = MembershipHistory.builder()
                 .user(user)
                 .status(MembershipStatus.ORDER)
@@ -76,7 +83,6 @@ class MembershipServiceTest {
                 .regDate(LocalDateTime.now())
                 .build();
         membershipHistoryRepository.save(membershipHistory);
-
 
 //        when
         MembershipHistory availableMembership = membershipHistoryRepository
@@ -90,21 +96,6 @@ class MembershipServiceTest {
     @DisplayName("멤버쉽 상태 변경시(CANCEL) 유효하지 않은지 테스트")
     void userNotValidMembershipTest() {
 //        given
-        User user = User.builder()
-                .username("test")
-                .build();
-        userRepository.save(user);
-
-        Membership membership = Membership.builder()
-                .grade(Grade.BRONZE)
-                .price(10000)
-                .build();
-        membershipRepository.save(membership);
-
-        Payment payment = Payment.builder()
-                .build();
-        paymentRepository.save(payment);
-
         MembershipHistory membershipHistory = MembershipHistory.builder()
                 .user(user)
                 .status(MembershipStatus.ORDER)

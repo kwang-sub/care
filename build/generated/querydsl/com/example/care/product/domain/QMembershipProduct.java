@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QProductMembership is a Querydsl query type for ProductMembership
+ * QMembershipProduct is a Querydsl query type for MembershipProduct
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QProductMembership extends EntityPathBase<ProductMembership> {
+public class QMembershipProduct extends EntityPathBase<MembershipProduct> {
 
-    private static final long serialVersionUID = -839661690L;
+    private static final long serialVersionUID = -1867434598L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QProductMembership productMembership = new QProductMembership("productMembership");
+    public static final QMembershipProduct membershipProduct = new QMembershipProduct("membershipProduct");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -30,23 +30,23 @@ public class QProductMembership extends EntityPathBase<ProductMembership> {
 
     public final QProduct product;
 
-    public QProductMembership(String variable) {
-        this(ProductMembership.class, forVariable(variable), INITS);
+    public QMembershipProduct(String variable) {
+        this(MembershipProduct.class, forVariable(variable), INITS);
     }
 
-    public QProductMembership(Path<? extends ProductMembership> path) {
+    public QMembershipProduct(Path<? extends MembershipProduct> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QProductMembership(PathMetadata metadata) {
+    public QMembershipProduct(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QProductMembership(PathMetadata metadata, PathInits inits) {
-        this(ProductMembership.class, metadata, inits);
+    public QMembershipProduct(PathMetadata metadata, PathInits inits) {
+        this(MembershipProduct.class, metadata, inits);
     }
 
-    public QProductMembership(Class<? extends ProductMembership> type, PathMetadata metadata, PathInits inits) {
+    public QMembershipProduct(Class<? extends MembershipProduct> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.membership = inits.isInitialized("membership") ? new com.example.care.membership.domain.QMembership(forProperty("membership")) : null;
         this.product = inits.isInitialized("product") ? new QProduct(forProperty("product")) : null;

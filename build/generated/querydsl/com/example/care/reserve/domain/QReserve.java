@@ -42,6 +42,8 @@ public class QReserve extends EntityPathBase<Reserve> {
 
     public final DatePath<java.time.LocalDate> reserveDate = createDate("reserveDate", java.time.LocalDate.class);
 
+    public final EnumPath<ReserveStatus> reserveStatus = createEnum("reserveStatus", ReserveStatus.class);
+
     public final NumberPath<Integer> ReserveTime = createNumber("ReserveTime", Integer.class);
 
     public final com.example.care.user.domain.QUser user;

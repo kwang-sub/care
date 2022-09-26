@@ -1,11 +1,8 @@
 package com.example.care.reserve.repository;
 
 import com.example.care.product.domain.ProductCode;
-import com.example.care.product.domain.QProduct;
-import com.example.care.product.domain.QProductMembership;
-import com.example.care.reserve.domain.QReserve;
 import com.example.care.reserve.domain.Reserve;
-import com.example.care.reserve.dto.ReserveConfirmDTO;
+import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -13,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static com.example.care.product.domain.QMembershipProduct.membershipProduct;
 import static com.example.care.product.domain.QProduct.product;
-import static com.example.care.product.domain.QProductMembership.productMembership;
 import static com.example.care.reserve.domain.QReserve.reserve;
 
 @RequiredArgsConstructor
@@ -24,24 +21,24 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
 
     @Override
     public Tuple findUseProductNum(ProductCode productCode, Long userId) {
-        return queryFactory.select(reserve.count(), productMembership.maxNum.max())
+        return queryFactory.select(reserve.count(), membershipProduct.maxNum.max())
                 .from(reserve)
                 .join(reserve.product, product)
-                .join(product.productMembershipList, productMembership)
+                .join(product.membershipProductList, membershipProduct)
                 .where(reserve.user.id.eq(userId),
                         product.code.eq(productCode))
-                .groupBy(reserve.user.id)
+                .groupBy(reserve.user)
                 .fetchOne();
 
     }
 
     @Override
-    public List<Reserve> findProductReserve(ReserveConfirmDTO reserveConfirmDTO) {
+    public List<Reserve> findProductReserve(ReserveTimeRequestDTO reserveTimeRequestDTO) {
         return queryFactory.selectFrom(reserve)
                 .join(reserve.product, product)
-                .where(product.code.eq(reserveConfirmDTO.getProductCode()),
-                        reserve.reserveDate.eq(reserveConfirmDTO.getReserveDate()),
-                        eqReserveTime(reserveConfirmDTO.getReserveTime()))
+                .where(product.code.eq(reserveTimeRequestDTO.getProductCode()),
+                        reserve.reserveDate.eq(reserveTimeRequestDTO.getReserveDate()),
+                        eqReserveTime(reserveTimeRequestDTO.getReserveTime()))
                 .fetch();
     }
 

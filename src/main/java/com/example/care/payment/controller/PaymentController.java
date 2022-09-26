@@ -3,7 +3,7 @@ package com.example.care.payment.controller;
 import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.service.MembershipService;
 import com.example.care.payment.dto.*;
-import com.example.care.payment.service.PayService;
+import com.example.care.payment.service.PaymentService;
 import com.example.care.security.auth.PrincipalDetails;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
@@ -26,9 +26,9 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/payment")
 @RequiredArgsConstructor
-public class PayController {
+public class PaymentController {
 
-    private final PayService payService;
+    private final PaymentService paymentService;
     private final WebClient webClient;
     private final MembershipService membershipService;
 
@@ -72,7 +72,7 @@ public class PayController {
                 .orderId(orderId)
                 .build();
         log.debug("결제 승인때 사용할 tid 저장 로직 {}", tidDTO);
-        payService.saveTid(tidDTO);
+        paymentService.saveTid(tidDTO);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -82,7 +82,7 @@ public class PayController {
     public String payApprove(String orderId, @RequestParam("pg_token") String pgToken,
                              @AuthenticationPrincipal PrincipalDetails principalDetails, RedirectAttributes redirectAttributes) {
         log.debug("결제 승인 로직 {}", orderId);
-        String tid = payService.findTid(orderId);
+        String tid = paymentService.findTid(orderId);
         Long userId = principalDetails.getUser().getId();
         String username = principalDetails.getUser().getUsername();
         String uri;
@@ -100,7 +100,7 @@ public class PayController {
                 KaKaoPayApproveDTO.class);
 
 //        결제 저장 완료후 이전 멤버쉽 있을 경우 정기결제 비활성화하기 위해 sid 반환하도록 설계
-        String sid = payService.completePayment(kaKaoPayApproveDTO, userId);
+        String sid = paymentService.createPayment(kaKaoPayApproveDTO, userId);
         if (sid != null) {
             param.clear();
             param.add("cid", "TCSUBSCRIP");

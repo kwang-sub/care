@@ -1,15 +1,13 @@
 package com.example.care.membership.service;
 
-import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.Membership;
 import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.repository.history.MembershipHistoryRepository;
 import com.example.care.membership.repository.membership.MembershipRepository;
-import com.example.care.product.domain.ProductMembership;
+import com.example.care.product.domain.MembershipProduct;
 import com.example.care.product.dto.ProductDTO;
-import com.example.care.util.exception.DuplicateMembershipException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +48,7 @@ public class MembershipServiceImpl implements MembershipService{
                 .id(membership.getId())
                 .price(membership.getPrice())
                 .grade(membership.getGrade())
-                .productDTOList(membership.getProductMembershipList()
+                .productDTOList(membership.getMembershipProductList()
                         .stream()
                         .map(this::productEntityToDTO)
                         .collect(Collectors.toList()))
@@ -66,13 +64,13 @@ public class MembershipServiceImpl implements MembershipService{
                 .build() : null;
     }
 
-    private ProductDTO productEntityToDTO(ProductMembership productMembership) {
+    private ProductDTO productEntityToDTO(MembershipProduct membershipProduct) {
         return ProductDTO.builder()
-                .id(productMembership.getProduct().getId())
-                .code(productMembership.getProduct().getCode())
-                .title(productMembership.getProduct().getTitle())
-                .description(productMembership.getProduct().getDescription())
-                .maxNum(productMembership.getMaxNum())
+                .id(membershipProduct.getProduct().getId())
+                .code(membershipProduct.getProduct().getCode())
+                .title(membershipProduct.getProduct().getTitle())
+                .description(membershipProduct.getProduct().getDescription())
+                .maxNum(membershipProduct.getMaxNum())
                 .build();
     }
 }
