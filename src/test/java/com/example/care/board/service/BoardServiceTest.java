@@ -2,6 +2,8 @@ package com.example.care.board.service;
 
 import com.example.care.board.domain.Board;
 import com.example.care.board.dto.BoardDTO;
+import com.example.care.board.dto.BoardEditDTO;
+import com.example.care.board.dto.BoardListDTO;
 import com.example.care.board.repository.BoardRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
@@ -38,30 +40,46 @@ class BoardServiceTest {
                 .username("테스트")
                 .build();
         userRepository.save(user);
-
-
     }
 
     @Test
     @DisplayName("게시글 작성 테스트")
     void createBoardTest() {
-        BoardDTO boardDTO = BoardDTO.builder()
+        BoardEditDTO boardEditDTO = BoardEditDTO.builder()
                 .title("제목")
                 .content("내용")
                 .userId(user.getId())
                 .build();
 
-        Long boardId = boardService.registerBoard(boardDTO);
+        Long boardId = boardService.registerBoard(boardEditDTO);
         Board board = boardRepository.findById(boardId).orElse(null);
-        assertThat(board.getTitle()).isEqualTo(boardDTO.getTitle());
+        assertThat(board.getTitle()).isEqualTo(boardEditDTO.getTitle());
         assertThat(board.getView()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("게시글 조회 테스트")
+    void readTest() {
+        Board board = Board.builder()
+                .title("제목")
+                .content("내용")
+                .user(user)
+                .build();
+        boardRepository.save(board);
+
+        BoardDTO boardDTO = boardService.readBoard(board.getId());
+
+        assertThat(boardDTO.getTitle()).isEqualTo(board.getTitle());
+        assertThat(boardDTO.getUserNickname()).isEqualTo(board.getUser().getNickname());
+        assertThat(boardDTO.getView()).isEqualTo(1);
+
     }
 
     @Test
     @DisplayName("페이징 목록 테스트")
     void paginationTest1() {
 
-        IntStream.rangeClosed(1, 30)
+        IntStream.rangeClosed(1, 101)
                 .forEach( i -> {
                     Board board = Board.builder()
                             .title("제목" + i)
@@ -71,12 +89,20 @@ class BoardServiceTest {
                     boardRepository.save(board);
                 });
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        PageResultDTO<BoardDTO, Board> result = boardService.getList(pageRequestDTO);
-        List<BoardDTO> dtoList = result.getDtoList();
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+        PageResultDTO<BoardListDTO, Board> result = boardService.getList(pageRequestDTO);
+        List<BoardListDTO> dtoList = result.getDtoList();
+
+        assertThat(result.isNext()).isTrue();
+        assertThat(result.isPrev()).isFalse();
+        assertThat(result.getEnd()).isEqualTo(10);
+        assertThat(result.getTotalPage()).isEqualTo(11);
 
         assertThat(dtoList.size()).isEqualTo(10);
-        assertThat(dtoList.get(0).getId()).isEqualTo(30L);
+        assertThat(dtoList.get(0).getId()).isEqualTo(101L);
     }
 
     @Test
@@ -90,11 +116,38 @@ class BoardServiceTest {
         boardRepository.save(board);
 
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        PageResultDTO<BoardDTO, Board> result = boardService.getList(pageRequestDTO);
+        PageResultDTO<BoardListDTO, Board> result = boardService.getList(pageRequestDTO);
 
         assertThat(result.getEnd()).isEqualTo(1);
         assertThat(result.getPageList().size()).isEqualTo(1);
         assertThat(result.isNext()).isFalse();
         assertThat(result.isPrev()).isFalse();
+    }
+
+    @Test
+    @DisplayName("페이징 검색 테스트")
+    void paginationTest3() {
+
+        IntStream.rangeClosed(1, 101)
+                .forEach( i -> {
+                    Board board = Board.builder()
+                            .title("제목" + i)
+                            .content("내용" + i)
+                            .user(user)
+                            .build();
+                    boardRepository.save(board);
+                });
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .type("t")
+                .keyword("2")
+                .build();
+        PageResultDTO<BoardListDTO, Board> result = boardService.getList(pageRequestDTO);
+        List<BoardListDTO> dtoList = result.getDtoList();
+        for (BoardListDTO boardListDTO : dtoList) {
+            assertThat(boardListDTO.getTitle()).contains("2");
+        }
     }
 }

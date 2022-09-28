@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+          <div class="banner_content d-md-flex justify-content-between align-items-center">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="tracking_box_area section_gap">
+      <div class="container">
+        <div class="tracking_box_inner">
+          <article class="blog_item">
+            <form th:object="${boardDTO}">
+              <div class="blog_details">
+                <h2 th:field="*{title}" th:text="${boardDTO.title}"></h2>
+                <ul class="blog-info-link">
+                  <li><i class="ti-user"></i> [[${boardDTO.userNickname}]]</li>
+                  <li ><i class="ti-calendar"></i><span th:text="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}"></span></li>
+                  <li><i class="ti-eye"></i> [[${boardDTO.view}]]</li>
+                </ul>
+                <pre th:field="*{content}" th:text="${boardDTO.content}"></pre>
+                <a th:if="${#authentication.name == boardDTO.username}" th:href="@{|/board/${boardDTO.id}/modify|(page=${pageRequestDTO.page})}">
+                  <button type="button" class="genric-btn info radius">수정</button>
+                </a>
+                <a th:href="@{/board(page=${pageRequestDTO.page})}"><button type="button" class="btn submit_btn">목록</button></a>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div><br/>
+    </section>
+  </th:block>
+</th:block>
+</html>

@@ -2,43 +2,84 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
   <th:block th:fragment="content">
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+          <div class="banner_content d-md-flex justify-content-between align-items-center">
+            <div class="mb-3 mb-md-0">
+              <h2>게시판</h2>
+              <p>Very us move be blessed multiply night</p>
+            </div>
+            <div class="page_link">
+              <a th:href="@{/board/register}">글 작성하기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="feature_product_area section_gap_bottom_custom">
+      <br>
+      <br>
       <div class="container">
+        <form class="row tracking_form">
+          <span class="col-md-2 form-group">
+                <select class="form-control">
+                  <option value="" selected="" hidden="">예약시간 선택</option>
+                  <option value="9">9:00</option>
+                  <option value="18">18:00</option>
+                </select>
+          </span>
+          <span class="col-md-2 form-group">
+                <input class="form-control">
+          </span>
+          <span class="col-md-3 form-group">
+                <button type="submit" value="submit" class="btn submit_btn" >검색</button>
+          </span>
+        </form>
         <table class="table table-hover">
           <thead class="thead-light">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+            <th scope="col">조회수</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr th:each="dto : ${result.dtoList}">
+            <th scope="row" th:text="${dto.id}"></th>
+            <td >
+              <a th:href="@{|/board/${dto.id}(page=${result.page})}">[[${dto.title}]]</a>
+            </td>
+            <td th:text="${dto.userNickname}"></td>
+            <td th:text="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"></td>
+            <td th:text="${dto.view}"></td>
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+
           </tbody>
         </table>
       </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
+      <nav class="blog-pagination justify-content-center d-flex">
+        <ul class="pagination">
+          <li class="page-item" th:if="${result.prev}">
+            <a th:href="@{/board(page=${result.start - 1})}" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-left"></span>
+                </span>
+            </a>
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+          <li th:each="page : ${result.pageList}" th:class="|page-item ${result.page == page?'active':''}|" >
+            <a th:href="@{/board(page=${page})}" class="page-link" th:text="${page}"></a>
+          </li>
+
+          <li class="page-item" th:if="${result.next}">
+            <a th:href="@{/board(page=${result.end + 1})}" class="page-link" aria-label="Next">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-right"></span>
+                </span>
+            </a>
           </li>
         </ul>
       </nav>

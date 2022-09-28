@@ -117,7 +117,7 @@ class ReserveServiceTest {
                 .reserveTime(10)
                 .productDTO(productDTO)
                 .build();
-        
+
         assertThatThrownBy(() -> reserveService.reserve(reserveDTO, user.getId()))
                 .isInstanceOf(IllegalStateException.class);
     }
