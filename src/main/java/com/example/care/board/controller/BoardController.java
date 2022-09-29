@@ -29,7 +29,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String boardList(PageRequestDTO pageRequestDTO, Model model) {
+    public String boardList(@ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, Model model) {
         PageResultDTO<BoardListDTO, Board> result = boardService.getList(pageRequestDTO);
         model.addAttribute("result", result);
 
@@ -87,6 +87,8 @@ public class BoardController {
 
         boardService.modifyBoard(boardEditDTO);
         redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+        redirectAttributes.addAttribute("type", pageRequestDTO.getType());
+        redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
         return "redirect:/board/" + boardId;
     }
     @PostMapping("/{boardId}/remove")

@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,7 +16,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@EntityListeners(value = {AuditingEntityListener.class})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board {
 
@@ -28,11 +29,11 @@ public class Board {
     private String content;
     private long view;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "REG_DATE", updatable = false)
     private LocalDateTime regDate;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     private LocalDateTime modDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

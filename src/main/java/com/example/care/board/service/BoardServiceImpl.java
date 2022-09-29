@@ -40,6 +40,8 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public PageResultDTO<BoardListDTO, Board> getList(PageRequestDTO pageRequestDTO) {
+        System.out.println(pageRequestDTO.getType());
+        System.out.println(pageRequestDTO.getKeyword());
         Page<Board> result = boardRepository.findBoardList(pageRequestDTO);
         Function<Board, BoardListDTO> fn = (entity -> BoardListDTO.builder()
                 .id(entity.getId())

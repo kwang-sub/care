@@ -22,16 +22,20 @@
       <br>
       <br>
       <div class="container">
-        <form class="row tracking_form">
-          <span class="col-md-2 form-group">
-                <select class="form-control">
-                  <option value="" selected="" hidden="">예약시간 선택</option>
-                  <option value="9">9:00</option>
-                  <option value="18">18:00</option>
+        <form th:object="${pageRequestDTO}" class="row tracking_form" th:method="get" th:action="@{/board}">
+          <input type="hidden" th:field="*{page}" value="1">
+          <span class="col-md-3 form-group" >
+                <select class="form-control" th:field="*{type}">
+                      <option value="">============</option>
+                      <option value="t" >제목</option>
+                      <option value="c">내용</option>
+                      <option value="w">작성자</option>
+                      <option value="tc">제목 + 내용</option>
+                      <option value="twc">제목 + 내용 + 작성자</option>
                 </select>
           </span>
-          <span class="col-md-2 form-group">
-                <input class="form-control">
+          <span class="col-md-4 form-group">
+                <input th:field="*{keyword}" class="form-control">
           </span>
           <span class="col-md-3 form-group">
                 <button type="submit" value="submit" class="btn submit_btn" >검색</button>
@@ -51,31 +55,29 @@
           <tr th:each="dto : ${result.dtoList}">
             <th scope="row" th:text="${dto.id}"></th>
             <td >
-              <a th:href="@{|/board/${dto.id}(page=${result.page})}">[[${dto.title}]]</a>
+              <a th:href="@{|/board/${dto.id}(page=${result.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">[[${dto.title}]]</a>
             </td>
             <td th:text="${dto.userNickname}"></td>
             <td th:text="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"></td>
             <td th:text="${dto.view}"></td>
           </tr>
-
           </tbody>
         </table>
       </div>
       <nav class="blog-pagination justify-content-center d-flex">
         <ul class="pagination">
           <li class="page-item" th:if="${result.prev}">
-            <a th:href="@{/board(page=${result.start - 1})}" class="page-link" aria-label="Previous">
+            <a th:href="@{/board(page=${result.start - 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link" aria-label="Previous">
                 <span aria-hidden="true">
                     <span class="ti-arrow-left"></span>
                 </span>
             </a>
           </li>
           <li th:each="page : ${result.pageList}" th:class="|page-item ${result.page == page?'active':''}|" >
-            <a th:href="@{/board(page=${page})}" class="page-link" th:text="${page}"></a>
+            <a th:href="@{/board(page=${page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link" th:text="${page}"></a>
           </li>
-
           <li class="page-item" th:if="${result.next}">
-            <a th:href="@{/board(page=${result.end + 1})}" class="page-link" aria-label="Next">
+            <a th:href="@{/board(page=${result.end + 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" class="page-link" aria-label="Next">
                 <span aria-hidden="true">
                     <span class="ti-arrow-right"></span>
                 </span>

@@ -34,11 +34,13 @@
                             <div class="field-error" th:errors="*{content}"></div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <a th:href="@{|/board/${boardEditDTO.boardId}(page=${pageRequestDTO.page})}"><button type="button" class="btn submit_btn">취소</button></a>
+                            <a th:href="@{|/board/${boardEditDTO.boardId}(page=${pageRequestDTO.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}"><button type="button" class="btn submit_btn">취소</button></a>
                             <button type="submit" value="submit" class="btn submit_btn" >수정하기</button>
                             <button id="remove-btn" type="button" class="genric-btn danger radius">삭제</button>
                         </div>
                         <input type="hidden" name="page" th:value="${pageRequestDTO.page}">
+                        <input type="hidden" name="type" th:value="${pageRequestDTO.type}">
+                        <input type="hidden" name="keyword" th:value="${pageRequestDTO.keyword}">
                         <input type="hidden" th:field="*{userId}">
                     </form>
                 </div>

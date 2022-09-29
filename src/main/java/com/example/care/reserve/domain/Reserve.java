@@ -5,6 +5,7 @@ import com.example.care.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class Reserve {
     private String address;
     private String detailAddress;
     private String extraAddress;
+    @CreationTimestamp
     private LocalDateTime regDate;
 
     @ManyToOne
@@ -41,7 +43,7 @@ public class Reserve {
 
     @Builder
     public Reserve(Long id, String name, String phoneNumber, LocalDate reserveDate, Integer reserveTime, String postcode, ReserveStatus reserveStatus,
-                   String address, String detailAddress, String extraAddress, LocalDateTime regDate, Product product, User user) {
+                   String address, String detailAddress, String extraAddress, Product product, User user) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -51,7 +53,6 @@ public class Reserve {
         this.address = address;
         this.detailAddress = detailAddress;
         this.extraAddress = extraAddress;
-        this.regDate = regDate;
         this.product = product;
         this.user = user;
         this.reserveStatus = reserveStatus;

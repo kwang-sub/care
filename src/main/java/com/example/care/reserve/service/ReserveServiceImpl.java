@@ -121,7 +121,6 @@ public class ReserveServiceImpl implements ReserveService{
                 .user(user)
                 .product(product)
                 .reserveStatus(ReserveStatus.RESERVE)
-                .regDate(LocalDateTime.now())
                 .build();
     }
 }
