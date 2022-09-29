@@ -20,4 +20,5 @@ public interface BoardService {
     void modifyBoard(BoardEditDTO boardEditDTO);
 
     void removeBoard(Long boardId);
+
 }

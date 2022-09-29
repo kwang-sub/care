@@ -150,4 +150,42 @@ class BoardServiceTest {
             assertThat(boardListDTO.getTitle()).contains("2");
         }
     }
+
+    @Test
+    @DisplayName("게시글 수정 테스트")
+    void modifyBoardTest() {
+        Board board = Board.builder()
+                .title("제목")
+                .content("내용")
+                .user(user)
+                .build();
+        boardRepository.save(board);
+
+        BoardEditDTO boardEditDTO = BoardEditDTO.builder()
+                .boardId(board.getId())
+                .title("수정")
+                .content("수정")
+                .build();
+        boardService.modifyBoard(boardEditDTO);
+
+        Board findBoard = boardRepository.findById(board.getId()).orElse(null);
+        assertThat(findBoard.getId()).isEqualTo(board.getId());
+        assertThat(findBoard.getTitle()).isEqualTo(boardEditDTO.getTitle());
+        assertThat(findBoard.getContent()).isEqualTo(boardEditDTO.getContent());
+    }
+
+    @Test
+    @DisplayName("게시글 삭제 테스트")
+    void removeBoardTest() {
+        Board board = Board.builder()
+                .title("제목")
+                .content("내용")
+                .user(user)
+                .build();
+        boardRepository.save(board);
+
+        boardService.removeBoard(board.getId());
+        BoardDTO boardDTO = boardService.readBoard(board.getId());
+        assertThat(boardDTO).isNull();
+    }
 }
