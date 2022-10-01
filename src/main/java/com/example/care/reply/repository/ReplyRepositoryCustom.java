@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ReplyRepositoryCustom {
     List<Reply> findList(Long boardId);
+
 }

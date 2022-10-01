@@ -1,8 +1,6 @@
 package com.example.care.reply.repository;
 
-import com.example.care.reply.domain.QReply;
 import com.example.care.reply.domain.Reply;
-import com.example.care.user.domain.QUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +16,12 @@ public class ReplyRepositoryImpl implements ReplyRepositoryCustom{
     @Override
     public List<Reply> findList(Long boardId) {
         return queryFactory.selectFrom(reply)
-                .join(reply.user, user).fetchJoin()
-                .where(reply.board.id.eq(boardId))
-                .fetch();
+                .leftJoin(reply.children).fetchJoin()
+                .leftJoin(reply.user, user).fetchJoin()
+                .where(reply.board.id.eq(boardId),
+                        reply.parent.isNull())
+                .orderBy(
+                        reply.id.desc()
+                ).fetch();
     }
 }

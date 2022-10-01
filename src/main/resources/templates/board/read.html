@@ -22,7 +22,7 @@
                   <li ><i class="ti-calendar"></i><span th:text="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}"></span></li>
                   <li><i class="ti-eye"></i> [[${boardDTO.view}]]</li>
                 </ul>
-                <pre th:field="*{content}" th:text="${boardDTO.content}"></pre>
+                <pre  th:field="*{content}" th:text="${boardDTO.content}"></pre>
                 <a th:if="${#authentication.name == boardDTO.username}" th:href="@{|/board/${boardDTO.id}/modify|(page=${pageRequestDTO.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
                   <button type="button" class="genric-btn info radius">수정</button>
                 </a>
@@ -38,116 +38,176 @@
         <aside class="single_sidebar_widget newsletter_widget">
           <h4 class="widget_title">댓글 작성</h4>
 
-          <form action="#">
+          <form class="reply-form" action="#">
             <div class="form-group">
-
-              <input type="email" class="form-control" required="">
+              <input type="hidden" class="parent-id">
+              <textarea class="reply-text form-control" required=""></textarea>
             </div>
-            <button class="main_btn rounded-0 w-100" type="submit">작성하기</button>
+            <button class="reply-add-btn main_btn rounded-0 w-100" type="submit">작성하기</button>
           </form>
         </aside>
 
 
 
-        <h4>05 Comments</h4>
+        <h4 id="reply-cnt">[[${boardDTO.replyCnt}]] Comments</h4>
 
         <div class="comments-area">
-
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="desc">
-                  <div class="d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <h5>
-                        <a href="#">Emilly Blunt</a>
-                      </h5>
-                      <p class="date">December 4, 2017 at 3:12 pm </p>
-                    </div>
-                    <div class="reply-btn">
-                      <a href="#" class="btn-reply text-uppercase">reply</a>
-                    </div>
-                  </div>
-                  <p class="comment">
-                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="comment-list">
-            <div class="child-comment single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="desc">
-                  <div class="d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <h5>
-                        <a href="#">Emilly Blunt</a>
-                      </h5>
-                      <p class="date">December 4, 2017 at 3:12 pm </p>
-                    </div>
-                  </div>
-                  <p class="comment">
-                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="comment-list">
-            <div class="child-comment single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="desc">
-                  <div class="d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <h5>
-                        <a href="#">Emilly Blunt</a>
-                      </h5>
-                      <p class="date">December 4, 2017 at 3:12 pm </p>
-                    </div>
-                  </div>
-                  <p class="comment">
-                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="desc">
-                  <div class="d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <h5>
-                        <a href="#">Emilly Blunt</a>
-                      </h5>
-                      <p class="date">December 4, 2017 at 3:12 pm </p>
-                    </div>
-                    <div class="reply-btn">
-                      <a href="#" class="btn-reply text-uppercase">reply</a>
-                    </div>
-                  </div>
-                  <p class="comment">
-                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
+          <div></div>
         </div>
+
       </div>
     </section>
 
     <script th:inline="javascript">
       $(document).ready(function () {
+        var boardId = [[${boardDTO.id}]];
+        replyList();
+        var replyArea = $('.comments-area');
+        var username = [[${#authentication.name}]];
 
+        /*댓글 작성*/
+        $(document).on("click", ".reply-add-btn",function (e) {
+          e.preventDefault();
+          if (username == 'anonymousUser') {
+            alert("로그인 후 이용해주세요.");
+            return;
+          }
+          var parentId = $(this).closest('.reply-form').find(".parent-id").val();
+          var text = $(this).closest('.reply-form').find(".reply-text").val();
+
+          var replyRegisterDTO = {
+            'boardId': boardId,
+            'parentId': parentId,
+            'text': text
+          }
+          $.ajax({
+            url: '/reply',
+            method: 'post',
+            data: JSON.stringify(replyRegisterDTO),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+              replyList();
+            },
+            error: function (error) {
+              console.log(error);
+            }
+          })
+        });
+
+        /*댓글 조회*/
+        function replyList() {
+          $('.comments-area').empty()
+          $.getJSON('/reply/' + boardId, function (arr) {
+            var str = "";
+            var replyCount = 0;
+            $.each(arr, function (ind, reply) {
+              replyCount++;
+              str += '<div class="comment-list blog_details parent-id-div" data-id="'+reply.id+'" data-user="'+reply.userId+'">\n' +
+                      '            <div class="single-comment justify-content-between d-flex">\n' +
+                      '              <div class="user justify-content-between d-flex">\n' +
+                      '                <div class="desc">\n' +
+                      '                  <div class="d-flex justify-content-between">\n' +
+                      '                    <div class="d-flex align-items-center " >\n' +
+                      '                      <h5>\n' +
+                      '                        <a href="#">'+reply.userNickname+'</a>\n' +
+                      '                      </h5>\n' +
+                      '                      <p class="date">' + formatTime(reply.regDate) + '</p>\n' +
+                      '                      <btn type="button" class="btn-reply-child btn-reply text-uppercase">reply</btn>\n'
+                      if(username == reply.username){
+                        str += '                      <a href="#" class="btn-reply text-uppercase">수정</a>\n' +
+                                '                      <a href="#" class="btn-reply-del btn-reply text-uppercase">삭제</a>\n'
+                      }
+
+              str +=  '                    </div>\n' +
+                      '                  </div>\n' +
+                      '                  <pre class="comment">' + reply.text + '</pre>\n' +
+                      '                </div>\n' +
+                      '              </div>\n' +
+                      '            </div>\n' +
+                      '          </div>'
+              $.each(reply.childReplyList, function (idx, child) {
+                replyCount++;
+                str += "<div class='comment-list' data-id='"+child.id+"' data-user='"+child.userId+"'>\n" +
+                        "            <div class=\"blog_details child-comment single-comment justify-content-between d-flex\">\n" +
+                        "              <div class=\"user justify-content-between d-flex\">\n" +
+                        "                <div class=\"desc\">\n" +
+                        "                  <div class=\"d-flex justify-content-between\">\n" +
+                        "                    <div class=\"d-flex align-items-center\">\n" +
+                        "                      <h5>\n" +
+                        "                        <a href=\"#\">"+child.userNickname+"</a>\n" +
+                        "                      </h5>\n" +
+                        "                      <p class=\"date\">" + formatTime(child.regDate) + "</p>\n" +
+                        "                    </div>\n"
+                if(username == child.username){
+                  str += '                      <a href="#" class="btn-reply text-uppercase">수정</a>\n' +
+                          '                      <a href="#" class="btn-reply-del btn-reply text-uppercase">삭제</a>\n'
+                }
+
+                str +=  "                  </div>\n" +
+                        "                  <p class=\"comment\">" + child.text + "</p>\n" +
+                        "                </div>\n" +
+                        "              </div>\n" +
+                        "            </div>\n" +
+                        "          </div>";
+              });
+            });
+            $("#reply-cnt").html(replyCount + " Comments");
+            replyArea.html(str);
+          });
+        }
+
+        /*대댓글 작성버튼 클릭시*/
+        $(document).on("click", ".btn-reply-child", function (e) {
+          e.preventDefault();
+          var parentDiv = $(this.closest('.parent-id-div'));
+          var parentId = parentDiv.data("id");
+          if (parentDiv.children('.reply-form').length < 1) {
+            parentDiv.append("<form class=\"reply-form\" action=\"#\">\n" +
+                    "            <div class=\"form-group\">\n" +
+                    "              <input type=\"hidden\" class=\"parent-id\" value='"+parentId+"'>\n" +
+                    "              <textarea class=\"reply-text form-control\" required=\"\"></textarea>\n" +
+                    "            </div>\n" +
+                    "            <button class=\"reply-add-btn main_btn rounded-0 w-100\" type=\"submit\">작성하기</button>\n" +
+                    "          </form>");
+          } else {
+            parentDiv.children('.reply-form').remove();
+          }
+        });
+
+        /*댓글 삭제 버튼 클릭시*/
+        $(document).on("click", ".btn-reply-del", function (e) {
+          var replyId = $(this.closest('.comment-list')).data("id");
+          var userId = $(this.closest('.comment-list')).data("user");
+          if (confirm("최초 댓글 삭제시 하위 댓글도 삭제됩니다. 삭제하시겠습니까?")) {
+
+            var replyRemoveDTO = {
+              'boardId': boardId,
+              'userId': userId
+            }
+            $.ajax({
+              url: '/reply/' + replyId,
+              method: 'delete',
+              data: JSON.stringify(replyRemoveDTO),
+              contentType: 'application/json; charset=utf-8',
+              success: function (data) {
+                console.log("삭제 성공")
+                replyList();
+              },
+              error: function (error) {
+                console.log(error);
+              }
+            })
+          }
+        });
+
+        function formatTime(str) {
+          var date = new Date(str);
+          return date.getFullYear() + '/' +
+                  (date.getMonth() + 1) + '/' +
+                  date.getDate() + ' ' +
+                  date.getHours() + ':' +
+                  date.getMinutes();
+        }
       });
     </script>
   </th:block>

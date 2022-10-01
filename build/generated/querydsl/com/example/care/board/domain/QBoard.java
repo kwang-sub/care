@@ -30,6 +30,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
 
+    public final NumberPath<Integer> replyCnt = createNumber("replyCnt", Integer.class);
+
     public final StringPath title = createString("title");
 
     public final com.example.care.user.domain.QUser user;

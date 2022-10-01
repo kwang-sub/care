@@ -68,7 +68,7 @@ class PaymentServiceTest {
                 .partner_order_id("상품이름 1")
                 .build();
         String sid = paymentService.createPayment(paymentDTO, user.getId());
-        Payment payment = paymentRepository.findById(1L).get();
+        Payment payment = paymentRepository.findBySid(paymentDTO.getSid());
         assertThat(payment.getAid()).isEqualTo(paymentDTO.getAid());
         assertThat(sid).isNull();
     }

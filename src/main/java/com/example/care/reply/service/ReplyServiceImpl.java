@@ -4,7 +4,8 @@ import com.example.care.board.domain.Board;
 import com.example.care.board.repository.BoardRepository;
 import com.example.care.reply.domain.Reply;
 import com.example.care.reply.dto.ReplyDTO;
-import com.example.care.reply.dto.ReplyEditDTO;
+import com.example.care.reply.dto.ReplyModifyDTO;
+import com.example.care.reply.dto.ReplyRegisterDTO;
 import com.example.care.reply.repository.ReplyRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
@@ -26,14 +27,20 @@ public class ReplyServiceImpl implements ReplyService{
 
     @Override
     @Transactional
-    public Long registerReply(ReplyEditDTO replyEditDTO) {
-        User user = userRepository.getReferenceById(replyEditDTO.getUserId());
-        Board board = boardRepository.getReferenceById(replyEditDTO.getBoardId());
+    public Long registerReply(ReplyRegisterDTO replyRegisterDTO) {
+        User user = userRepository.getReferenceById(replyRegisterDTO.getUserId());
+        Board board = boardRepository.findById(replyRegisterDTO.getBoardId()).orElse(null);
+        board.replyPlus();
+        Reply parentReply = null;
+        if (replyRegisterDTO.getParentId() != null) {
+            parentReply = replyRepository.getReferenceById(replyRegisterDTO.getParentId());
+        }
 
         Reply reply = Reply.builder()
-                .text(replyEditDTO.getText())
+                .text(replyRegisterDTO.getText())
                 .board(board)
                 .user(user)
+                .parent(parentReply)
                 .build();
         replyRepository.save(reply);
 
@@ -42,10 +49,10 @@ public class ReplyServiceImpl implements ReplyService{
 
     @Override
     @Transactional
-    public void modifyReply(ReplyEditDTO replyEditDTO) {
-        Reply reply = replyRepository.findById(replyEditDTO.getReplyId()).orElse(null);
+    public void modifyReply(ReplyModifyDTO replyModifyDTO) {
+        Reply reply = replyRepository.findById(replyModifyDTO.getReplyId()).orElse(null);
         if (reply != null) {
-            reply.changeReply(replyEditDTO.getText());
+            reply.changeReply(replyModifyDTO.getText());
         }
     }
 
@@ -60,7 +67,9 @@ public class ReplyServiceImpl implements ReplyService{
 
     @Override
     @Transactional
-    public void removeReply(Long replyId) {
+    public void removeReply(Long replyId, Long boardId) {
+        Board board = boardRepository.findById(boardId).orElse(null);
+        board.replyMinus();
         replyRepository.deleteById(replyId);
     }
 
@@ -70,6 +79,21 @@ public class ReplyServiceImpl implements ReplyService{
                 .text(reply.getText())
                 .regDate(reply.getRegDate())
                 .userId(reply.getUser().getId())
+                .username(reply.getUser().getUsername())
+                .userNickname(reply.getUser().getNickname())
+                .childReplyList(reply.getChildren().stream()
+                        .map(this:: childrenEntityToDTO)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    private ReplyDTO childrenEntityToDTO(Reply reply) {
+        return ReplyDTO.builder()
+                .id(reply.getId())
+                .text(reply.getText())
+                .regDate(reply.getRegDate())
+                .userId(reply.getUser().getId())
+                .username(reply.getUser().getUsername())
                 .userNickname(reply.getUser().getNickname())
                 .build();
     }

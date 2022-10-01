@@ -26,6 +26,7 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -114,7 +115,7 @@ class ReserveServiceTest {
         ReserveDTO reserveDTO = ReserveDTO.builder()
                 .name("test")
                 .reserveDate(LocalDate.now())
-                .reserveTime(10)
+                .reserveTime(LocalDateTime.now().getHour() - 1)
                 .productDTO(productDTO)
                 .build();
 

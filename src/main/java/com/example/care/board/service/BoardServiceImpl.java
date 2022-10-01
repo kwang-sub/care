@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService{
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .view(entity.getView())
+                .replyCnt(entity.getReplyCnt())
                 .regDate(entity.getRegDate())
                 .userNickname(entity.getUser().getNickname())
                 .build());
@@ -93,6 +94,7 @@ public class BoardServiceImpl implements BoardService{
                 .title(board.getTitle())
                 .content(board.getContent())
                 .view(board.getView())
+                .replyCnt(board.getReplyCnt())
                 .regDate(board.getRegDate())
                 .modDate(board.getModDate())
                 .username(board.getUser().getUsername())

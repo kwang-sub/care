@@ -12,6 +12,7 @@ public class BoardListDTO {
     private Long id;
     private String title;
     private long view;
+    private int replyCnt;
     private LocalDateTime regDate;
     private String userNickname;
 }

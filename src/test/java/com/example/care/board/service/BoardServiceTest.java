@@ -43,39 +43,6 @@ class BoardServiceTest {
     }
 
     @Test
-    @DisplayName("게시글 작성 테스트")
-    void createBoardTest() {
-        BoardEditDTO boardEditDTO = BoardEditDTO.builder()
-                .title("제목")
-                .content("내용")
-                .userId(user.getId())
-                .build();
-
-        Long boardId = boardService.registerBoard(boardEditDTO);
-        Board board = boardRepository.findById(boardId).orElse(null);
-        assertThat(board.getTitle()).isEqualTo(boardEditDTO.getTitle());
-        assertThat(board.getView()).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("게시글 조회 테스트")
-    void readTest() {
-        Board board = Board.builder()
-                .title("제목")
-                .content("내용")
-                .user(user)
-                .build();
-        boardRepository.save(board);
-
-        BoardDTO boardDTO = boardService.readBoard(board.getId());
-
-        assertThat(boardDTO.getTitle()).isEqualTo(board.getTitle());
-        assertThat(boardDTO.getUserNickname()).isEqualTo(board.getUser().getNickname());
-        assertThat(boardDTO.getView()).isEqualTo(1);
-
-    }
-
-    @Test
     @DisplayName("페이징 목록 테스트")
     void paginationTest1() {
 
@@ -102,8 +69,43 @@ class BoardServiceTest {
         assertThat(result.getTotalPage()).isEqualTo(11);
 
         assertThat(dtoList.size()).isEqualTo(10);
-        assertThat(dtoList.get(0).getId()).isEqualTo(101L);
+        assertThat(dtoList.get(0).getTitle()).isEqualTo("제목101");
     }
+
+    @Test
+    @DisplayName("게시글 작성 테스트")
+    void createBoardTest() {
+        BoardEditDTO boardEditDTO = BoardEditDTO.builder()
+                .title("제목")
+                .content("내용")
+                .userId(user.getId())
+                .build();
+
+        Long boardId = boardService.registerBoard(boardEditDTO);
+        Board board = boardRepository.findById(boardId).orElse(null);
+        assertThat(board.getTitle()).isEqualTo(boardEditDTO.getTitle());
+        assertThat(board.getView()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("게시글 조회 테스트")
+    void readTest() {
+        Board board = Board.builder()
+                .title("제목 test")
+                .content("내용 test")
+                .user(user)
+                .build();
+        boardRepository.save(board);
+
+        BoardDTO boardDTO = boardService.readBoard(board.getId());
+
+        assertThat(boardDTO.getTitle()).isEqualTo(board.getTitle());
+        assertThat(boardDTO.getUserNickname()).isEqualTo(board.getUser().getNickname());
+        assertThat(boardDTO.getView()).isEqualTo(1);
+
+    }
+
+
 
     @Test
     @DisplayName("페이지네이션 데이터 한개 테스트")

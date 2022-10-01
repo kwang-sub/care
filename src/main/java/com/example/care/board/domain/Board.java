@@ -36,6 +36,7 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime modDate;
 
+    private int replyCnt;
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -57,5 +58,13 @@ public class Board {
 
     public void read() {
         this.view++;
+    }
+
+    public void replyPlus() {
+        this.replyCnt++;
+    }
+
+    public void replyMinus() {
+        this.replyCnt--;
     }
 }

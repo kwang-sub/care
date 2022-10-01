@@ -4,7 +4,8 @@ import com.example.care.board.domain.Board;
 import com.example.care.board.repository.BoardRepository;
 import com.example.care.reply.domain.Reply;
 import com.example.care.reply.dto.ReplyDTO;
-import com.example.care.reply.dto.ReplyEditDTO;
+import com.example.care.reply.dto.ReplyRegisterDTO;
+import com.example.care.reply.dto.ReplyModifyDTO;
 import com.example.care.reply.repository.ReplyRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -20,6 +22,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 class ReplyServiceTest {
 
     @Autowired
@@ -53,20 +56,20 @@ class ReplyServiceTest {
     @Test
     @DisplayName("댓글 저장 테스트")
     void registerReplyTest() {
-        ReplyEditDTO replyEditDTO = ReplyEditDTO.builder()
+        ReplyRegisterDTO replyRegisterDTO = ReplyRegisterDTO.builder()
                 .text("첫 댓글 작성")
                 .boardId(board.getId())
                 .userId(user.getId())
                 .build();
 
-        Long replyId = replyService.registerReply(replyEditDTO);
+        Long replyId = replyService.registerReply(replyRegisterDTO);
 
         Reply reply = replyRepository.findById(replyId).orElse(null);
 
         assertThat(reply).isNotNull();
         assertThat(reply.getBoard().getId()).isEqualTo(board.getId());
         assertThat(reply.getUser().getId()).isEqualTo(user.getId());
-        assertThat(reply.getText()).isEqualTo(replyEditDTO.getText());
+        assertThat(reply.getText()).isEqualTo(replyRegisterDTO.getText());
     }
 
     @Test
@@ -79,15 +82,15 @@ class ReplyServiceTest {
                 .build();
         replyRepository.save(reply);
 
-        ReplyEditDTO replyEditDTO = ReplyEditDTO.builder()
+        ReplyModifyDTO replyModifyDTO = ReplyModifyDTO.builder()
                 .replyId(reply.getId())
                 .text("수정 했습니다.")
                 .build();
-        replyService.modifyReply(replyEditDTO);
+        replyService.modifyReply(replyModifyDTO);
 
         Reply findReply = replyRepository.findById(reply.getId()).orElse(null);
         assertThat(findReply.getId()).isEqualTo(reply.getId());
-        assertThat(findReply.getText()).isEqualTo(replyEditDTO.getText());
+        assertThat(findReply.getText()).isEqualTo(replyModifyDTO.getText());
     }
 
     @Test
@@ -106,6 +109,6 @@ class ReplyServiceTest {
 
         List<ReplyDTO> list = replyService.getList(board.getId());
         assertThat(list.size()).isEqualTo(10);
-        assertThat(list.get(0).getText()).isEqualTo("댓글1");
+        assertThat(list.get(0).getText()).isEqualTo("댓글10");
     }
 }
