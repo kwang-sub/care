@@ -4,7 +4,7 @@ import com.example.care.user.dto.UserDTO;
 import com.example.care.user.service.UserService;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
-import com.example.care.util.exception.DuplicateUserException;
+import com.example.care.util.ex.exception.DuplicateUserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

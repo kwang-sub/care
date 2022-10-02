@@ -80,7 +80,6 @@ class MembershipServiceTest {
                 .status(MembershipStatus.ORDER)
                 .membership(membership)
                 .payment(payment)
-                .regDate(LocalDateTime.now())
                 .build();
         membershipHistoryRepository.save(membershipHistory);
 
@@ -101,7 +100,6 @@ class MembershipServiceTest {
                 .status(MembershipStatus.ORDER)
                 .membership(membership)
                 .payment(payment)
-                .regDate(LocalDateTime.now())
                 .build();
         membershipHistoryRepository.save(membershipHistory);
 

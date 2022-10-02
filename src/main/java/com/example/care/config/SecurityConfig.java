@@ -37,6 +37,8 @@ public class SecurityConfig  {
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/user/page").access( "hasRole('ROLE_USER')")
                 .antMatchers("/reserve/**").access( "hasRole('ROLE_USER')")
+                .antMatchers("/board/register").access( "hasRole('ROLE_USER')")
+                .antMatchers("/board/**/modify").access( "hasRole('ROLE_USER')")
 //                .antMatchers("/pay/**").access("hasRole('ROLE_USER')")
                 .anyRequest().permitAll()
                 .and()

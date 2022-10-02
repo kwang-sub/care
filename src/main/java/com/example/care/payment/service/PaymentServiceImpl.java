@@ -80,7 +80,6 @@ public class PaymentServiceImpl implements PaymentService {
                 .cleanUseNum(0)
                 .transportUseNum(0)
                 .counselUseNum(0)
-                .regDate(LocalDateTime.now())
                 .build();
     }
 
@@ -91,7 +90,6 @@ public class PaymentServiceImpl implements PaymentService {
                 .sid(kaKaoPayApproveDTO.getSid())
                 .orderId(kaKaoPayApproveDTO.getPartner_order_id())
                 .price(kaKaoPayApproveDTO.getAmount().getTotal())
-                .regDate(kaKaoPayApproveDTO.getApproved_at())
                 .build();
     }
 }

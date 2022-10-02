@@ -4,7 +4,7 @@ import com.example.care.user.domain.Role;
 import com.example.care.user.domain.User;
 import com.example.care.user.dto.UserDTO;
 import com.example.care.user.repository.UserRepository;
-import com.example.care.util.exception.DuplicateUserException;
+import com.example.care.util.ex.exception.DuplicateUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

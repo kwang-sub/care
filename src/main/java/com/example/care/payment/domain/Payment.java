@@ -3,6 +3,7 @@ package com.example.care.payment.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,15 +22,15 @@ public class Payment {
     private String sid;
     private String orderId;
     private Integer price;
+    @CreationTimestamp
     private LocalDateTime regDate;
 
     @Builder
-    public Payment(String aid, String cid, String sid, String orderId, Integer price, LocalDateTime regDate) {
+    public Payment(String aid, String cid, String sid, String orderId, Integer price) {
         this.aid = aid;
         this.cid = cid;
         this.sid = sid;
         this.orderId = orderId;
         this.price = price;
-        this.regDate = regDate;
     }
 }

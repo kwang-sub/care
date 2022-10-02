@@ -15,8 +15,7 @@ import com.example.care.reserve.dto.ReserveDTO;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
-import com.example.care.util.exception.DuplicateUserException;
-import com.example.care.util.exception.ReserveFullException;
+import com.example.care.util.ex.exception.ReserveFullException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +25,7 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -85,7 +85,7 @@ class ReserveServiceTest {
 
         ReserveDTO reserveDTO = ReserveDTO.builder()
                 .name("test")
-                .reserveDate(LocalDate.now())
+                .reserveDate(LocalDate.now().plusDays(1))
                 .reserveTime(10)
                 .productDTO(productDTO)
                 .build();
@@ -94,6 +94,32 @@ class ReserveServiceTest {
 //        then
         Reserve reserve = reserveRepository.findById(1L).get();
         assertThat(reserve.getName()).isEqualTo(reserveDTO.getName());
+    }
+
+    @Test
+    @DisplayName("당일 3시간 이전예약 예외 테스트")
+    void reserveNowTest() {
+        MembershipProduct membershipProduct = MembershipProduct.builder()
+                .product(product)
+                .membership(membership)
+                .maxNum(2)
+                .build();
+        membershipProductRepository.save(membershipProduct);
+//        given
+        ProductDTO productDTO = ProductDTO.builder()
+                .id(product.getId())
+                .code(ProductCode.CLEAN)
+                .build();
+
+        ReserveDTO reserveDTO = ReserveDTO.builder()
+                .name("test")
+                .reserveDate(LocalDate.now())
+                .reserveTime(LocalDateTime.now().getHour() - 1)
+                .productDTO(productDTO)
+                .build();
+
+        assertThatThrownBy(() -> reserveService.reserve(reserveDTO, user.getId()))
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @Test
@@ -113,7 +139,7 @@ class ReserveServiceTest {
 
         ReserveDTO reserveDTO = ReserveDTO.builder()
                 .name("test")
-                .reserveDate(LocalDate.now())
+                .reserveDate(LocalDate.now().plusDays(1))
                 .reserveTime(10)
                 .productDTO(productDTO)
                 .build();
@@ -141,14 +167,14 @@ class ReserveServiceTest {
 
         ReserveDTO reserveDTO1 = ReserveDTO.builder()
                 .name("test")
-                .reserveDate(LocalDate.now())
+                .reserveDate(LocalDate.now().plusDays(1))
                 .reserveTime(10)
                 .productDTO(productDTO)
                 .build();
 
         ReserveDTO reserveDTO2 = ReserveDTO.builder()
                 .name("test")
-                .reserveDate(LocalDate.now())
+                .reserveDate(LocalDate.now().plusDays(1))
                 .reserveTime(16)
                 .productDTO(productDTO)
                 .build();

@@ -6,3 +6,11 @@
 option[disabled]{
     color: red;
 }
+
+.child-comment {
+    margin-left: 50px;
+}
+
+pre{
+    white-space: pre-wrap;
+}

@@ -1,4 +1,4 @@
-package com.example.care.util.exception;
+package com.example.care.util.ex.exception;
 
 public class ReserveFullException extends RuntimeException {
     public ReserveFullException() {

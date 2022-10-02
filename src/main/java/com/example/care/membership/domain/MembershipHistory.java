@@ -13,7 +13,6 @@ import java.time.temporal.TemporalAdjusters;
 @Entity
 @Getter
 @NoArgsConstructor
-@ToString
 public class MembershipHistory {
 
     @Id
@@ -45,9 +44,8 @@ public class MembershipHistory {
     private Membership membership;
 
     @Builder
-    public MembershipHistory(LocalDateTime regDate, MembershipStatus status, Integer transportUseNum,
+    public MembershipHistory(MembershipStatus status, Integer transportUseNum,
                              Integer cleanUseNum, Integer counselUseNum, User user, Payment payment, Membership membership) {
-        this.regDate = regDate;
         this.status = status;
         this.transportUseNum = transportUseNum;
         this.cleanUseNum = cleanUseNum;

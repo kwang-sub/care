@@ -12,13 +12,12 @@ import com.example.care.reserve.dto.ReserveTimeResponseDTO;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
-import com.example.care.util.exception.ReserveFullException;
+import com.example.care.util.ex.exception.ReserveFullException;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -121,7 +120,6 @@ public class ReserveServiceImpl implements ReserveService{
                 .user(user)
                 .product(product)
                 .reserveStatus(ReserveStatus.RESERVE)
-                .regDate(LocalDateTime.now())
                 .build();
     }
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     @CreationTimestamp
-    private LocalDateTime createDate;
+    private LocalDateTime regDate;
     private String provider;
 
     @OneToMany(mappedBy = "user")
@@ -38,7 +39,7 @@ public class User {
     private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
 
     @Builder
-    public User(Long id, String username, String nickname, String password, String email, Role role, LocalDateTime createDate,
+    public User(Long id, String username, String nickname, String password, String email, Role role,
                 String provider, List<Reserve> reserveList, List<MembershipHistory> membershipHistoryList) {
         this.id = id;
         this.username = username;
@@ -46,7 +47,6 @@ public class User {
         this.password = password;
         this.email = email;
         this.role = role;
-        this.createDate = createDate;
         this.provider = provider;
         this.reserveList = reserveList;
         this.membershipHistoryList = membershipHistoryList;
