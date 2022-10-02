@@ -1,42 +1,40 @@
 package com.example.care.config;
 
+import com.example.care.util.escape.HTMLCharacterEscapes;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import io.netty.channel.ChannelOption;
-import io.netty.handler.timeout.ReadTimeoutHandler;
-import io.netty.handler.timeout.WriteTimeoutHandler;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.netty.http.client.HttpClient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig {
+
+    private final ObjectMapper objectMapper;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
     }
 
     @Bean
-    public JPAQueryFactory jpaQueryFactory() {
-        return new JPAQueryFactory(entityManager);
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -52,5 +50,21 @@ public class AppConfig {
                 .build();
 
         return webClient;
+    }
+
+    @Bean
+    public FilterRegistrationBean<XssEscapeServletFilter> xssFilterBean() {
+        final FilterRegistrationBean<XssEscapeServletFilter> filterRegistration = new FilterRegistrationBean<>();
+        filterRegistration.setFilter(new XssEscapeServletFilter());
+        filterRegistration.setOrder(1);
+        filterRegistration.addUrlPatterns("/*");
+        return filterRegistration;
+    }
+
+    @Bean
+    public MappingJackson2HttpMessageConverter jsonEscapeConverter() {
+        ObjectMapper copy = objectMapper.copy();
+        copy.getFactory().setCharacterEscapes(new HTMLCharacterEscapes());
+        return new MappingJackson2HttpMessageConverter(copy);
     }
 }
