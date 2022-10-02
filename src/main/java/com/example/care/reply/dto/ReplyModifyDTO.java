@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ReplyModifyDTO {
 
-    @NotNull
     private Long replyId;
-    @NotNull
-    private Long boardId;
     @NotBlank
     private String text;
     private Long userId;

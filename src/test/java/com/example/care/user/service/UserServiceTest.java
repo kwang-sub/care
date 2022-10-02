@@ -1,7 +1,7 @@
 package com.example.care.user.service;
 
 import com.example.care.user.dto.UserDTO;
-import com.example.care.util.exception.DuplicateUserException;
+import com.example.care.util.ex.exception.DuplicateUserException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

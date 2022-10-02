@@ -66,7 +66,7 @@
         var username = [[${#authentication.name}]];
 
         /*댓글 작성*/
-        $(document).on("click", ".reply-add-btn",function (e) {
+        $(document).on("click", ".reply-add-btn", function (e) {
           e.preventDefault();
           if (username == 'anonymousUser') {
             alert("로그인 후 이용해주세요.");
@@ -74,6 +74,7 @@
           }
           var parentId = $(this).closest('.reply-form').find(".parent-id").val();
           var text = $(this).closest('.reply-form').find(".reply-text").val();
+          var textForm = $(this).closest('.reply-form').find(".reply-text");
 
           var replyRegisterDTO = {
             'boardId': boardId,
@@ -86,10 +87,17 @@
             data: JSON.stringify(replyRegisterDTO),
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
+              textForm.val('');
               replyList();
             },
-            error: function (error) {
-              console.log(error);
+            error: function (jqXHR) {
+              if (jqXHR.status == 400) {
+                alert("올바르지 않은 요청입니다. 값을 입력해주세요.")
+              }
+              if (jqXHR.status == 403) {
+                alert("회원정보가 일치하지 않습니다. 다시시도해주세요")
+              }
+              replyList();
             }
           })
         });
@@ -102,23 +110,23 @@
             var replyCount = 0;
             $.each(arr, function (ind, reply) {
               replyCount++;
-              str += '<div class="comment-list blog_details parent-id-div" data-id="'+reply.id+'" data-user="'+reply.userId+'">\n' +
+              str += '<div class="comment-list blog_details parent-id-div" data-id="' + reply.id + '" data-user="' + reply.userId + '">\n' +
                       '            <div class="single-comment justify-content-between d-flex">\n' +
                       '              <div class="user justify-content-between d-flex">\n' +
                       '                <div class="desc">\n' +
                       '                  <div class="d-flex justify-content-between">\n' +
                       '                    <div class="d-flex align-items-center " >\n' +
                       '                      <h5>\n' +
-                      '                        <a href="#">'+reply.userNickname+'</a>\n' +
+                      '                        <a href="#">' + reply.userNickname + '</a>\n' +
                       '                      </h5>\n' +
                       '                      <p class="date">' + formatTime(reply.regDate) + '</p>\n' +
                       '                      <btn type="button" class="btn-reply-child btn-reply text-uppercase">reply</btn>\n'
-                      if(username == reply.username){
-                        str += '                      <a href="#" class="btn-reply text-uppercase">수정</a>\n' +
-                                '                      <a href="#" class="btn-reply-del btn-reply text-uppercase">삭제</a>\n'
-                      }
+              if (username == reply.username) {
+                str += '                      <a href="#" class="btn-reply-mod btn-reply text-uppercase">수정</a>\n' +
+                        '                      <a href="#" class="btn-reply-del btn-reply text-uppercase">삭제</a>\n'
+              }
 
-              str +=  '                    </div>\n' +
+              str += '                    </div>\n' +
                       '                  </div>\n' +
                       '                  <pre class="comment">' + reply.text + '</pre>\n' +
                       '                </div>\n' +
@@ -127,23 +135,23 @@
                       '          </div>'
               $.each(reply.childReplyList, function (idx, child) {
                 replyCount++;
-                str += "<div class='comment-list' data-id='"+child.id+"' data-user='"+child.userId+"'>\n" +
-                        "            <div class=\"blog_details child-comment single-comment justify-content-between d-flex\">\n" +
+                str += "<div class='child-comment comment-list' data-id='" + child.id + "' data-user='" + child.userId + "'>\n" +
+                        "            <div class=\"blog_details  single-comment justify-content-between d-flex\">\n" +
                         "              <div class=\"user justify-content-between d-flex\">\n" +
                         "                <div class=\"desc\">\n" +
                         "                  <div class=\"d-flex justify-content-between\">\n" +
                         "                    <div class=\"d-flex align-items-center\">\n" +
                         "                      <h5>\n" +
-                        "                        <a href=\"#\">"+child.userNickname+"</a>\n" +
+                        "                        <a href=\"#\">" + child.userNickname + "</a>\n" +
                         "                      </h5>\n" +
                         "                      <p class=\"date\">" + formatTime(child.regDate) + "</p>\n" +
                         "                    </div>\n"
-                if(username == child.username){
-                  str += '                      <a href="#" class="btn-reply text-uppercase">수정</a>\n' +
+                if (username == child.username) {
+                  str += '                      <a href="#" class="btn-reply-mod btn-reply text-uppercase">수정</a>\n' +
                           '                      <a href="#" class="btn-reply-del btn-reply text-uppercase">삭제</a>\n'
                 }
 
-                str +=  "                  </div>\n" +
+                str += "                  </div>\n" +
                         "                  <p class=\"comment\">" + child.text + "</p>\n" +
                         "                </div>\n" +
                         "              </div>\n" +
@@ -164,7 +172,7 @@
           if (parentDiv.children('.reply-form').length < 1) {
             parentDiv.append("<form class=\"reply-form\" action=\"#\">\n" +
                     "            <div class=\"form-group\">\n" +
-                    "              <input type=\"hidden\" class=\"parent-id\" value='"+parentId+"'>\n" +
+                    "              <input type=\"hidden\" class=\"parent-id\" value='" + parentId + "'>\n" +
                     "              <textarea class=\"reply-text form-control\" required=\"\"></textarea>\n" +
                     "            </div>\n" +
                     "            <button class=\"reply-add-btn main_btn rounded-0 w-100\" type=\"submit\">작성하기</button>\n" +
@@ -174,8 +182,66 @@
           }
         });
 
+        /*실제 댓글 수정하기*/
+        $(document).on("click", ".reply-mod-btn", function (e) {
+          e.preventDefault();
+          var replyDiv = $(this.closest(".comment-list"));
+          var replyId = replyDiv.data("id");
+          var userId = replyDiv.data("user");
+          var text = replyDiv.find(".reply-text").val();
+
+          var replyModifyDTO = {
+            'userId': userId,
+            'text': text
+          }
+
+          $.ajax({
+            url: '/reply/' + replyId,
+            method: 'patch',
+            data: JSON.stringify(replyModifyDTO),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+              replyList();
+            },
+            error: function (jqXHR) {
+              if (jqXHR.status == 400) {
+                alert("올바르지 않은 요청입니다. 값을 입력해주세요.")
+              }
+              if (jqXHR.status == 403) {
+                alert("회원정보가 일치하지 않습니다. 다시시도해주세요")
+              }
+              replyList();
+            }
+          })
+        });
+
+        /*댓글 수정 버튼 클릭시*/
+        $(document).on("click", ".btn-reply-mod", function (e) {
+          e.preventDefault();
+          var replyDiv = $(this.closest(".comment-list"));
+          var replyId = replyDiv.data("id");
+          var userId = replyDiv.data("user");
+          var text = replyDiv.find(".comment").html();
+
+          if (replyDiv.children('.reply-form').length < 1) {
+            replyDiv.find(".comment").remove();
+            replyDiv.append("<form class=\"reply-form\" action=\"#\">\n" +
+                    "            <div class=\"form-group\">\n" +
+                    "              <textarea class=\"reply-text form-control\" required=\"\">" + text + "</textarea>\n" +
+                    "            </div>\n" +
+                    "            <button class=\"mod-cancel-btn main_btn\" type=\"submit\">취소</button>\n" +
+                    "            <button class=\"reply-mod-btn main_btn\" type=\"submit\">수정하기</button>\n" +
+                    "          </form>");
+          }
+        });
+
+        $(document).on("click", ".mod-cancel-btn", function () {
+          replyList();
+        });
+
         /*댓글 삭제 버튼 클릭시*/
         $(document).on("click", ".btn-reply-del", function (e) {
+          e.preventDefault();
           var replyId = $(this.closest('.comment-list')).data("id");
           var userId = $(this.closest('.comment-list')).data("user");
           if (confirm("최초 댓글 삭제시 하위 댓글도 삭제됩니다. 삭제하시겠습니까?")) {
@@ -190,11 +256,16 @@
               data: JSON.stringify(replyRemoveDTO),
               contentType: 'application/json; charset=utf-8',
               success: function (data) {
-                console.log("삭제 성공")
                 replyList();
               },
-              error: function (error) {
-                console.log(error);
+              error: function (jqXHR) {
+                if (jqXHR.status == 400) {
+                  alert("올바르지 않은 요청입니다. 값을 입력해주세요.")
+                }
+                if (jqXHR.status == 403) {
+                  alert("회원정보가 일치하지 않습니다. 다시 시도 해주세요")
+                }
+                replyList();
               }
             })
           }

@@ -1,5 +1,6 @@
 package com.example.care.board.domain;
 
+import com.example.care.reply.domain.Reply;
 import com.example.care.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,6 +14,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,6 +43,9 @@ public class Board {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    private List<Reply> replyList = new ArrayList<>();
 
     @Builder
     public Board(Long id, String title, String content, LocalDateTime regDate, LocalDateTime modDate, User user) {

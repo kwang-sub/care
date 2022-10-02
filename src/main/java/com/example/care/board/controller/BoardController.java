@@ -79,9 +79,11 @@ public class BoardController {
                               @Validated BoardEditDTO boardEditDTO, BindingResult bindingResult,
                               @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes) {
         if (boardEditDTO.getUserId() != principalDetails.getUser().getId()) {
+            log.error("로그인한 회원이 작성하지 않은 게시글 수정요청");
             return "/error/400";
         }
         if (bindingResult.hasErrors()) {
+            log.info("요청 파라미터 값 이상 {} ", bindingResult.getAllErrors());
             return "/board/modify";
         }
 
@@ -95,6 +97,7 @@ public class BoardController {
     public String boardRemove(@PathVariable("boardId") Long boardId, @AuthenticationPrincipal PrincipalDetails principalDetails,
                               BoardEditDTO boardEditDTO, RedirectAttributes redirectAttributes) {
         if (boardEditDTO.getUserId() != principalDetails.getUser().getId()) {
+            log.error("로그인한 회원이 작성하지 않은 게시글 삭제요청");
             return "/error/400";
         }
 
