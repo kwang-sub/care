@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+    <div class="container">
+      <section class="feature_product_area section_gap_bottom_custom">
+        <div class="row flex-row-reverse">
+          <div class="col-lg-9">
+            <form class="row tracking_form" th:action="@{/user}"  th:method="post" novalidate="novalidate">
+              <div class="col-md-12 form-group">
+                <label th:for="username" th:text="#{user.id}">ID</label>
+                <input type="text" class="form-control" placeholder="User ID">
+              </div>
+              <div class="col-md-12 form-group">
+                <label th:for="nickname" th:text="#{user.nickname}">nickname</label>
+                <input type="text" class="form-control" placeholder="Nickname">
+              </div>
+              <div class="col-md-12 form-group">
+                <label th:for="email" th:text="#{user.email}">email</label>
+                <input type="email" class="form-control" placeholder="email">
+              </div>
+              <div class="col-md-12 form-group">
+                <a th:href="@{/user/login}"><button type="button" value="submit" class="btn submit_btn">취소</button></a>
+                <button type="submit" value="submit" class="btn submit_btn" th:text="#{user.singUp}">회원가입</button>
+              </div>
+            </form>
+          </div>
+          <div th:replace="/layout/side :: side" class="col-lg-3"></div>
+        </div>
+      </section>
+    </div>
+
+  </th:block>
+</th:block>
+</html>

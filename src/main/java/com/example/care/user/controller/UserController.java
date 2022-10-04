@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -36,7 +37,7 @@ public class UserController {
             return "redirect:/";
         }
 
-        return "/user/loginForm";
+        return "/user/login";
     }
 
     @GetMapping("/join")
@@ -45,7 +46,12 @@ public class UserController {
             return "redirect:/";
         }
 
-        return "/user/joinForm";
+        return "/user/join";
+    }
+
+    @GetMapping("/profile")
+    public String userModifyForm() {
+        return "/user/profile";
     }
 
     @PostMapping
@@ -57,7 +63,7 @@ public class UserController {
         }
         if (bindingResult.hasErrors()) {
             log.debug("회원가입 validation errors = {}", bindingResult);
-            return "/user/joinForm";
+            return "/user/join";
         }
 
         log.info("회원가입 로직 시작");
@@ -66,7 +72,7 @@ public class UserController {
         } catch (DuplicateUserException e) {
             bindingResult.addError(new FieldError("userDTO", "username", userDTO.getUsername(),
                     false, null, null, "중복된 회원아이디 입니다."));
-            return "/user/joinForm";
+            return "/user/join";
         }
 
         redirectAttributes.addFlashAttribute("swal",
@@ -76,12 +82,10 @@ public class UserController {
     }
 
     @GetMapping("/myInfo")
-    public String userInfo(@ModelAttribute("userInfoDTO") UserInfoDTO userInfoDTO,
-                           @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        System.out.println("요청확인");
-
+    public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long userId = principalDetails.getUser().getId();
-        userInfoDTO = userService.getUserInfo(userId);
+        UserInfoDTO userInfoDTO = userService.getUserInfo(userId);
+        model.addAttribute("userInfoDTO", userInfoDTO);
 
         return "/user/info";
     }

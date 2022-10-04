@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService{
 
             userInfoDTO = UserInfoDTO.builder()
                     .username(user.getUsername())
+                    .nickname(user.getNickname())
                     .email(user.getEmail())
                     .userRegDate(user.getRegDate())
                     .provider(user.getProvider())
