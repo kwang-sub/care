@@ -4,6 +4,8 @@ import com.example.care.product.domain.MembershipProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,7 +27,11 @@ public class Membership {
     private Integer price;
 
     @OneToMany(mappedBy = "membership")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<MembershipProduct> membershipProductList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "membership")
+    private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
 
     @Builder
     public Membership(Long id, Grade grade, Integer price) {

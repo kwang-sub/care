@@ -1,14 +1,21 @@
 package com.example.care.user.service;
 
+import com.example.care.membership.domain.MembershipHistory;
+import com.example.care.product.domain.MembershipProduct;
+import com.example.care.product.domain.ProductCode;
 import com.example.care.user.domain.Role;
 import com.example.care.user.domain.User;
 import com.example.care.user.dto.UserDTO;
+import com.example.care.user.dto.UserInfoDTO;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.ex.exception.DuplicateUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +43,50 @@ public class UserServiceImpl implements UserService{
     public UserDTO userSearch(String username) {
         User user = userRepository.findByUsername(username);
         return userEntityToDTO(user);
+    }
+
+    @Override
+    public UserInfoDTO getUserInfo(Long userId) {
+        User user = userRepository.findUserInfoByUserId(userId);
+        MembershipHistory membershipHistory = null;
+        UserInfoDTO userInfoDTO = null;
+        if (!user.getMembershipHistoryList().isEmpty()) {
+            membershipHistory = user.getMembershipHistoryList().get(0);
+            List<MembershipProduct> membershipProductList = membershipHistory.getMembership().getMembershipProductList();
+
+            AtomicInteger cleanMaxNum = new AtomicInteger();
+            AtomicInteger counselMaxNum = new AtomicInteger();
+            AtomicInteger transportMaxNum = new AtomicInteger();
+            membershipProductList.stream()
+                    .forEach(membershipProduct -> {
+                        if (membershipProduct.getProduct().getCode().equals(ProductCode.COUNSEL)) {
+                            counselMaxNum.set(membershipProduct.getMaxNum());
+                        } else if (membershipProduct.getProduct().getCode().equals(ProductCode.CLEAN)) {
+                            cleanMaxNum.set(membershipProduct.getMaxNum());
+                        } else if (membershipProduct.getProduct().getCode().equals(ProductCode.TRANSPORT)) {
+                            transportMaxNum.set(membershipProduct.getMaxNum());
+                        }
+
+                    });
+
+            userInfoDTO = UserInfoDTO.builder()
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .userRegDate(user.getRegDate())
+                    .provider(user.getProvider())
+                    .grade(membershipHistory.getMembership().getGrade())
+                    .membershipRegDate(membershipHistory.getRegDate())
+                    .membershipEndDate(membershipHistory.getEndDate())
+                    .cleanMaxNum(cleanMaxNum.get())
+                    .counselMaxNum(counselMaxNum.get())
+                    .transportMaxNum(transportMaxNum.get())
+                    .cleanUseNum(membershipHistory.getCleanUseNum())
+                    .counselUseNum(membershipHistory.getCounselUseNum())
+                    .transportUseNum(membershipHistory.getTransportUseNum())
+                    .build();
+        }
+        System.out.println(userInfoDTO);
+        return userInfoDTO;
     }
 
     private User userDTOToEntity(UserDTO userDTO) {

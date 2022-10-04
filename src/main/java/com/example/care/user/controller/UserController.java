@@ -1,12 +1,15 @@
 package com.example.care.user.controller;
 
+import com.example.care.security.auth.PrincipalDetails;
 import com.example.care.user.dto.UserDTO;
+import com.example.care.user.dto.UserInfoDTO;
 import com.example.care.user.service.UserService;
 import com.example.care.util.SweetAlert.SwalIcon;
 import com.example.care.util.SweetAlert.SwalMessage;
 import com.example.care.util.ex.exception.DuplicateUserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -62,7 +65,7 @@ public class UserController {
             userService.userJoin(userDTO);
         } catch (DuplicateUserException e) {
             bindingResult.addError(new FieldError("userDTO", "username", userDTO.getUsername(),
-                    false,null, null, "중복된 회원아이디 입니다."));
+                    false, null, null, "중복된 회원아이디 입니다."));
             return "/user/joinForm";
         }
 
@@ -70,5 +73,16 @@ public class UserController {
                 new SwalMessage("회원가입 성공", "로그인 후 이용해주세요.", SwalIcon.SUCCESS));
 
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/myInfo")
+    public String userInfo(@ModelAttribute("userInfoDTO") UserInfoDTO userInfoDTO,
+                           @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        System.out.println("요청확인");
+
+        Long userId = principalDetails.getUser().getId();
+        userInfoDTO = userService.getUserInfo(userId);
+
+        return "/user/info";
     }
 }

@@ -2,8 +2,12 @@ package com.example.care.reserve.service;
 
 import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.Membership;
+import com.example.care.membership.domain.MembershipHistory;
+import com.example.care.membership.domain.MembershipStatus;
 import com.example.care.membership.repository.history.MembershipHistoryRepository;
 import com.example.care.membership.repository.membership.MembershipRepository;
+import com.example.care.payment.domain.Payment;
+import com.example.care.payment.repository.PaymentRepository;
 import com.example.care.product.domain.MembershipProduct;
 import com.example.care.product.domain.Product;
 import com.example.care.product.domain.ProductCode;
@@ -48,9 +52,14 @@ class ReserveServiceTest {
     @Autowired
     MembershipProductRepository membershipProductRepository;
 
+    @Autowired
+    PaymentRepository paymentRepository;
+
+
     private User user;
     private Membership membership;
     private Product product;
+    private MembershipHistory membershipHistory;
 
     @BeforeEach
     void setup() {
@@ -66,6 +75,19 @@ class ReserveServiceTest {
                 .code(ProductCode.CLEAN)
                 .build();
         productRepository.save(product);
+
+        Payment payment = new Payment();
+        paymentRepository.save(payment);
+        membershipHistory = MembershipHistory.builder()
+                .counselUseNum(0)
+                .transportUseNum(0)
+                .cleanUseNum(0)
+                .user(user)
+                .membership(membership)
+                .payment(payment)
+                .status(MembershipStatus.ORDER)
+                .build();
+        membershipHistoryRepository.save(membershipHistory);
     }
 
     @Test

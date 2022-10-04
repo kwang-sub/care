@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@ToString
 public class ReserveDTO {
     private Long id;
     @NotBlank
