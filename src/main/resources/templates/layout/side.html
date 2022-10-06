@@ -11,14 +11,14 @@
           <li>
             <a th:href="@{'/user/profile'}">내 정보 수정하기</a>
           </li>
-          <li>
+          <li th:if="${session.provider == null}">
             <a th:href="@{'/user/password'}">비밀번호 수정하기</a>
           </li>
           <li>
             <a href="#">멤버쉽 가입내역 보기</a>
           </li>
           <li>
-            <a href="#">예약 확인하기</a>
+            <a th:href="@{'/user/reserve'}">예약 확인하기</a>
           </li>
         </ul>
       </div>

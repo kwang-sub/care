@@ -22,7 +22,10 @@
               </div><br>
               <div class="card">
                 <h5 class="card-header">멤버쉽 정보</h5>
-                <div class="card-body">
+                <div class="card-body" th:if="*{grade == null}">
+                  <h5>멤버쉽 가입 이력이 없습니다.</h5>
+                </div>
+                <div class="card-body" th:if="*{grade != null}">
                   <h5 class="card-title" th:text="*{grade}">등급</h5>
                   <p class="card-text" th:text="|가입일 : *{#temporals.format(membershipRegDate, 'yyyy-MM-dd')}|"></p>
                   <p class="card-text" th:text="|만료일 : *{#temporals.format(membershipEndDate, 'yyyy-MM-dd')}|"></p>

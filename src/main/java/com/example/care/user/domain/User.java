@@ -58,4 +58,12 @@ public class User {
     public String getRoleKey() {
         return this.role.getKey();
     }
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public void changeNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

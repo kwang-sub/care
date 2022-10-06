@@ -4,6 +4,7 @@ import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.service.MembershipService;
 import com.example.care.product.domain.ProductCode;
 import com.example.care.product.dto.ProductDTO;
+import com.example.care.reserve.dto.ReserveCancelDTO;
 import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.reserve.dto.ReserveDTO;
 import com.example.care.reserve.dto.ReserveTimeResponseDTO;
@@ -79,5 +80,11 @@ public class ReserveController {
     @ResponseBody
     public ReserveTimeResponseDTO confirmReserveTime(ReserveTimeRequestDTO reserveTimeRequestDTO) {
         return reserveService.confirmReserveTime(reserveTimeRequestDTO);
+    }
+
+    @PostMapping("/cancel")
+    public String reserveCancel(ReserveCancelDTO reserveCancelDTO) {
+        System.out.println(reserveCancelDTO);
+        return null;
     }
 }

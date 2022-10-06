@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+    <div class="container">
+      <section class="feature_product_area section_gap_bottom_custom">
+        <div class="row flex-row-reverse">
+          <div class="col-lg-12">
+            <div class="container">
+              <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">예약 서비스</th>
+                  <th scope="col">예약 장소</th>
+                  <th scope="col">예약일</th>
+                  <th scope="col">예약 시간</th>
+                  <th scope="col">예약 상태</th>
+                  <th scope="col">예약 취소</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto : ${result.dtoList}">
+                  <td class="reserve-id" th:text="${dto.reserveId}"></td>
+                  <td th:text="${dto.title}"></td>
+                  <td th:text="|${dto.address} ${dto.detailAddress}|"></td>
+                  <td th:text="${dto.reserveDate}"></td>
+                  <td th:text="|${dto.reserveTime} : 00|"></td>
+                  <td th:text="${dto.reserveStatus.getName()}"></td>
+                  <td th:if="${dto.cancel}">
+                    <input type="hidden" class="user-id" th:value="${dto.reserveUserId}">
+                    <button class="btn btn-danger reserve-cancel-btn">예약 취소</button>
+                  </td>
+                  <td th:if="${!dto.cancel}">
+                    <button class="btn">예약 취소</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <nav class="blog-pagination justify-content-center d-flex">
+                <ul class="pagination">
+                  <li class="page-item" th:if="${result.prev}">
+                    <a th:href="@{/user/reserve(page=${result.start - 1})}" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-left"></span>
+                </span>
+                    </a>
+                  </li>
+                  <li th:each="page : ${result.pageList}" th:class="|page-item ${result.page == page?'active':''}|" >
+                    <a th:href="@{/user/reserve(page=${page})}" class="page-link" th:text="${page}"></a>
+                  </li>
+                  <li class="page-item" th:if="${result.next}">
+                    <a th:href="@{/user/reserve(page=${result.end + 1})}" class="page-link" aria-label="Next">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-right"></span>
+                </span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <form id="cancel-reserve-form" th:method="post" th:action="@{/reserve/cancel}">
+            <input type="hidden" id="cancel-reserve-id" name="reserveId">
+            <input type="hidden" id="cancel-user-id" name="userId">
+          </form>
+        </div>
+      </section>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('.reserve-cancel-btn').on("click", function () {
+          var tr = $(this.closest(`tr`));
+          let reserveId = tr.find(".reserve-id").html();
+          let userId= tr.find(".user-id").val();
+          $("#cancel-reserve-id").val(reserveId);
+          $("#cancel-user-id").val(userId);
+          if (confirm("예약 취소하시겠습니까?")) {
+            $("#cancel-reserve-form").submit();
+          }
+        });
+      });
+    </script>
+  </th:block>
+</th:block>
+</html>

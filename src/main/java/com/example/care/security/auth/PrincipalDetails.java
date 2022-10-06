@@ -2,6 +2,7 @@ package com.example.care.security.auth;
 
 import com.example.care.user.dto.UserDTO;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @Data
+@NoArgsConstructor
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private UserDTO user;

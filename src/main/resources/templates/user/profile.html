@@ -6,22 +6,19 @@
       <section class="feature_product_area section_gap_bottom_custom">
         <div class="row flex-row-reverse">
           <div class="col-lg-9">
-            <form class="row tracking_form" th:action="@{/user}"  th:method="post" novalidate="novalidate">
-              <div class="col-md-12 form-group">
+            <form class="row tracking_form" th:action="@{|/user/*{userId}/profile|}" th:object="${userProfileDTO}" th:method="post" novalidate="novalidate">
+              <div class="col-md-7 form-group">
                 <label th:for="username" th:text="#{user.id}">ID</label>
-                <input type="text" class="form-control" placeholder="User ID">
+                <input type="text" th:field="*{username}" class="form-control" readonly>
               </div>
-              <div class="col-md-12 form-group">
+              <div class="col-md-7 form-group">
                 <label th:for="nickname" th:text="#{user.nickname}">nickname</label>
-                <input type="text" class="form-control" placeholder="Nickname">
+                <input type="text" th:field="*{nickname}" th:errorclass="field-error" class="form-control" placeholder="Nickname">
+                <div class="field-error" th:errors="*{nickname}"></div>
               </div>
               <div class="col-md-12 form-group">
-                <label th:for="email" th:text="#{user.email}">email</label>
-                <input type="email" class="form-control" placeholder="email">
-              </div>
-              <div class="col-md-12 form-group">
-                <a th:href="@{/user/login}"><button type="button" value="submit" class="btn submit_btn">취소</button></a>
-                <button type="submit" value="submit" class="btn submit_btn" th:text="#{user.singUp}">회원가입</button>
+                <input hidden th:field="*{userId}">
+                <button type="submit" value="submit" class="btn submit_btn">수정하기</button>
               </div>
             </form>
           </div>

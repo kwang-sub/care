@@ -27,7 +27,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
                 .leftJoin(membershipHistory.membership, membership).fetchJoin()
                 .leftJoin(membership.membershipProductList, membershipProduct)
                 .leftJoin(membershipProduct.product, product)
-                .where(user.id.eq(userId), membershipHistory.status.eq(MembershipStatus.ORDER))
+                .where(user.id.eq(userId))
+                .orderBy(membershipHistory.id.desc())
                 .fetchOne();
     }
 }

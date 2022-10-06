@@ -10,13 +10,17 @@ import com.example.care.product.repository.ProductRepository;
 import com.example.care.reserve.domain.Reserve;
 import com.example.care.reserve.domain.ReserveStatus;
 import com.example.care.reserve.dto.ReserveDTO;
+import com.example.care.reserve.dto.ReserveListDTO;
 import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.reserve.dto.ReserveTimeResponseDTO;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.ex.exception.ReserveFullException;
+import com.example.care.util.pagin.PageRequestDTO;
+import com.example.care.util.pagin.PageResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 @Service
@@ -36,6 +41,23 @@ public class ReserveServiceImpl implements ReserveService{
     private final ProductRepository productRepository;
     private final MembershipHistoryRepository membershipHistoryRepository;
     private final MembershipProductRepository membershipProductRepository;
+
+    @Override
+    public PageResultDTO<ReserveListDTO, Reserve> getReserveList(PageRequestDTO pageRequestDTO) {
+        Page<Reserve> result = reserveRepository.findUserReserveList(pageRequestDTO);
+        Function<Reserve, ReserveListDTO> fn = (entity ->ReserveListDTO.builder()
+                .reserveId(entity.getId())
+                .title(entity.getProduct().getTitle())
+                .address(entity.getAddress())
+                .detailAddress(entity.getDetailAddress())
+                .reserveDate(entity.getReserveDate())
+                .reserveTime(entity.getReserveTime())
+                .reserveStatus(entity.getReserveStatus())
+                .reserveUserId(entity.getUser().getId())
+                .cancel(LocalDate.now().isBefore(entity.getReserveDate()))
+                .build());
+        return new PageResultDTO<>(result,fn);
+    }
 
     @Override
     public ReserveTimeResponseDTO confirmReserveTime(ReserveTimeRequestDTO reserveTimeRequestDTO) {
@@ -94,7 +116,7 @@ public class ReserveServiceImpl implements ReserveService{
 
         if (!reserveList.isEmpty()){
             throw new ReserveFullException();
-        };
+        }
 
 //        예약하는 로직
         Product product = productRepository.getReferenceById(productDTO.getId());
