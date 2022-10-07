@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="side" class="col-lg-3">
+  <div class="left_sidebar_area">
+    <aside class="left_widgets p_filter_widgets">
+      <div class="l_w_title">
+        <h3>UserPage</h3>
+      </div>
+      <div class="widgets_inner">
+        <ul class="list">
+          <li>
+            <a th:href="@{'/user/profile'}">내 정보 수정하기</a>
+          </li>
+          <li th:if="${session.provider == null}">
+            <a th:href="@{'/user/password'}">비밀번호 수정하기</a>
+          </li>
+          <li>
+            <a href="#">멤버쉽 가입내역 보기</a>
+          </li>
+          <li>
+            <a th:href="@{'/user/reserve'}">예약 확인하기</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</html>

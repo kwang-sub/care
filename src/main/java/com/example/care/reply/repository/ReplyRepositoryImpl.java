@@ -9,6 +9,7 @@ import java.util.List;
 import static com.example.care.reply.domain.QReply.reply;
 import static com.example.care.user.domain.QUser.user;
 
+
 @RequiredArgsConstructor
 public class ReplyRepositoryImpl implements ReplyRepositoryCustom{
 

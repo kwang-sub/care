@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -33,14 +34,11 @@ public class User {
     private String provider;
 
     @OneToMany(mappedBy = "user")
-    private List<Reserve> reserveList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
     private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
 
     @Builder
     public User(Long id, String username, String nickname, String password, String email, Role role,
-                String provider, List<Reserve> reserveList, List<MembershipHistory> membershipHistoryList) {
+                String provider, List<MembershipHistory> membershipHistoryList) {
         this.id = id;
         this.username = username;
         this.nickname = nickname;
@@ -48,12 +46,18 @@ public class User {
         this.email = email;
         this.role = role;
         this.provider = provider;
-        this.reserveList = reserveList;
         this.membershipHistoryList = membershipHistoryList;
     }
 
-
     public String getRoleKey() {
         return this.role.getKey();
+    }
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public void changeNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

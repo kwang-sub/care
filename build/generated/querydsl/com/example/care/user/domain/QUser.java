@@ -34,8 +34,6 @@ public class QUser extends EntityPathBase<User> {
 
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
 
-    public final ListPath<com.example.care.reserve.domain.Reserve, com.example.care.reserve.domain.QReserve> reserveList = this.<com.example.care.reserve.domain.Reserve, com.example.care.reserve.domain.QReserve>createList("reserveList", com.example.care.reserve.domain.Reserve.class, com.example.care.reserve.domain.QReserve.class, PathInits.DIRECT2);
-
     public final EnumPath<Role> role = createEnum("role", Role.class);
 
     public final StringPath username = createString("username");

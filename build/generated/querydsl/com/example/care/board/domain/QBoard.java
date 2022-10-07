@@ -32,6 +32,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Integer> replyCnt = createNumber("replyCnt", Integer.class);
 
+    public final ListPath<com.example.care.reply.domain.Reply, com.example.care.reply.domain.QReply> replyList = this.<com.example.care.reply.domain.Reply, com.example.care.reply.domain.QReply>createList("replyList", com.example.care.reply.domain.Reply.class, com.example.care.reply.domain.QReply.class, PathInits.DIRECT2);
+
     public final StringPath title = createString("title");
 
     public final com.example.care.user.domain.QUser user;

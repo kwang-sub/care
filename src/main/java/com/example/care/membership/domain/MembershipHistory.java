@@ -1,6 +1,8 @@
 package com.example.care.membership.domain;
 
 import com.example.care.payment.domain.Payment;
+import com.example.care.product.domain.ProductCode;
+import com.example.care.reserve.domain.Reserve;
 import com.example.care.user.domain.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,6 +11,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,16 +34,18 @@ public class MembershipHistory {
     private Integer cleanUseNum;
     private Integer counselUseNum;
 
+    @OneToMany(mappedBy = "membershipHistory")
+    private List<Reserve> reserveList = new ArrayList<>();
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "PAYMENT_ID")
     private Payment payment;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBERSHIP_ID")
     private Membership membership;
 
@@ -74,5 +80,25 @@ public class MembershipHistory {
 
     public void membershipCancel() {
         this.status = MembershipStatus.CANCEL;
+    }
+
+    public void reserveProduct(ProductCode productCode) {
+        if (productCode.equals(ProductCode.TRANSPORT)) {
+            transportUseNum++;
+        } else if (productCode.equals(ProductCode.COUNSEL)) {
+            counselUseNum++;
+        } else if (productCode.equals(ProductCode.CLEAN)) {
+            cleanUseNum++;
+        }
+    }
+
+    public void cancelProduct(ProductCode productCode) {
+        if (productCode.equals(ProductCode.TRANSPORT)) {
+            transportUseNum--;
+        } else if (productCode.equals(ProductCode.COUNSEL)) {
+            counselUseNum--;
+        } else if (productCode.equals(ProductCode.CLEAN)) {
+            cleanUseNum--;
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.example.care.membership.dto.MembershipHistoryDTO;
 import com.example.care.membership.service.MembershipService;
 import com.example.care.product.domain.ProductCode;
 import com.example.care.product.dto.ProductDTO;
+import com.example.care.reserve.dto.ReserveCancelDTO;
 import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.reserve.dto.ReserveDTO;
 import com.example.care.reserve.dto.ReserveTimeResponseDTO;
@@ -79,5 +80,20 @@ public class ReserveController {
     @ResponseBody
     public ReserveTimeResponseDTO confirmReserveTime(ReserveTimeRequestDTO reserveTimeRequestDTO) {
         return reserveService.confirmReserveTime(reserveTimeRequestDTO);
+    }
+
+    @PostMapping("/cancel")
+    public String reserveCancel(ReserveCancelDTO reserveCancelDTO, RedirectAttributes redirectAttributes,
+                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        if (principalDetails.getUser().getId() != reserveCancelDTO.getUserId()) {
+            redirectAttributes.addFlashAttribute("swal",
+                    new SwalMessage("Error", "올바르지 않은 요청입니다.", SwalIcon.ERROR));
+            return "redirect:/user/reserve";
+        }
+        reserveService.reserveCancel(reserveCancelDTO.getReserveId());
+
+        redirectAttributes.addFlashAttribute("swal",
+                new SwalMessage("Success", "예약이 취소되었습니다.", SwalIcon.SUCCESS));
+        return "redirect:/user/reserve";
     }
 }

@@ -1,6 +1,5 @@
 package com.example.care.reserve.dto;
 
-import com.example.care.product.domain.ProductCode;
 import com.example.care.product.dto.ProductDTO;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +16,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@ToString
 public class ReserveDTO {
     private Long id;
     @NotBlank
@@ -30,7 +30,7 @@ public class ReserveDTO {
     private LocalDate reserveDate;
     @NotNull
     @Range(min = 0, max = 24)
-    private Integer ReserveTime;
+    private Integer reserveTime;
     private String postcode;
     private String address;
     private String detailAddress;
@@ -46,7 +46,7 @@ public class ReserveDTO {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.reserveDate = reserveDate;
-        ReserveTime = reserveTime;
+        this.reserveTime = reserveTime;
         this.postcode = postcode;
         this.address = address;
         this.detailAddress = detailAddress;

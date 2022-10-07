@@ -30,6 +30,8 @@ public class QReserve extends EntityPathBase<Reserve> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final com.example.care.membership.domain.QMembershipHistory membershipHistory;
+
     public final StringPath name = createString("name");
 
     public final StringPath phoneNumber = createString("phoneNumber");
@@ -45,8 +47,6 @@ public class QReserve extends EntityPathBase<Reserve> {
     public final EnumPath<ReserveStatus> reserveStatus = createEnum("reserveStatus", ReserveStatus.class);
 
     public final NumberPath<Integer> ReserveTime = createNumber("ReserveTime", Integer.class);
-
-    public final com.example.care.user.domain.QUser user;
 
     public QReserve(String variable) {
         this(Reserve.class, forVariable(variable), INITS);
@@ -66,8 +66,8 @@ public class QReserve extends EntityPathBase<Reserve> {
 
     public QReserve(Class<? extends Reserve> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.membershipHistory = inits.isInitialized("membershipHistory") ? new com.example.care.membership.domain.QMembershipHistory(forProperty("membershipHistory"), inits.get("membershipHistory")) : null;
         this.product = inits.isInitialized("product") ? new com.example.care.product.domain.QProduct(forProperty("product")) : null;
-        this.user = inits.isInitialized("user") ? new com.example.care.user.domain.QUser(forProperty("user")) : null;
     }
 
 }
