@@ -11,7 +11,6 @@ import com.example.care.reserve.domain.Reserve;
 import com.example.care.reserve.domain.ReserveStatus;
 import com.example.care.reserve.dto.*;
 import com.example.care.reserve.repository.ReserveRepository;
-import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.ex.exception.ReserveFullException;
 import com.example.care.util.pagin.PageRequestDTO;
@@ -51,7 +50,7 @@ public class ReserveServiceImpl implements ReserveService{
                 .reserveTime(entity.getReserveTime())
                 .reserveStatus(entity.getReserveStatus())
                 .reserveUserId(entity.getMembershipHistory().getUser().getId())
-                .cancel(LocalDate.now().isBefore(entity.getReserveDate()))
+                .cancel(LocalDate.now().isBefore(entity.getReserveDate()) && entity.getReserveStatus() == ReserveStatus.RESERVE)
                 .build());
         return new PageResultDTO<>(result,fn);
     }
@@ -125,8 +124,20 @@ public class ReserveServiceImpl implements ReserveService{
 
     @Override
     @Transactional
-    public void reserveCancel(ReserveCancelDTO reserveCancelDTO) {
-        
+    public void reserveCancel(Long reserveId) {
+//        예약 상태변경
+        Reserve reserve = reserveRepository.findByIdWithCancel(reserveId);
+        reserve.cancel();
+//        멤버쉽 이용내역 횟수 변경
+        ProductCode productCode = reserve.getProduct().getCode();
+        reserve.getMembershipHistory().cancelProduct(productCode);
+    }
+
+    @Override
+    @Transactional
+    public void reserveComplete(LocalDateTime now) {
+        reserveRepository.updateStatusComplete(LocalDate.from(now), now.getHour(),
+                ReserveStatus.COMPLETE, ReserveStatus.RESERVE);
     }
 
     private int productUseNum(ProductCode productCode, MembershipHistory membershipHistory) {

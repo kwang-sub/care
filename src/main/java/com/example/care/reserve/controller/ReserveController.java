@@ -83,8 +83,17 @@ public class ReserveController {
     }
 
     @PostMapping("/cancel")
-    public String reserveCancel(ReserveCancelDTO reserveCancelDTO) {
-        reserveService.reserveCancel(reserveCancelDTO);
-        return null;
+    public String reserveCancel(ReserveCancelDTO reserveCancelDTO, RedirectAttributes redirectAttributes,
+                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        if (principalDetails.getUser().getId() != reserveCancelDTO.getUserId()) {
+            redirectAttributes.addFlashAttribute("swal",
+                    new SwalMessage("Error", "올바르지 않은 요청입니다.", SwalIcon.ERROR));
+            return "redirect:/user/reserve";
+        }
+        reserveService.reserveCancel(reserveCancelDTO.getReserveId());
+
+        redirectAttributes.addFlashAttribute("swal",
+                new SwalMessage("Success", "예약이 취소되었습니다.", SwalIcon.SUCCESS));
+        return "redirect:/user/reserve";
     }
 }

@@ -5,6 +5,8 @@ import com.example.care.reserve.dto.*;
 import com.example.care.util.pagin.PageRequestDTO;
 import com.example.care.util.pagin.PageResultDTO;
 
+import java.time.LocalDateTime;
+
 public interface ReserveService {
 
 
@@ -14,5 +16,7 @@ public interface ReserveService {
 
     PageResultDTO<ReserveListDTO, Reserve> getReserveList(PageRequestDTO pageRequestDTO);
 
-    void reserveCancel(ReserveCancelDTO reserveCancelDTO);
+    void reserveCancel(Long reserveId);
+
+    void reserveComplete(LocalDateTime now);
 }

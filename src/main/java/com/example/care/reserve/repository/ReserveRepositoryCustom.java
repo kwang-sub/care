@@ -14,4 +14,6 @@ public interface ReserveRepositoryCustom {
     List<Reserve> findProductReserve(ReserveTimeRequestDTO reserveTimeRequestDTO);
 
     Page<Reserve> findUserReserveList(PageRequestDTO pageRequestDTO);
+
+    Reserve findByIdWithCancel(Long reserveId);
 }

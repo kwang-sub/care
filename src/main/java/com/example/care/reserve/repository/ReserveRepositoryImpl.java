@@ -1,5 +1,7 @@
 package com.example.care.reserve.repository;
 
+import com.example.care.membership.domain.QMembershipHistory;
+import com.example.care.product.domain.QProduct;
 import com.example.care.reserve.domain.Reserve;
 import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.util.pagin.PageRequestDTO;
@@ -52,6 +54,15 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
                 .fetchOne();
 
         return PageableExecutionUtils.getPage(content, pageable, () -> count);
+    }
+
+    @Override
+    public Reserve findByIdWithCancel(Long reserveId) {
+        return queryFactory.selectFrom(reserve)
+                .join(reserve.product, product).fetchJoin()
+                .join(reserve.membershipHistory, membershipHistory).fetchJoin()
+                .where(reserve.id.eq(reserveId))
+                .fetchOne();
     }
 
     private BooleanExpression eqReserveTime(Integer time) {

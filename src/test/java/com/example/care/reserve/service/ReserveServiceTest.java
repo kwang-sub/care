@@ -227,7 +227,7 @@ class ReserveServiceTest {
                             .address("주소")
                             .detailAddress("상세주소")
                             .product(product)
-                            .user(user)
+                            .membershipHistory(membershipHistory)
                             .build();
                     reserveRepository.save(reserve);
                 });

@@ -25,7 +25,7 @@ public class Reserve {
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
     private LocalDate reserveDate;
-    private Integer ReserveTime;
+    private Integer reserveTime;
     private String postcode;
     private String address;
     private String detailAddress;
@@ -50,7 +50,7 @@ public class Reserve {
         this.phoneNumber = phoneNumber;
         this.reserveStatus = reserveStatus;
         this.reserveDate = reserveDate;
-        ReserveTime = reserveTime;
+        this.reserveTime = reserveTime;
         this.postcode = postcode;
         this.address = address;
         this.detailAddress = detailAddress;
