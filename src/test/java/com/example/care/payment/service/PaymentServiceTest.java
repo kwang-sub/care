@@ -67,7 +67,7 @@ class PaymentServiceTest {
                 .partner_user_id(user.getUsername())
                 .partner_order_id("상품이름 1")
                 .build();
-        String sid = paymentService.createPayment(paymentDTO, user.getId());
+        String sid = paymentService.savePayment(paymentDTO, user.getId());
         Payment payment = paymentRepository.findBySid(paymentDTO.getSid());
         assertThat(payment.getAid()).isEqualTo(paymentDTO.getAid());
         assertThat(sid).isNull();
@@ -89,7 +89,7 @@ class PaymentServiceTest {
                 .partner_user_id(user.getUsername())
                 .partner_order_id("상품이름 1")
                 .build();
-        paymentService.createPayment(paymentDTO1, user.getId());
+        paymentService.savePayment(paymentDTO1, user.getId());
 
 //        when
         membership = Membership.builder()
@@ -110,7 +110,7 @@ class PaymentServiceTest {
                 .partner_order_id("상품이름 2")
                 .build();
 //        결제 요청시 유효한 멤버쉽 있으면 해당 멤버쉽 정기결제번호(SID)반환하도록 설계 컨트롤러에서 정기결제 취소 api 호출
-        String sid = paymentService.createPayment(paymentDTO2, user.getId());
+        String sid = paymentService.savePayment(paymentDTO2, user.getId());
 
 //        then
         assertThat(sid).isEqualTo(paymentDTO1.getSid());

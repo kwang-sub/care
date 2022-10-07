@@ -27,7 +27,6 @@ public class Membership {
     private Integer price;
 
     @OneToMany(mappedBy = "membership")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<MembershipProduct> membershipProductList = new ArrayList<>();
 
     @OneToMany(mappedBy = "membership")

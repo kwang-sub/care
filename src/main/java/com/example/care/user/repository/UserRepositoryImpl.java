@@ -25,8 +25,6 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
         return queryFactory.selectFrom(user)
                 .leftJoin(user.membershipHistoryList, membershipHistory).fetchJoin()
                 .leftJoin(membershipHistory.membership, membership).fetchJoin()
-                .leftJoin(membership.membershipProductList, membershipProduct)
-                .leftJoin(membershipProduct.product, product)
                 .where(user.id.eq(userId))
                 .orderBy(membershipHistory.id.desc())
                 .fetchOne();

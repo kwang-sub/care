@@ -1,8 +1,9 @@
 package com.example.care.membership.service;
 
-import com.example.care.membership.domain.Grade;
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipHistoryDTO;
+import com.example.care.payment.dto.KaKaoPayReadyDTO;
+import com.example.care.payment.dto.MemberShipDTO;
 
 import java.util.List;
 
