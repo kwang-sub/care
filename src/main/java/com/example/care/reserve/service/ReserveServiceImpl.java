@@ -9,10 +9,7 @@ import com.example.care.product.repository.MembershipProductRepository;
 import com.example.care.product.repository.ProductRepository;
 import com.example.care.reserve.domain.Reserve;
 import com.example.care.reserve.domain.ReserveStatus;
-import com.example.care.reserve.dto.ReserveDTO;
-import com.example.care.reserve.dto.ReserveListDTO;
-import com.example.care.reserve.dto.ReserveTimeRequestDTO;
-import com.example.care.reserve.dto.ReserveTimeResponseDTO;
+import com.example.care.reserve.dto.*;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
@@ -53,7 +50,7 @@ public class ReserveServiceImpl implements ReserveService{
                 .reserveDate(entity.getReserveDate())
                 .reserveTime(entity.getReserveTime())
                 .reserveStatus(entity.getReserveStatus())
-                .reserveUserId(entity.getUser().getId())
+                .reserveUserId(entity.getMembershipHistory().getUser().getId())
                 .cancel(LocalDate.now().isBefore(entity.getReserveDate()))
                 .build());
         return new PageResultDTO<>(result,fn);
@@ -120,10 +117,16 @@ public class ReserveServiceImpl implements ReserveService{
 
 //        예약하는 로직
         Product product = productRepository.getReferenceById(productDTO.getId());
-        User user = userRepository.getReferenceById(userId);
-        Reserve reserve = reserveDTOToEntity(reserveDTO, product, user);
+        MembershipHistory membershipHistory = membershipHistoryRepository.findMembershipHistoryByUserId(userId);
+        Reserve reserve = reserveDTOToEntity(reserveDTO, product, membershipHistory);
         reserveRepository.save(reserve);
         userMembershipHistory.reserveProduct(productCode);
+    }
+
+    @Override
+    @Transactional
+    public void reserveCancel(ReserveCancelDTO reserveCancelDTO) {
+        
     }
 
     private int productUseNum(ProductCode productCode, MembershipHistory membershipHistory) {
@@ -138,7 +141,7 @@ public class ReserveServiceImpl implements ReserveService{
         return useNum;
     }
 
-    private Reserve reserveDTOToEntity(ReserveDTO reserveDTO, Product product, User user) {
+    private Reserve reserveDTOToEntity(ReserveDTO reserveDTO, Product product, MembershipHistory membershipHistory) {
 //        전문가 방문서비스 아닌 고객 방문서비스 이용시 임의의 장소로 저장
         if (reserveDTO.getAddress() == null && product.getCode().equals(ProductCode.COUNSEL)) {
             reserveDTO.setPostcode("04509");
@@ -156,7 +159,7 @@ public class ReserveServiceImpl implements ReserveService{
                 .address(reserveDTO.getAddress())
                 .detailAddress(reserveDTO.getDetailAddress())
                 .extraAddress(reserveDTO.getExtraAddress())
-                .user(user)
+                .membershipHistory(membershipHistory)
                 .product(product)
                 .reserveStatus(ReserveStatus.RESERVE)
                 .build();

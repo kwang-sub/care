@@ -60,7 +60,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .provider(provider)
                     .build());
         }
-        System.out.println("================" + provider);
         httpSession.setAttribute("provider", provider);
         return new PrincipalDetails(user, oAuth2User.getAttributes());
     }

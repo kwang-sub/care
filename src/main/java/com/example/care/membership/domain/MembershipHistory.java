@@ -2,6 +2,7 @@ package com.example.care.membership.domain;
 
 import com.example.care.payment.domain.Payment;
 import com.example.care.product.domain.ProductCode;
+import com.example.care.reserve.domain.Reserve;
 import com.example.care.user.domain.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,6 +11,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,6 +34,8 @@ public class MembershipHistory {
     private Integer cleanUseNum;
     private Integer counselUseNum;
 
+    @OneToMany(mappedBy = "membershipHistory")
+    private List<Reserve> reserveList = new ArrayList<>();
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
@@ -89,11 +94,11 @@ public class MembershipHistory {
 
     public void cancelProduct(ProductCode productCode) {
         if (productCode.equals(ProductCode.TRANSPORT)) {
-            transportUseNum++;
+            transportUseNum--;
         } else if (productCode.equals(ProductCode.COUNSEL)) {
-            counselUseNum++;
+            counselUseNum--;
         } else if (productCode.equals(ProductCode.CLEAN)) {
-            cleanUseNum++;
+            cleanUseNum--;
         }
     }
 }

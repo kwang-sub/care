@@ -34,15 +34,11 @@ public class User {
     private String provider;
 
     @OneToMany(mappedBy = "user")
-    private List<Reserve> reserveList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
 
     @Builder
     public User(Long id, String username, String nickname, String password, String email, Role role,
-                String provider, List<Reserve> reserveList, List<MembershipHistory> membershipHistoryList) {
+                String provider, List<MembershipHistory> membershipHistoryList) {
         this.id = id;
         this.username = username;
         this.nickname = nickname;
@@ -50,10 +46,8 @@ public class User {
         this.email = email;
         this.role = role;
         this.provider = provider;
-        this.reserveList = reserveList;
         this.membershipHistoryList = membershipHistoryList;
     }
-
 
     public String getRoleKey() {
         return this.role.getKey();

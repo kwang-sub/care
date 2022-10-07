@@ -1,7 +1,7 @@
 package com.example.care.reserve.domain;
 
+import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.product.domain.Product;
-import com.example.care.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,23 +38,28 @@ public class Reserve {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBERSHIP_HISTORY_ID")
+    private MembershipHistory membershipHistory;
 
     @Builder
-    public Reserve(Long id, String name, String phoneNumber, LocalDate reserveDate, Integer reserveTime, String postcode, ReserveStatus reserveStatus,
-                   String address, String detailAddress, String extraAddress, Product product, User user) {
+    public Reserve(Long id, String name, String phoneNumber, ReserveStatus reserveStatus, LocalDate reserveDate,
+                   Integer reserveTime, String postcode, String address, String detailAddress, String extraAddress,
+                   Product product, MembershipHistory membershipHistory) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.reserveStatus = reserveStatus;
         this.reserveDate = reserveDate;
-        this.ReserveTime = reserveTime;
+        ReserveTime = reserveTime;
         this.postcode = postcode;
         this.address = address;
         this.detailAddress = detailAddress;
         this.extraAddress = extraAddress;
         this.product = product;
-        this.user = user;
-        this.reserveStatus = reserveStatus;
+        this.membershipHistory = membershipHistory;
+    }
+
+    public void cancel() {
+        this.reserveStatus = ReserveStatus.CANCEL;
     }
 }

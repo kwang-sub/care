@@ -12,8 +12,10 @@ import org.springframework.data.support.PageableExecutionUtils;
 
 import java.util.List;
 
+import static com.example.care.membership.domain.QMembershipHistory.membershipHistory;
 import static com.example.care.product.domain.QProduct.product;
 import static com.example.care.reserve.domain.QReserve.reserve;
+import static com.example.care.user.domain.QUser.user;
 
 @RequiredArgsConstructor
 public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
@@ -36,7 +38,9 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
         Long userId = Long.valueOf(pageRequestDTO.getKeyword());
         List<Reserve> content = queryFactory.selectFrom(reserve)
                 .join(reserve.product, product).fetchJoin()
-                .where(reserve.user.id.eq(userId))
+                .join(reserve.membershipHistory, membershipHistory).fetchJoin()
+                .join(membershipHistory.user, user).fetchJoin()
+                .where(reserve.membershipHistory.user.id.eq(userId))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(reserve.id.desc())
@@ -44,7 +48,7 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
 
         Long count = queryFactory.select(reserve.count())
                 .from(reserve)
-                .where(reserve.user.id.eq(userId))
+                .where(reserve.membershipHistory.user.id.eq(userId))
                 .fetchOne();
 
         return PageableExecutionUtils.getPage(content, pageable, () -> count);

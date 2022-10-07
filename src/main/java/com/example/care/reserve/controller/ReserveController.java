@@ -84,7 +84,7 @@ public class ReserveController {
 
     @PostMapping("/cancel")
     public String reserveCancel(ReserveCancelDTO reserveCancelDTO) {
-        System.out.println(reserveCancelDTO);
+        reserveService.reserveCancel(reserveCancelDTO);
         return null;
     }
 }
