@@ -6,9 +6,6 @@ import com.example.care.payment.dto.MemberShipDTO;
 
 public interface PaymentService {
 
-
-    String savePayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId);
-
     KaKaoPayReadyDTO payStart(MemberShipDTO memberShipDTO, String username);
 
     void payApprove(String orderId, String pgToken, Long userId, String username);

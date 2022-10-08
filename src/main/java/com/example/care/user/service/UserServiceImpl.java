@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         User user = userDTOToEntity(userDto);
         userRepository.save(user);
-        userDto.setId(userDto.getId());
+        userDto.setId(user.getId());
         return userDto;
     }
 
@@ -121,11 +121,13 @@ public class UserServiceImpl implements UserService{
                     });
 
             return UserInfoDTO.builder()
+                    .userId(user.getId())
                     .username(user.getUsername())
                     .nickname(user.getNickname())
                     .email(user.getEmail())
                     .userRegDate(user.getRegDate())
                     .provider(user.getProvider())
+                    .membershipHistoryId(membershipHistory.getId())
                     .grade(membershipHistory.getMembership().getGrade())
                     .membershipRegDate(membershipHistory.getRegDate())
                     .membershipEndDate(membershipHistory.getEndDate())
@@ -138,6 +140,7 @@ public class UserServiceImpl implements UserService{
                     .build();
         } else {
             return UserInfoDTO.builder()
+                    .userId(user.getId())
                     .username(user.getUsername())
                     .nickname(user.getNickname())
                     .email(user.getEmail())

@@ -20,16 +20,18 @@ public class Payment {
     private String aid;
     private String cid;
     private String sid;
+    private String tid;
     private String orderId;
     private Integer price;
     @CreationTimestamp
     private LocalDateTime regDate;
 
     @Builder
-    public Payment(String aid, String cid, String sid, String orderId, Integer price) {
+    public Payment(String aid, String cid, String sid, String tid, String orderId, Integer price) {
         this.aid = aid;
         this.cid = cid;
         this.sid = sid;
+        this.tid = tid;
         this.orderId = orderId;
         this.price = price;
     }

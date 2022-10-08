@@ -17,7 +17,7 @@
                   <p class="card-text" th:text="|가입일 : *{#temporals.format(userRegDate, 'yyyy-MM-dd')}|"></p>
                   <p class="card-text" th:if="*{provider != null}" th:text="|SNS 회원 여부 : *{provider}|"></p>
                   <p class="card-text" th:if="*{provider == null}" ></p>
-                  <a href="#" class="btn submit_btn">내 정보 수정하기</a>
+                  <a th:href="@{/user/profile}" class="btn submit_btn">내 정보 수정하기</a>
                 </div>
               </div><br>
               <div class="card">
@@ -32,17 +32,47 @@
                   <p class="card-text" th:text="|상담 서비스 사용 횟수 : *{counselUseNum} / *{counselMaxNum}|"></p>
                   <p class="card-text" th:text="|교통 서비스 사용 횟수 : *{transportUseNum} / *{transportMaxNum}|"></p>
                   <p class="card-text" th:text="|공간 청소 서비스 사용 횟수 : *{cleanUseNum} / *{cleanMaxNum}|"></p>
-                  <a href="#" class="btn submit_btn">가입이력 보기</a>
+                  <a href="#" id="membership-btn" class="btn submit_btn">멤버쉽 해지하기</a>
                 </div>
               </div>
             </div>
           </div>
-
           <div th:replace="/layout/side :: side" class="col-lg-3"></div>
         </div>
       </section>
-    </div>
+      <script th:inline="javascript">
+        $(document).ready(function () {
+          $("#membership-btn").on("click", function (e) {
+            e.preventDefault()
 
+
+            var membershipHistory = {
+              userId : [[${userInfoDTO.userId}]],
+              membershipHistoryId : [[${userInfoDTO.membershipHistoryId}]]
+            }
+            console.log(membershipHistory)
+
+            $.ajax({
+              method: 'patch',
+              url: '/membership/' + [[${userInfoDTO.membershipHistoryId}]],
+              contentType : "application/json; charset=utf-8",
+              data: JSON.stringify(membershipHistory),
+              success: function (data) {
+                console.log("성공")
+              },
+              error: function (jqXHR) {
+                if (jqXHR.status == 400) {
+                  alert("올바르지 않은 요청입니다. 값을 입력해주세요.")
+                }
+                if (jqXHR.status == 403) {
+                  alert("회원정보가 일치하지 않습니다. 다시시도해주세요")
+                }
+              }
+            });
+          });
+        });
+      </script>
+    </div>
   </th:block>
 </th:block>
 </html>

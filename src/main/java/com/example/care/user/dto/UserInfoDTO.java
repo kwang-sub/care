@@ -13,12 +13,14 @@ import java.time.LocalDateTime;
 @ToString
 public class UserInfoDTO {
 
+    private Long userId;
     private String username;
     private String nickname;
     private String email;
     private String provider;
     private LocalDateTime userRegDate;
 
+    private Long membershipHistoryId;
     private Grade grade;
     private LocalDateTime membershipRegDate;
     private LocalDate membershipEndDate;

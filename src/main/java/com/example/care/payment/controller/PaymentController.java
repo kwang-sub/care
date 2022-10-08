@@ -30,7 +30,6 @@ import java.util.UUID;
 public class PaymentController {
 
     private final PaymentService paymentService;
-    private final WebClient webClient;
 
     @PostMapping("/kakao")
     @ResponseBody
@@ -40,6 +39,7 @@ public class PaymentController {
         }
         String username = principal.getName();
         KaKaoPayReadyDTO result = paymentService.payStart(memberShipDTO, username);
+        System.out.println("=============4" + result.getOrderId());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -49,6 +49,7 @@ public class PaymentController {
                              @AuthenticationPrincipal PrincipalDetails principalDetails, RedirectAttributes redirectAttributes) {
         Long userId = principalDetails.getUser().getId();
         String username = principalDetails.getUser().getUsername();
+        System.out.println("=============3" + orderId);
         paymentService.payApprove(orderId, pgToken, userId, username);
 
         redirectAttributes.addFlashAttribute("swal",

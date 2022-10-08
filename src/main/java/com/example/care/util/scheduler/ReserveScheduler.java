@@ -21,4 +21,11 @@ public class ReserveScheduler {
         log.info("[Scheduler] reserveComplete time : {}", now);
         reserveService.reserveComplete(now);
     }
+
+    @Scheduled(cron = "0 12 0 * * *")
+    public void membershipCompleteSch() {
+        LocalDateTime now = LocalDateTime.now();
+        log.info("[Scheduler] membershipHistoryComplete time : {}", now);
+        reserveService.reserveComplete(now);
+    }
 }

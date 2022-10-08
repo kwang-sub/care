@@ -60,6 +60,7 @@
                 price: price
             })
                 .done(function (data) {
+                    console.log(data)
                     url = data.next_redirect_pc_url;
                     window.location.href = url;
                 })

@@ -168,6 +168,7 @@ public class UserController {
     @GetMapping("/myInfo")
     public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long userId = principalDetails.getUser().getId();
+        System.out.println(userId);
         UserInfoDTO userInfoDTO = userService.getUserInfo(userId);
         model.addAttribute("userInfoDTO", userInfoDTO);
 

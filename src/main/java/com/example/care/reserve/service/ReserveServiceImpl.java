@@ -94,7 +94,8 @@ public class ReserveServiceImpl implements ReserveService{
         ProductDTO productDTO = reserveDTO.getProductDTO();
         ProductCode productCode = productDTO.getCode();
 
-        MembershipHistory userMembershipHistory = membershipHistoryRepository.findMembershipHistoryByUserId(userId);
+        LocalDate now = LocalDate.now();
+        MembershipHistory userMembershipHistory = membershipHistoryRepository.findMembershipHistoryByUserId(userId, now);
         int maxNum = membershipProductRepository.findMaxNumByProductCode(productDTO.getCode(), userMembershipHistory.getMembership().getId());
         int useNum  = productUseNum(productCode, userMembershipHistory);
 
@@ -116,7 +117,7 @@ public class ReserveServiceImpl implements ReserveService{
 
 //        예약하는 로직
         Product product = productRepository.getReferenceById(productDTO.getId());
-        MembershipHistory membershipHistory = membershipHistoryRepository.findMembershipHistoryByUserId(userId);
+        MembershipHistory membershipHistory = membershipHistoryRepository.findMembershipHistoryByUserId(userId, now);
         Reserve reserve = reserveDTOToEntity(reserveDTO, product, membershipHistory);
         reserveRepository.save(reserve);
         userMembershipHistory.reserveProduct(productCode);
