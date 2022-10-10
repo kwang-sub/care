@@ -1,13 +1,11 @@
 package com.example.care.user.dto;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Data
-@ToString
 public class UserPwDTO {
 
     private Long userId;

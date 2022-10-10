@@ -5,8 +5,8 @@ import com.example.care.membership.service.MembershipService;
 import com.example.care.product.domain.ProductCode;
 import com.example.care.product.dto.ProductDTO;
 import com.example.care.reserve.dto.ReserveCancelDTO;
-import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.reserve.dto.ReserveDTO;
+import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.reserve.dto.ReserveTimeResponseDTO;
 import com.example.care.reserve.service.ReserveService;
 import com.example.care.security.auth.PrincipalDetails;
@@ -23,8 +23,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
-
 @Slf4j
 @Controller
 @RequestMapping("/reserve")
@@ -36,8 +34,10 @@ public class ReserveController {
 
     @GetMapping
     public String reserveForm(@ModelAttribute("productDTO") ProductDTO productDTO, Model model,
-                              Principal principal, RedirectAttributes redirectAttributes) {
-        MembershipHistoryDTO validMembership = membershipService.findValidMembership(principal.getName());
+                              @AuthenticationPrincipal PrincipalDetails principalDetails, 
+                              RedirectAttributes redirectAttributes) {
+        Long userId = principalDetails.getUser().getId();
+        MembershipHistoryDTO validMembership = membershipService.findValidMembership(userId);
         if (validMembership == null) {
             redirectAttributes.addFlashAttribute("swal",
                     new SwalMessage("Membership Service",

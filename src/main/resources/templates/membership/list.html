@@ -56,8 +56,7 @@
             var price = priceNode.previousElementSibling.defaultValue;
 
             $.post("/payment/kakao", {
-                grade: grade,
-                price: price
+                grade: grade
             })
                 .done(function (data) {
                     console.log(data)

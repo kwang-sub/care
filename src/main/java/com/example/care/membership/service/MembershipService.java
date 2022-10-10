@@ -2,8 +2,6 @@ package com.example.care.membership.service;
 
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipHistoryDTO;
-import com.example.care.payment.dto.KaKaoPayReadyDTO;
-import com.example.care.payment.dto.MemberShipDTO;
 
 import java.util.List;
 
@@ -13,6 +11,9 @@ public interface MembershipService {
 
     void membershipSave(MembershipDTO membershipDTO);
 
-    MembershipHistoryDTO findValidMembership(String username);
+    MembershipHistoryDTO findValidMembership(Long userId);
+
+    void userMembershipCancel(Long userId);
+
 
 }

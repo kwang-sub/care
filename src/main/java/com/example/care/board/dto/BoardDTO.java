@@ -1,6 +1,5 @@
 package com.example.care.board.dto;
 
-import com.example.care.user.dto.UserDTO;
 import lombok.Builder;
 import lombok.Data;
 

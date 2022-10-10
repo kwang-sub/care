@@ -3,8 +3,6 @@ package com.example.care.user.service;
 import com.example.care.membership.domain.MembershipHistory;
 import com.example.care.product.domain.MembershipProduct;
 import com.example.care.product.domain.ProductCode;
-import com.example.care.reserve.domain.Reserve;
-import com.example.care.reserve.dto.ReserveListDTO;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.domain.Role;
 import com.example.care.user.domain.User;
@@ -15,19 +13,14 @@ import com.example.care.user.dto.UserPwDTO;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.ex.exception.DuplicateUserException;
 import com.example.care.util.ex.exception.UserAccessException;
-import com.example.care.util.pagin.PageRequestDTO;
-import com.example.care.util.pagin.PageResultDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 
 @Slf4j
 @Service
@@ -128,6 +121,7 @@ public class UserServiceImpl implements UserService{
                     .userRegDate(user.getRegDate())
                     .provider(user.getProvider())
                     .membershipHistoryId(membershipHistory.getId())
+                    .membershipStatus(membershipHistory.getStatus())
                     .grade(membershipHistory.getMembership().getGrade())
                     .membershipRegDate(membershipHistory.getRegDate())
                     .membershipEndDate(membershipHistory.getEndDate())

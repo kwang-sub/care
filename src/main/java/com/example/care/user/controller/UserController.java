@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.function.Function;
 
 @Slf4j
 @Controller
@@ -168,7 +167,6 @@ public class UserController {
     @GetMapping("/myInfo")
     public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long userId = principalDetails.getUser().getId();
-        System.out.println(userId);
         UserInfoDTO userInfoDTO = userService.getUserInfo(userId);
         model.addAttribute("userInfoDTO", userInfoDTO);
 

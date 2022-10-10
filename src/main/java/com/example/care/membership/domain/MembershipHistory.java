@@ -4,7 +4,9 @@ import com.example.care.payment.domain.Payment;
 import com.example.care.product.domain.ProductCode;
 import com.example.care.reserve.domain.Reserve;
 import com.example.care.user.domain.User;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -80,6 +82,10 @@ public class MembershipHistory {
 
     public void membershipCancel() {
         this.status = MembershipStatus.CANCEL;
+    }
+
+    public void membershipComplete() {
+        this.status = MembershipStatus.COMPLETE;
     }
 
     public void reserveProduct(ProductCode productCode) {

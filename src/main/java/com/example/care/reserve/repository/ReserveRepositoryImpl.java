@@ -1,8 +1,7 @@
 package com.example.care.reserve.repository;
 
-import com.example.care.membership.domain.QMembershipHistory;
-import com.example.care.product.domain.QProduct;
 import com.example.care.reserve.domain.Reserve;
+import com.example.care.reserve.domain.ReserveStatus;
 import com.example.care.reserve.dto.ReserveTimeRequestDTO;
 import com.example.care.util.pagin.PageRequestDTO;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -30,6 +29,7 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
                 .join(reserve.product, product).fetchJoin()
                 .where(product.code.eq(reserveTimeRequestDTO.getProductCode()),
                         reserve.reserveDate.eq(reserveTimeRequestDTO.getReserveDate()),
+                        reserve.reserveStatus.eq(ReserveStatus.RESERVE),
                         eqReserveTime(reserveTimeRequestDTO.getReserveTime()))
                 .fetch();
     }
@@ -66,6 +66,6 @@ public class ReserveRepositoryImpl implements ReserveRepositoryCustom{
     }
 
     private BooleanExpression eqReserveTime(Integer time) {
-        return time == null ? null : reserve.ReserveTime.eq(time);
+        return time == null ? null : reserve.reserveTime.eq(time);
     }
 }

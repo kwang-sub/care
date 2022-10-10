@@ -85,7 +85,7 @@ class MembershipServiceTest {
 
 //        when
         MembershipHistory availableMembership = membershipHistoryRepository
-                .findValidMembership(user.getUsername());
+                .findValidMembership(user.getId());
 
 //        then
         assertThat(availableMembership).isNotNull();
@@ -107,7 +107,7 @@ class MembershipServiceTest {
         membershipHistory.membershipCancel();
 
         MembershipHistory availableMembership = membershipHistoryRepository
-                .findValidMembership(user.getUsername());
+                .findValidMembership(user.getId());
 
 //        then
         assertThat(availableMembership).isNull();

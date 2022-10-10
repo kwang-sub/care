@@ -46,7 +46,7 @@ public class QReserve extends EntityPathBase<Reserve> {
 
     public final EnumPath<ReserveStatus> reserveStatus = createEnum("reserveStatus", ReserveStatus.class);
 
-    public final NumberPath<Integer> ReserveTime = createNumber("ReserveTime", Integer.class);
+    public final NumberPath<Integer> reserveTime = createNumber("reserveTime", Integer.class);
 
     public QReserve(String variable) {
         this(Reserve.class, forVariable(variable), INITS);
