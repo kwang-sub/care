@@ -41,7 +41,7 @@ public class Board {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Reply> replyList = new ArrayList<>();
 
     @Builder

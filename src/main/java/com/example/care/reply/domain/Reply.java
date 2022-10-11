@@ -39,7 +39,7 @@ public class Reply {
     @JoinColumn(name = "parent_id")
     private Reply parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Reply> children = new ArrayList<>();
 
     @Builder

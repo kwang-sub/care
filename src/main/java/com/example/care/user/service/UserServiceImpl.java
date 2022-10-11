@@ -85,12 +85,16 @@ public class UserServiceImpl implements UserService{
         return userEntityToDTO(user);
     }
 
-
-
     @Override
     public UserInfoDTO getUserInfo(Long userId) {
         User user = userRepository.findUserInfoByUserId(userId);
         return getUserInfoDTO(user);
+    }
+
+    @Override
+    @Transactional
+    public void unregister(Long userId) {
+        userRepository.deleteById(userId);
     }
 
     private UserInfoDTO getUserInfoDTO(User user) {

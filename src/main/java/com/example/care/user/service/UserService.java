@@ -20,4 +20,5 @@ public interface UserService {
     void profileModify(UserProfileDTO userProfileDTO);
 
 
+    void unregister(Long userId);
 }

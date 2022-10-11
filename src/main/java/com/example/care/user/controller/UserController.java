@@ -163,7 +163,6 @@ public class UserController {
 
         return "redirect:/user/login";
     }
-
     @GetMapping("/myInfo")
     public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long userId = principalDetails.getUser().getId();
@@ -171,5 +170,25 @@ public class UserController {
         model.addAttribute("userInfoDTO", userInfoDTO);
 
         return "/user/info";
+    }
+
+    @GetMapping("/unregister")
+    public String userUnregisterForm(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        model.addAttribute("userId", principalDetails.getUser().getId());
+        return "/user/unregister";
+    }
+
+    @PostMapping("/unregister")
+    public String userUnregister(@AuthenticationPrincipal PrincipalDetails principalDetails, Long userId,
+                                 RedirectAttributes redirectAttributes) {
+
+        if (principalDetails.getUser().getId() != userId) {
+            redirectAttributes.addFlashAttribute("swal",
+                    new SwalMessage("Fail", "올바르지 않은 요청입니다.", SwalIcon.ERROR));
+            return "redirect:/user/myInfo";
+        }
+
+        userService.unregister(userId);
+        return "redirect:/logout";
     }
 }
