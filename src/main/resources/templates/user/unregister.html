@@ -13,7 +13,7 @@
                   <form th:action="@{/user/unregister}" th:method="post">
                     <h5 class="card-title">탈퇴 안내</h5>
                     <h6 class="card-subtitle mb-2 text-muted">회원 탈퇴시 예약된 서비스 및 모든 활동내역이 삭제됩니다. 정말 탈퇴하시겠습니까?</h6>
-                    <input name="userId" th:value="${userId}">
+                    <input type="hidden" name="userId" th:value="${userId}">
                     <button type="submit" class="btn btn-danger">회원탈퇴</button>
                     <a th:href="@{/user/myInfo}" class="btn btn-primary">되돌아가기</a>
                   </form>

@@ -20,6 +20,8 @@ public class QUser extends EntityPathBase<User> {
 
     public static final QUser user = new QUser("user");
 
+    public final ListPath<com.example.care.board.domain.Board, com.example.care.board.domain.QBoard> boardList = this.<com.example.care.board.domain.Board, com.example.care.board.domain.QBoard>createList("boardList", com.example.care.board.domain.Board.class, com.example.care.board.domain.QBoard.class, PathInits.DIRECT2);
+
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
