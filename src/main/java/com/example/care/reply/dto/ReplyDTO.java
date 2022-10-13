@@ -1,7 +1,5 @@
 package com.example.care.reply.dto;
 
-import com.example.care.board.domain.Board;
-import com.example.care.user.domain.User;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

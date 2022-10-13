@@ -1,6 +1,5 @@
 package com.example.care.membership.service;
 
-import com.example.care.membership.domain.Grade;
 import com.example.care.membership.dto.MembershipDTO;
 import com.example.care.membership.dto.MembershipHistoryDTO;
 
@@ -12,6 +11,9 @@ public interface MembershipService {
 
     void membershipSave(MembershipDTO membershipDTO);
 
-    MembershipHistoryDTO findValidMembership(String username);
+    MembershipHistoryDTO findValidMembership(Long userId);
+
+    void userMembershipCancel(Long userId);
+
 
 }

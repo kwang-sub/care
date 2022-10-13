@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-
 public class ReserveTimeResponseDTO {
     private int startTime;
     private int endTime;

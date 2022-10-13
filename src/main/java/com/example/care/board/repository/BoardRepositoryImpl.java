@@ -1,7 +1,6 @@
 package com.example.care.board.repository;
 
 import com.example.care.board.domain.Board;
-import com.example.care.board.domain.QBoard;
 import com.example.care.util.pagin.PageRequestDTO;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;

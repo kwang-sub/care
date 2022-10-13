@@ -1,14 +1,15 @@
 package com.example.care.payment.service;
 
-import com.example.care.payment.dto.KaKaoPayApproveDTO;
-import com.example.care.payment.dto.TidDTO;
+import com.example.care.payment.dto.KaKaoPayReadyDTO;
+import com.example.care.payment.dto.MemberShipDTO;
+
+import java.time.LocalDate;
 
 public interface PaymentService {
 
-    void saveTid(TidDTO tidDTO);
+    KaKaoPayReadyDTO payStart(MemberShipDTO memberShipDTO, Long userId);
 
-    String findTid(String orderId);
+    void payApprove(String orderId, String pgToken, Long userId);
 
-    String createPayment(KaKaoPayApproveDTO kaKaoPayApproveDTO, Long userId);
-
+    void membershipCompleteSch(LocalDate now);
 }

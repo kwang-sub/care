@@ -17,7 +17,8 @@
                   <p class="card-text" th:text="|가입일 : *{#temporals.format(userRegDate, 'yyyy-MM-dd')}|"></p>
                   <p class="card-text" th:if="*{provider != null}" th:text="|SNS 회원 여부 : *{provider}|"></p>
                   <p class="card-text" th:if="*{provider == null}" ></p>
-                  <a href="#" class="btn submit_btn">내 정보 수정하기</a>
+                  <a th:href="@{/user/unregister}" class="btn submit_btn">회원 탈퇴하기</a>
+                  <a th:href="@{/user/profile}" class="btn submit_btn">내 정보 수정하기</a>
                 </div>
               </div><br>
               <div class="card">
@@ -27,22 +28,35 @@
                 </div>
                 <div class="card-body" th:if="*{grade != null}">
                   <h5 class="card-title" th:text="*{grade}">등급</h5>
+                  <p class="card-text" th:text="|상태 : *{membershipStatus.getName()}|"></p>
                   <p class="card-text" th:text="|가입일 : *{#temporals.format(membershipRegDate, 'yyyy-MM-dd')}|"></p>
                   <p class="card-text" th:text="|만료일 : *{#temporals.format(membershipEndDate, 'yyyy-MM-dd')}|"></p>
                   <p class="card-text" th:text="|상담 서비스 사용 횟수 : *{counselUseNum} / *{counselMaxNum}|"></p>
                   <p class="card-text" th:text="|교통 서비스 사용 횟수 : *{transportUseNum} / *{transportMaxNum}|"></p>
                   <p class="card-text" th:text="|공간 청소 서비스 사용 횟수 : *{cleanUseNum} / *{cleanMaxNum}|"></p>
-                  <a href="#" class="btn submit_btn">가입이력 보기</a>
+                  <a th:if="*{membershipStatus.toString().equals('ORDER')}" href="#" id="membership-btn" class="btn submit_btn">멤버쉽 해지하기</a>
                 </div>
+                <form id="membership-cancel-from" th:action="@{/membership/cancel}" th:method="post">
+                  <input type="hidden" id="userId" name="userId">
+                </form>
               </div>
             </div>
           </div>
-
           <div th:replace="/layout/side :: side" class="col-lg-3"></div>
         </div>
       </section>
+      <script th:inline="javascript">
+        $(document).ready(function () {
+          $("#membership-btn").on("click", function (e) {
+            e.preventDefault()
+            if (confirm("해지시 서비스 이용이 불가합니다. 정말 해지 하시겠습니까?")) {
+              $("#userId").val([[${userInfoDTO.userId}]]);
+              $("#membership-cancel-from").submit();
+            }
+          });
+        });
+      </script>
     </div>
-
   </th:block>
 </th:block>
 </html>

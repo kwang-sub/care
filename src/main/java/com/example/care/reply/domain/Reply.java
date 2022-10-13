@@ -5,7 +5,6 @@ import com.example.care.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -40,7 +39,7 @@ public class Reply {
     @JoinColumn(name = "parent_id")
     private Reply parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Reply> children = new ArrayList<>();
 
     @Builder

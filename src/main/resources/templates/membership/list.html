@@ -16,7 +16,7 @@
                     <div th:each="membership : ${membershipList}" class="col-lg-4 col-md-6">
                         <div class="single-product">
                             <div class="product-img">
-                                <img class="img-fluid w-100" src="/img/membership/membership.jpg" alt="" />
+                                <img class="img-fluid w-100" th:src="@{|/img/membership/${membership.grade}.jpg|}" alt="" />
                                 <div class="p_icon">
                                     카카오페이 간편결제
                                     <a class="pay-button">
@@ -56,8 +56,7 @@
             var price = priceNode.previousElementSibling.defaultValue;
 
             $.post("/payment/kakao", {
-                grade: grade,
-                price: price
+                grade: grade
             })
                 .done(function (data) {
                     console.log(data)

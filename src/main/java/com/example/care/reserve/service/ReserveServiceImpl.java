@@ -9,7 +9,10 @@ import com.example.care.product.repository.MembershipProductRepository;
 import com.example.care.product.repository.ProductRepository;
 import com.example.care.reserve.domain.Reserve;
 import com.example.care.reserve.domain.ReserveStatus;
-import com.example.care.reserve.dto.*;
+import com.example.care.reserve.dto.ReserveDTO;
+import com.example.care.reserve.dto.ReserveListDTO;
+import com.example.care.reserve.dto.ReserveTimeRequestDTO;
+import com.example.care.reserve.dto.ReserveTimeResponseDTO;
 import com.example.care.reserve.repository.ReserveRepository;
 import com.example.care.user.repository.UserRepository;
 import com.example.care.util.ex.exception.ReserveFullException;
@@ -135,7 +138,7 @@ public class ReserveServiceImpl implements ReserveService{
 
     @Override
     @Transactional
-    public void reserveComplete(LocalDateTime now) {
+    public void reserveCompleteSch(LocalDateTime now) {
         reserveRepository.updateStatusComplete(LocalDate.from(now), now.getHour(),
                 ReserveStatus.COMPLETE, ReserveStatus.RESERVE);
     }

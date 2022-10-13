@@ -1,13 +1,11 @@
 package com.example.care.user.domain;
 
+import com.example.care.board.domain.Board;
 import com.example.care.membership.domain.MembershipHistory;
-import com.example.care.reserve.domain.Reserve;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -33,8 +31,11 @@ public class User {
     private LocalDateTime regDate;
     private String provider;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MembershipHistory> membershipHistoryList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Board> boardList = new ArrayList<>();
 
     @Builder
     public User(Long id, String username, String nickname, String password, String email, Role role,

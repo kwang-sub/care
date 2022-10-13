@@ -33,6 +33,8 @@ public class QPayment extends EntityPathBase<Payment> {
 
     public final StringPath sid = createString("sid");
 
+    public final StringPath tid = createString("tid");
+
     public QPayment(String variable) {
         super(Payment.class, forVariable(variable));
     }

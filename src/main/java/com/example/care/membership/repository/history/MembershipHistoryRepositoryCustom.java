@@ -1,9 +1,12 @@
 package com.example.care.membership.repository.history;
 
-import com.example.care.membership.domain.Grade;
 import com.example.care.membership.domain.MembershipHistory;
-import com.example.care.product.domain.ProductCode;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public interface MembershipHistoryRepositoryCustom {
-    MembershipHistory findValidMembership(String username);
+    MembershipHistory findValidMembership(Long userId);
+
+    List<MembershipHistory> findCompleteMembershipHistory(LocalDate now);
 }

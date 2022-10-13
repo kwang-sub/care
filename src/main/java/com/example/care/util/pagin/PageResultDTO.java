@@ -1,7 +1,6 @@
 package com.example.care.util.pagin;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
