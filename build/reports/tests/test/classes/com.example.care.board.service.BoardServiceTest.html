@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - BoardServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>BoardServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.care.board.service.html">com.example.care.board.service</a> &gt; BoardServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">7</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.779s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">게시글 작성 테스트</td>
+<td class="success">createBoardTest()</td>
+<td class="success">0.023s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">게시글 수정 테스트</td>
+<td class="success">modifyBoardTest()</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">페이징 목록 테스트</td>
+<td class="success">paginationTest1()</td>
+<td class="success">0.329s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">페이지네이션 데이터 한개 테스트</td>
+<td class="success">paginationTest2()</td>
+<td class="success">0.018s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">페이징 검색 테스트</td>
+<td class="success">paginationTest3()</td>
+<td class="success">0.161s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">게시글 조회 테스트</td>
+<td class="success">readTest()</td>
+<td class="success">0.219s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">게시글 삭제 테스트</td>
+<td class="success">removeBoardTest()</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2022-10-14 17:07:51.310  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.care.board.service.BoardServiceTest], using SpringBootContextLoader
+2022-10-14 17:07:51.312  INFO 15332 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.care.board.service.BoardServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-14 17:07:51.312  INFO 15332 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.care.board.service.BoardServiceTest]: BoardServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-14 17:07:51.322  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.care.CareApplication for test class com.example.care.board.service.BoardServiceTest
+2022-10-14 17:07:51.324  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-14 17:07:51.325  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4228a2f6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5e91b051, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@19c145d2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@77376e83, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@708f4d81, org.springframework.test.context.support.DirtiesContextTestExecutionListener@23cf78f9, org.springframework.test.context.transaction.TransactionalTestExecutionListener@30b35687, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7c3c6564, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@7655dc27, org.springframework.test.context.event.EventPublishingTestExecutionListener@2e856aa4, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@428169d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1b204439, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@434c179e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@46199519, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2c1ffb9, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1bd97254, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@388a6656]
+2022-10-14 17:07:51.341  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@61c1be2f, testMethod = readTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+2022-10-14 17:07:51.550  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@61c1be2f, testMethod = readTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:51.553  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@1b52f723, testMethod = paginationTest1@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        board0_.board_id as board_id1_0_0_,
+        user1_.user_id as user_id1_9_1_,
+        board0_.content as content2_0_0_,
+        board0_.mod_date as mod_date3_0_0_,
+        board0_.reg_date as reg_date4_0_0_,
+        board0_.reply_cnt as reply_cn5_0_0_,
+        board0_.title as title6_0_0_,
+        board0_.user_id as user_id8_0_0_,
+        board0_.view as view7_0_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_ 
+    from
+        board board0_ 
+    inner join
+        user user1_ 
+            on board0_.user_id=user1_.user_id 
+    order by
+        board0_.board_id desc limit ?
+Hibernate: 
+    select
+        count(board0_.board_id) as col_0_0_ 
+    from
+        board board0_
+2022-10-14 17:07:51.881  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@1b52f723, testMethod = paginationTest1@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:51.884  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@5698a866, testMethod = paginationTest2@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        board0_.board_id as board_id1_0_0_,
+        user1_.user_id as user_id1_9_1_,
+        board0_.content as content2_0_0_,
+        board0_.mod_date as mod_date3_0_0_,
+        board0_.reg_date as reg_date4_0_0_,
+        board0_.reply_cnt as reply_cn5_0_0_,
+        board0_.title as title6_0_0_,
+        board0_.user_id as user_id8_0_0_,
+        board0_.view as view7_0_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_ 
+    from
+        board board0_ 
+    inner join
+        user user1_ 
+            on board0_.user_id=user1_.user_id 
+    order by
+        board0_.board_id desc limit ?
+Hibernate: 
+    select
+        count(board0_.board_id) as col_0_0_ 
+    from
+        board board0_
+2022-10-14 17:07:51.901  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@5698a866, testMethod = paginationTest2@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:51.904  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@4bb747c1, testMethod = paginationTest3@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        board0_.board_id as board_id1_0_0_,
+        user1_.user_id as user_id1_9_1_,
+        board0_.content as content2_0_0_,
+        board0_.mod_date as mod_date3_0_0_,
+        board0_.reg_date as reg_date4_0_0_,
+        board0_.reply_cnt as reply_cn5_0_0_,
+        board0_.title as title6_0_0_,
+        board0_.user_id as user_id8_0_0_,
+        board0_.view as view7_0_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_ 
+    from
+        board board0_ 
+    inner join
+        user user1_ 
+            on board0_.user_id=user1_.user_id 
+    where
+        board0_.title like ? escape '!' 
+    order by
+        board0_.board_id desc limit ?
+Hibernate: 
+    select
+        count(board0_.board_id) as col_0_0_ 
+    from
+        board board0_ 
+    where
+        board0_.title like ? escape '!'
+2022-10-14 17:07:52.063  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@4bb747c1, testMethod = paginationTest3@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:52.066  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@2004f99, testMethod = removeBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+2022-10-14 17:07:52.078  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@2004f99, testMethod = removeBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:52.085  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@4c97e3d5, testMethod = createBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+2022-10-14 17:07:52.104  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@4c97e3d5, testMethod = createBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-10-14 17:07:52.110  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@32bff23d, testMethod = modifyBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+2022-10-14 17:07:52.122  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@f55ecec testClass = BoardServiceTest, testInstance = com.example.care.board.service.BoardServiceTest@32bff23d, testMethod = modifyBoardTest@BoardServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@423325e0 testClass = BoardServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.5</a> at 2022. 10. 14. 오후 5:07:58</p>
+</div>
+</div>
+</body>
+</html>

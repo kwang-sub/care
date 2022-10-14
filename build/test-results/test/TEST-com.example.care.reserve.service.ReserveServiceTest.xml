@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.care.reserve.service.ReserveServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-10-14T08:07:56" hostname="DESKTOP-SNBJQ4K" time="0.376">
+  <properties/>
+  <testcase name="정상 저장 테스트" classname="com.example.care.reserve.service.ReserveServiceTest" time="0.127"/>
+  <testcase name="회원 예약 페이징 처리 테스트" classname="com.example.care.reserve.service.ReserveServiceTest" time="0.166"/>
+  <testcase name="당일 3시간 이전예약 예외 테스트" classname="com.example.care.reserve.service.ReserveServiceTest" time="0.018"/>
+  <testcase name="같은 시간 예약시 예외 테스트" classname="com.example.care.reserve.service.ReserveServiceTest" time="0.025"/>
+  <testcase name="남은예약 횟수 없을시 예외 테스트" classname="com.example.care.reserve.service.ReserveServiceTest" time="0.035"/>
+  <system-out><![CDATA[2022-10-14 17:07:56.951  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.care.reserve.service.ReserveServiceTest], using SpringBootContextLoader
+2022-10-14 17:07:56.957  INFO 15332 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.care.reserve.service.ReserveServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-14 17:07:56.958  INFO 15332 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.care.reserve.service.ReserveServiceTest]: ReserveServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-14 17:07:56.965  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.care.CareApplication for test class com.example.care.reserve.service.ReserveServiceTest
+2022-10-14 17:07:56.966  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-14 17:07:56.966  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@665e0a9b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@184e7447, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@517e381b, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6178b3bf, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@77e467d9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1c63d92e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3cfd9459, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@18bc2d32, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@4cb25b53, org.springframework.test.context.event.EventPublishingTestExecutionListener@4e9a4142, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@1e954b94, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@67b920c9, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@398f97ae, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2583418c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@11fe6743, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3f6fa2dd, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7a986079]
+2022-10-14 17:07:56.971  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@46d393cd, testMethod = reserveTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership
+        (membership_id, grade, price) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        product
+        (product_id, code, description, end_time, start_time, title) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        payment
+        (payment_id, aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (membmership_history_id, clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_product
+        (prodcut_membership_id, max_num, membership_id, product_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=? 
+        and reserve0_.reserve_time=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-10-14 17:07:57.097  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@46d393cd, testMethod = reserveTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:57.099  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@5927fc8e, testMethod = reservePaging@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership
+        (membership_id, grade, price) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        product
+        (product_id, code, description, end_time, start_time, title) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        payment
+        (payment_id, aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (membmership_history_id, clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        membership2_.membmership_history_id as membmers1_2_2_,
+        user3_.user_id as user_id1_9_3_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_,
+        membership2_.clean_use_num as clean_us2_2_2_,
+        membership2_.counsel_use_num as counsel_3_2_2_,
+        membership2_.end_date as end_date4_2_2_,
+        membership2_.membership_id as membersh8_2_2_,
+        membership2_.payment_id as payment_9_2_2_,
+        membership2_.reg_date as reg_date5_2_2_,
+        membership2_.status as status6_2_2_,
+        membership2_.transport_use_num as transpor7_2_2_,
+        membership2_.user_id as user_id10_2_2_,
+        user3_.email as email2_9_3_,
+        user3_.nickname as nickname3_9_3_,
+        user3_.password as password4_9_3_,
+        user3_.provider as provider5_9_3_,
+        user3_.reg_date as reg_date6_9_3_,
+        user3_.role as role7_9_3_,
+        user3_.username as username8_9_3_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    inner join
+        membership_history membership2_ 
+            on reserve0_.membership_history_id=membership2_.membmership_history_id 
+    inner join
+        user user3_ 
+            on membership2_.user_id=user3_.user_id 
+    where
+        membership2_.user_id=? 
+    order by
+        reserve0_.reserve_id desc limit ?
+Hibernate: 
+    select
+        count(reserve0_.reserve_id) as col_0_0_ 
+    from
+        reserve reserve0_ cross 
+    join
+        membership_history membership1_ 
+    where
+        reserve0_.membership_history_id=membership1_.membmership_history_id 
+        and membership1_.user_id=?
+2022-10-14 17:07:57.263  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@5927fc8e, testMethod = reservePaging@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:57.266  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@ccdd8a6, testMethod = reserveNowTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership
+        (membership_id, grade, price) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        product
+        (product_id, code, description, end_time, start_time, title) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        payment
+        (payment_id, aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (membmership_history_id, clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_product
+        (prodcut_membership_id, max_num, membership_id, product_id) 
+    values
+        (default, ?, ?, ?)
+2022-10-14 17:07:57.282  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@ccdd8a6, testMethod = reserveNowTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:57.285  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@34fcbc36, testMethod = reserveFullTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership
+        (membership_id, grade, price) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        product
+        (product_id, code, description, end_time, start_time, title) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        payment
+        (payment_id, aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (membmership_history_id, clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_product
+        (prodcut_membership_id, max_num, membership_id, product_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=? 
+        and reserve0_.reserve_time=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        membership_history 
+    set
+        clean_use_num=?,
+        counsel_use_num=?,
+        end_date=?,
+        membership_id=?,
+        payment_id=?,
+        reg_date=?,
+        status=?,
+        transport_use_num=?,
+        user_id=? 
+    where
+        membmership_history_id=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=? 
+        and reserve0_.reserve_time=?
+2022-10-14 17:07:57.309  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@34fcbc36, testMethod = reserveFullTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:57.312  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@95d1ba6, testMethod = reserveUseTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership
+        (membership_id, grade, price) 
+    values
+        (default, ?, ?)
+Hibernate: 
+    insert 
+    into
+        product
+        (product_id, code, description, end_time, start_time, title) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        payment
+        (payment_id, aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (membmership_history_id, clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        membership_product
+        (prodcut_membership_id, max_num, membership_id, product_id) 
+    values
+        (default, ?, ?, ?)
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=? 
+        and reserve0_.reserve_time=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    insert 
+    into
+        reserve
+        (reserve_id, address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        membership_history 
+    set
+        clean_use_num=?,
+        counsel_use_num=?,
+        end_date=?,
+        membership_id=?,
+        payment_id=?,
+        reg_date=?,
+        status=?,
+        transport_use_num=?,
+        user_id=? 
+    where
+        membmership_history_id=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+2022-10-14 17:07:57.345  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@3ac09fe2 testClass = ReserveServiceTest, testInstance = com.example.care.reserve.service.ReserveServiceTest@95d1ba6, testMethod = reserveUseTest@ReserveServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@f456711 testClass = ReserveServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

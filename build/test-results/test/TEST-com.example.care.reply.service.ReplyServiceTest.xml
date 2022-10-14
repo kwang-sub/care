@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.care.reply.service.ReplyServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-10-14T08:07:56" hostname="DESKTOP-SNBJQ4K" time="0.29">
+  <properties/>
+  <testcase name="댓글 수정 테스트" classname="com.example.care.reply.service.ReplyServiceTest" time="0.035"/>
+  <testcase name="댓글 목록 테스트" classname="com.example.care.reply.service.ReplyServiceTest" time="0.192"/>
+  <testcase name="댓글 저장 테스트" classname="com.example.care.reply.service.ReplyServiceTest" time="0.058"/>
+  <system-out><![CDATA[2022-10-14 17:07:56.591  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.example.care.reply.service.ReplyServiceTest], using SpringBootContextLoader
+2022-10-14 17:07:56.594  INFO 15332 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.example.care.reply.service.ReplyServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-14 17:07:56.594  INFO 15332 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.care.reply.service.ReplyServiceTest]: ReplyServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-14 17:07:56.616  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.care.CareApplication for test class com.example.care.reply.service.ReplyServiceTest
+2022-10-14 17:07:56.616  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-14 17:07:56.617  INFO 15332 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6ce07db6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3d48674, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@24555012, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5b7737eb, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3415ecfe, org.springframework.test.context.support.DirtiesContextTestExecutionListener@13553b2e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1d0e2c96, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7fa498b3, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@64cde9a5, org.springframework.test.context.event.EventPublishingTestExecutionListener@5efb3259, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@327dcf8c, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@69c7b870, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@62ccf42c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@65227bd6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@397fd951, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6d2fe236, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@68c7162b]
+2022-10-14 17:07:56.620  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@4b29f03e, testMethod = modifyReplyTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+2022-10-14 17:07:56.655  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@4b29f03e, testMethod = modifyReplyTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:56.657  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@17fe4f0f, testMethod = replyListTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        reply0_.reply_id as reply_id1_6_0_,
+        children1_.reply_id as reply_id1_6_1_,
+        user2_.user_id as user_id1_9_2_,
+        reply0_.board_id as board_id4_6_0_,
+        reply0_.parent_id as parent_i5_6_0_,
+        reply0_.reg_date as reg_date2_6_0_,
+        reply0_.text as text3_6_0_,
+        reply0_.user_id as user_id6_6_0_,
+        children1_.board_id as board_id4_6_1_,
+        children1_.parent_id as parent_i5_6_1_,
+        children1_.reg_date as reg_date2_6_1_,
+        children1_.text as text3_6_1_,
+        children1_.user_id as user_id6_6_1_,
+        children1_.parent_id as parent_i5_6_0__,
+        children1_.reply_id as reply_id1_6_0__,
+        user2_.email as email2_9_2_,
+        user2_.nickname as nickname3_9_2_,
+        user2_.password as password4_9_2_,
+        user2_.provider as provider5_9_2_,
+        user2_.reg_date as reg_date6_9_2_,
+        user2_.role as role7_9_2_,
+        user2_.username as username8_9_2_ 
+    from
+        reply reply0_ 
+    left outer join
+        reply children1_ 
+            on reply0_.reply_id=children1_.parent_id 
+    left outer join
+        user user2_ 
+            on reply0_.user_id=user2_.user_id 
+    where
+        reply0_.board_id=? 
+        and (
+            reply0_.parent_id is null
+        ) 
+    order by
+        reply0_.reply_id desc
+2022-10-14 17:07:56.848  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@17fe4f0f, testMethod = replyListTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+2022-10-14 17:07:56.853  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@519fa526, testMethod = registerReplyTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@698e2cba]; rollback [true]
+Hibernate: 
+    insert 
+    into
+        user
+        (user_id, email, nickname, password, provider, reg_date, role, username) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        board
+        (board_id, content, mod_date, reg_date, reply_cnt, title, user_id, view) 
+    values
+        (default, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        reply
+        (reply_id, board_id, parent_id, reg_date, text, user_id) 
+    values
+        (default, ?, ?, ?, ?, ?)
+2022-10-14 17:07:56.909  INFO 15332 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@6cee6eb7 testClass = ReplyServiceTest, testInstance = com.example.care.reply.service.ReplyServiceTest@519fa526, testMethod = registerReplyTest@ReplyServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d891373 testClass = ReplyServiceTest, locations = '{}', classes = '{class com.example.care.CareApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@3f363cf5, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@a5b0b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@b968a76, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1433046b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e54db99, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@479cbee5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
