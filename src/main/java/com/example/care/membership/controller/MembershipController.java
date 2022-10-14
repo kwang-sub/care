@@ -29,7 +29,7 @@ public class MembershipController {
         List<MembershipDTO> membershipList = membershipService.membershipList();
         model.addAttribute("membershipList", membershipList);
 
-        return "/membership/list";
+        return "membership/list";
     }
 
     @PostMapping("/cancel")

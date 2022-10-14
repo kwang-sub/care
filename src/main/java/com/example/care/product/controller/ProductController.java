@@ -22,7 +22,7 @@ public class ProductController {
 
         List<ProductDTO> productList = productService.productList();
         model.addAttribute("productList", productList);
-        return "/product/list";
+        return "product/list";
     }
 
 }

@@ -50,7 +50,7 @@ public class ReserveController {
 
         model.addAttribute("reserveDTO", reserveDTO);
 
-        return "/reserve/reserveForm";
+        return "reserve/reserveForm";
     }
 
     @PostMapping
@@ -64,7 +64,7 @@ public class ReserveController {
         
         if (bindingResult.hasErrors()) {
             log.debug("예약 validation errors = {}", bindingResult);
-            return "/reserve/reserveForm";
+            return "reserve/reserveForm";
         }
 
         Long userId = principalDetails.getUser().getId();

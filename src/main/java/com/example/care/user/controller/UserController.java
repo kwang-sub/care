@@ -43,7 +43,7 @@ public class UserController {
             return "redirect:/";
         }
 
-        return "/user/login";
+        return "user/login";
     }
 
     @GetMapping("/join")
@@ -52,14 +52,14 @@ public class UserController {
             return "redirect:/";
         }
 
-        return "/user/join";
+        return "user/join";
     }
 
     @GetMapping("/profile")
     public String userProfileModifyForm(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long userId = principalDetails.getUser().getId();
         model.addAttribute("userProfileDTO", userService.getUserProfile(userId));
-        return "/user/profile";
+        return "user/profile";
     }
 
     @PostMapping("/{userId}/profile")
@@ -67,7 +67,7 @@ public class UserController {
                                     @Validated UserProfileDTO userProfileDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             log.info("비밀번호 변경 validation errors = {}", bindingResult);
-            return "/user/profile";
+            return "user/profile";
         }
         if (principalDetails.getUser().getId() != userId) {
             log.error("로그인 계정아닌 다른 계정 정보수정 요청");
@@ -88,7 +88,7 @@ public class UserController {
         UserPwDTO userPwDTO = new UserPwDTO();
         userPwDTO.setUserId(userId);
         model.addAttribute("userPwDTO", userPwDTO);
-        return "/user/password";
+        return "user/password";
     }
 
     @PostMapping("/{userId}/password")
@@ -102,7 +102,7 @@ public class UserController {
         }
         if (bindingResult.hasErrors()) {
             log.info("비밀번호 변경 validation errors = {}", bindingResult);
-            return "/user/password";
+            return "user/password";
         }
         if (loginUserId != userId) {
             log.info("로그인계정 아닌 다른 계정 비밀번호 변경요청");
@@ -117,7 +117,7 @@ public class UserController {
             log.error("잘못된 현재 비밀번호 요청입니다.");
             bindingResult.addError(new FieldError("userPwDTO", "currentPw",
                     e.getMessage()));
-            return "/user/password";
+            return "user/password";
         }
 
         redirectAttributes.addFlashAttribute("swal",
@@ -134,7 +134,7 @@ public class UserController {
         PageResultDTO<ReserveListDTO, Reserve> reserveList = reserveService.getReserveList(pageRequestDTO);
 
         model.addAttribute("result", reserveList);
-        return "/user/reserve";
+        return "user/reserve";
     }
 
     @PostMapping
@@ -146,7 +146,7 @@ public class UserController {
         }
         if (bindingResult.hasErrors()) {
             log.debug("회원가입 validation errors = {}", bindingResult);
-            return "/user/join";
+            return "user/join";
         }
 
         log.info("회원가입 로직 시작");
@@ -155,7 +155,7 @@ public class UserController {
         } catch (DuplicateUserException e) {
             bindingResult.addError(new FieldError("userDTO", "username", userDTO.getUsername(),
                     false, null, null, "중복된 회원아이디 입니다."));
-            return "/user/join";
+            return "user/join";
         }
 
         redirectAttributes.addFlashAttribute("swal",
@@ -169,13 +169,13 @@ public class UserController {
         UserInfoDTO userInfoDTO = userService.getUserInfo(userId);
         model.addAttribute("userInfoDTO", userInfoDTO);
 
-        return "/user/info";
+        return "user/info";
     }
 
     @GetMapping("/unregister")
     public String userUnregisterForm(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         model.addAttribute("userId", principalDetails.getUser().getId());
-        return "/user/unregister";
+        return "user/unregister";
     }
 
     @PostMapping("/unregister")

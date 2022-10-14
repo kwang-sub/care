@@ -33,13 +33,13 @@ public class BoardController {
         PageResultDTO<BoardListDTO, Board> result = boardService.getList(pageRequestDTO);
         model.addAttribute("result", result);
 
-        return "/board/list";
+        return "board/list";
     }
 
     @GetMapping("/register")
     public String boardRegisterForm(@ModelAttribute("boardEditDTO") BoardEditDTO boardEditDTO) {
 
-        return "/board/register";
+        return "board/register";
     }
 
     @PostMapping("/register")
@@ -48,7 +48,7 @@ public class BoardController {
                            RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             log.debug("게시글작성 validation errors = {}", bindingResult);
-            return "/board/register";
+            return "board/register";
         }
 
         Long userId = principalDetails.getUser().getId();
@@ -64,14 +64,14 @@ public class BoardController {
                                 @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO) {
         BoardDTO boardDTO = boardService.readBoard(boardId);
         model.addAttribute("boardDTO", boardDTO);
-        return "/board/read";
+        return "board/read";
     }
     @GetMapping("/{boardId}/modify")
     public String boardModifyForm(@PathVariable("boardId") Long boardId, Model model,
                                   @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO) {
         BoardEditDTO boardEditDTO = boardService.getModifyBoard(boardId);
         model.addAttribute("boardEditDTO", boardEditDTO);
-        return "/board/modify";
+        return "board/modify";
     }
 
     @PostMapping("/{boardId}/modify")
@@ -80,11 +80,11 @@ public class BoardController {
                               @ModelAttribute("pageRequestDTO") PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes) {
         if (boardEditDTO.getUserId() != principalDetails.getUser().getId()) {
             log.error("로그인한 회원이 작성하지 않은 게시글 수정요청");
-            return "/error/400";
+            return "error/400";
         }
         if (bindingResult.hasErrors()) {
             log.info("요청 파라미터 값 이상 {} ", bindingResult.getAllErrors());
-            return "/board/modify";
+            return "board/modify";
         }
 
         boardService.modifyBoard(boardEditDTO);
@@ -98,7 +98,7 @@ public class BoardController {
                               BoardEditDTO boardEditDTO, RedirectAttributes redirectAttributes) {
         if (boardEditDTO.getUserId() != principalDetails.getUser().getId()) {
             log.error("로그인한 회원이 작성하지 않은 게시글 삭제요청");
-            return "/error/400";
+            return "error/400";
         }
 
         boardService.removeBoard(boardId);

@@ -10,6 +10,6 @@ public class FaqContaroller {
     @GetMapping
     public String faqForm() {
 
-        return "/faq/form";
+        return "faq/form";
     }
 }
