@@ -18,7 +18,7 @@
           <div th:each="product : ${productList}" class="col-lg-4 col-md-6">
             <div class="single-blog">
               <div class="thumb">
-                <img class="img-fluid" th:src="|/img/product/${product.code}.jpg|" alt="">
+                <img class="img-fluid" th:src="|/img/product/${#strings.toLowerCase(product.code)}.jpg|" alt="">
               </div>
               <div class="short_details">
                   <a th:href="|/reserve?code=${product.code}&title=${product.title}&id=${product.id}|"><h4 th:text="${product.title}"></h4></a>

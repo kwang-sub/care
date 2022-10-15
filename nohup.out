@@ -1,0 +1,1063 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.3)
+
+2022-10-15 01:49:47.937  INFO 19173 --- [           main] com.example.care.CareApplication         : Starting CareApplication using Java 11.0.16.1 on care with PID 19173 (/home/ec2-user/app/care/Care-0.0.1-SNAPSHOT.jar started by ec2-user in /home/ec2-user/app/care)
+2022-10-15 01:49:47.945 DEBUG 19173 --- [           main] com.example.care.CareApplication         : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-15 01:49:47.945  INFO 19173 --- [           main] com.example.care.CareApplication         : The following 1 profile is active: "oauth"
+2022-10-15 01:49:50.361  INFO 19173 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-15 01:49:50.915  INFO 19173 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 542 ms. Found 10 JPA repository interfaces.
+2022-10-15 01:49:52.779  INFO 19173 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-10-15 01:49:52.829  INFO 19173 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-15 01:49:52.829  INFO 19173 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-15 01:49:53.047  INFO 19173 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-15 01:49:53.052  INFO 19173 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4952 ms
+2022-10-15 01:49:54.028  INFO 19173 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-15 01:49:54.164  INFO 19173 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-15 01:49:54.523  INFO 19173 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-15 01:49:54.847  INFO 19173 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-15 01:49:55.068  INFO 19173 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-15 01:49:55.250  INFO 19173 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB106Dialect
+2022-10-15 01:49:58.483  INFO 19173 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-15 01:49:58.505  INFO 19173 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-15 01:50:03.435  INFO 19173 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@35adf623, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@456f7d9e, org.springframework.security.web.context.SecurityContextPersistenceFilter@322e49ee, org.springframework.security.web.header.HeaderWriterFilter@68ef01a5, org.springframework.security.web.authentication.logout.LogoutFilter@125d47c4, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@44286963, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@c8f97a7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62b3a2f6, org.springframework.security.web.session.ConcurrentSessionFilter@cde8c6c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@648c5fb3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47b33e07, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75d366c2, org.springframework.security.web.session.SessionManagementFilter@186d8a71, org.springframework.security.web.access.ExceptionTranslationFilter@4bb147ec, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7b5cc918]
+2022-10-15 01:50:03.676  WARN 19173 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-15 01:50:04.195  INFO 19173 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-10-15 01:50:04.783  INFO 19173 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-15 01:50:04.820  INFO 19173 --- [           main] com.example.care.CareApplication         : Started CareApplication in 18.19 seconds (JVM running for 19.647)
+2022-10-15 01:50:05.060  INFO 19173 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-15 01:50:05.061  INFO 19173 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-15 01:50:05.062  INFO 19173 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-10-15 01:50:11.366  INFO 19173 --- [nio-8080-exec-7] c.e.c.s.o.PrincipalOauth2UserService     : OAuth2 회원가입 로직 naver
+Hibernate: 
+    select
+        user0_.user_id as user_id1_9_,
+        user0_.email as email2_9_,
+        user0_.nickname as nickname3_9_,
+        user0_.password as password4_9_,
+        user0_.provider as provider5_9_,
+        user0_.reg_date as reg_date6_9_,
+        user0_.role as role7_9_,
+        user0_.username as username8_9_ 
+    from
+        user user0_ 
+    where
+        user0_.username=?
+Hibernate: 
+    select
+        distinct membership0_.membership_id as membersh1_1_0_,
+        membership1_.prodcut_membership_id as prodcut_1_3_1_,
+        product2_.product_id as product_1_5_2_,
+        membership0_.grade as grade2_1_0_,
+        membership0_.price as price3_1_0_,
+        membership1_.max_num as max_num2_3_1_,
+        membership1_.membership_id as membersh3_3_1_,
+        membership1_.product_id as product_4_3_1_,
+        membership1_.membership_id as membersh3_3_0__,
+        membership1_.prodcut_membership_id as prodcut_1_3_0__,
+        product2_.code as code2_5_2_,
+        product2_.description as descript3_5_2_,
+        product2_.end_time as end_time4_5_2_,
+        product2_.start_time as start_ti5_5_2_,
+        product2_.title as title6_5_2_ 
+    from
+        membership membership0_ 
+    left outer join
+        membership_product membership1_ 
+            on membership0_.membership_id=membership1_.membership_id 
+    left outer join
+        product product2_ 
+            on membership1_.product_id=product2_.product_id
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_0_,
+        user1_.user_id as user_id1_9_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        payment3_.payment_id as payment_1_4_3_,
+        membership0_.clean_use_num as clean_us2_2_0_,
+        membership0_.counsel_use_num as counsel_3_2_0_,
+        membership0_.end_date as end_date4_2_0_,
+        membership0_.membership_id as membersh8_2_0_,
+        membership0_.payment_id as payment_9_2_0_,
+        membership0_.reg_date as reg_date5_2_0_,
+        membership0_.status as status6_2_0_,
+        membership0_.transport_use_num as transpor7_2_0_,
+        membership0_.user_id as user_id10_2_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_,
+        payment3_.aid as aid2_4_3_,
+        payment3_.cid as cid3_4_3_,
+        payment3_.order_id as order_id4_4_3_,
+        payment3_.price as price5_4_3_,
+        payment3_.reg_date as reg_date6_4_3_,
+        payment3_.sid as sid7_4_3_,
+        payment3_.tid as tid8_4_3_ 
+    from
+        membership_history membership0_ 
+    inner join
+        user user1_ 
+            on membership0_.user_id=user1_.user_id 
+    inner join
+        membership membership2_ 
+            on membership0_.membership_id=membership2_.membership_id 
+    inner join
+        payment payment3_ 
+            on membership0_.payment_id=payment3_.payment_id 
+    where
+        membership0_.user_id=? 
+        and membership0_.status=? limit ?
+Hibernate: 
+    select
+        membership0_.membership_id as membersh1_1_,
+        membership0_.grade as grade2_1_,
+        membership0_.price as price3_1_ 
+    from
+        membership membership0_ 
+    where
+        membership0_.grade=?
+2022-10-15 01:50:19.586 DEBUG 19173 --- [nio-8080-exec-7] com.example.care.payment.api.PayAPI      : 결제요청 시작 userId 8
+2022-10-15 01:50:21.039 ERROR 19173 --- [nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.reactive.function.client.WebClientResponseException$BadRequest: 400 Bad Request from POST https://kapi.kakao.com/v1/payment/ready] with root cause
+
+org.springframework.web.reactive.function.client.WebClientResponseException$BadRequest: 400 Bad Request from POST https://kapi.kakao.com/v1/payment/ready
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:196) ~[spring-webflux-5.3.22.jar!/:5.3.22]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 400 from POST https://kapi.kakao.com/v1/payment/ready [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:196) ~[spring-webflux-5.3.22.jar!/:5.3.22]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:207) ~[spring-webflux-5.3.22.jar!/:5.3.22]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:101) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:299) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:337) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:160) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.4.22.jar!/:3.4.22]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400) ~[reactor-netty-core-1.0.22.jar!/:1.0.22]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419) ~[reactor-netty-core-1.0.22.jar!/:1.0.22]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473) ~[reactor-netty-core-1.0.22.jar!/:1.0.22]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:703) ~[reactor-netty-http-1.0.22.jar!/:1.0.22]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93) ~[reactor-netty-core-1.0.22.jar!/:1.0.22]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:327) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:299) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1373) ~[netty-handler-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1236) ~[netty-handler-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285) ~[netty-handler-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:510) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:449) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:279) ~[netty-codec-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady(AbstractEpollStreamChannel.java:800) ~[netty-transport-classes-epoll-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:487) ~[netty-transport-classes-epoll-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:385) ~[netty-transport-classes-epoll-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.79.Final.jar!/:4.1.79.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.79.Final.jar!/:4.1.79.Final]
+		at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
+
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_0_,
+        user1_.user_id as user_id1_9_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        payment3_.payment_id as payment_1_4_3_,
+        membership0_.clean_use_num as clean_us2_2_0_,
+        membership0_.counsel_use_num as counsel_3_2_0_,
+        membership0_.end_date as end_date4_2_0_,
+        membership0_.membership_id as membersh8_2_0_,
+        membership0_.payment_id as payment_9_2_0_,
+        membership0_.reg_date as reg_date5_2_0_,
+        membership0_.status as status6_2_0_,
+        membership0_.transport_use_num as transpor7_2_0_,
+        membership0_.user_id as user_id10_2_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_,
+        payment3_.aid as aid2_4_3_,
+        payment3_.cid as cid3_4_3_,
+        payment3_.order_id as order_id4_4_3_,
+        payment3_.price as price5_4_3_,
+        payment3_.reg_date as reg_date6_4_3_,
+        payment3_.sid as sid7_4_3_,
+        payment3_.tid as tid8_4_3_ 
+    from
+        membership_history membership0_ 
+    inner join
+        user user1_ 
+            on membership0_.user_id=user1_.user_id 
+    inner join
+        membership membership2_ 
+            on membership0_.membership_id=membership2_.membership_id 
+    inner join
+        payment payment3_ 
+            on membership0_.payment_id=payment3_.payment_id 
+    where
+        membership0_.user_id=? 
+        and membership0_.status=? limit ?
+Hibernate: 
+    select
+        membership0_.membership_id as membersh1_1_,
+        membership0_.grade as grade2_1_,
+        membership0_.price as price3_1_ 
+    from
+        membership membership0_ 
+    where
+        membership0_.grade=?
+2022-10-15 01:54:58.421 DEBUG 19173 --- [nio-8080-exec-1] com.example.care.payment.api.PayAPI      : 결제요청 시작 userId 8
+Hibernate: 
+    insert 
+    into
+        tid
+        (order_id, tid) 
+    values
+        (?, ?)
+Hibernate: 
+    select
+        tid0_.tid_id as tid_id1_8_,
+        tid0_.order_id as order_id2_8_,
+        tid0_.tid as tid3_8_ 
+    from
+        tid tid0_ 
+    where
+        tid0_.order_id=?
+2022-10-15 01:55:22.366 DEBUG 19173 --- [nio-8080-exec-2] com.example.care.payment.api.PayAPI      : 결제 승인 요청 api 호출 결제 고유번호 T349946206792c788064
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_0_,
+        user1_.user_id as user_id1_9_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        payment3_.payment_id as payment_1_4_3_,
+        membership0_.clean_use_num as clean_us2_2_0_,
+        membership0_.counsel_use_num as counsel_3_2_0_,
+        membership0_.end_date as end_date4_2_0_,
+        membership0_.membership_id as membersh8_2_0_,
+        membership0_.payment_id as payment_9_2_0_,
+        membership0_.reg_date as reg_date5_2_0_,
+        membership0_.status as status6_2_0_,
+        membership0_.transport_use_num as transpor7_2_0_,
+        membership0_.user_id as user_id10_2_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_,
+        payment3_.aid as aid2_4_3_,
+        payment3_.cid as cid3_4_3_,
+        payment3_.order_id as order_id4_4_3_,
+        payment3_.price as price5_4_3_,
+        payment3_.reg_date as reg_date6_4_3_,
+        payment3_.sid as sid7_4_3_,
+        payment3_.tid as tid8_4_3_ 
+    from
+        membership_history membership0_ 
+    inner join
+        user user1_ 
+            on membership0_.user_id=user1_.user_id 
+    inner join
+        membership membership2_ 
+            on membership0_.membership_id=membership2_.membership_id 
+    inner join
+        payment payment3_ 
+            on membership0_.payment_id=payment3_.payment_id 
+    where
+        membership0_.user_id=? 
+        and membership0_.status=? limit ?
+Hibernate: 
+    insert 
+    into
+        payment
+        (aid, cid, order_id, price, reg_date, sid, tid) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        membership0_.membership_id as membersh1_1_,
+        membership0_.grade as grade2_1_,
+        membership0_.price as price3_1_ 
+    from
+        membership membership0_ 
+    where
+        membership0_.grade=?
+Hibernate: 
+    insert 
+    into
+        membership_history
+        (clean_use_num, counsel_use_num, end_date, membership_id, payment_id, reg_date, status, transport_use_num, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        distinct membership0_.membership_id as membersh1_1_0_,
+        membership1_.prodcut_membership_id as prodcut_1_3_1_,
+        product2_.product_id as product_1_5_2_,
+        membership0_.grade as grade2_1_0_,
+        membership0_.price as price3_1_0_,
+        membership1_.max_num as max_num2_3_1_,
+        membership1_.membership_id as membersh3_3_1_,
+        membership1_.product_id as product_4_3_1_,
+        membership1_.membership_id as membersh3_3_0__,
+        membership1_.prodcut_membership_id as prodcut_1_3_0__,
+        product2_.code as code2_5_2_,
+        product2_.description as descript3_5_2_,
+        product2_.end_time as end_time4_5_2_,
+        product2_.start_time as start_ti5_5_2_,
+        product2_.title as title6_5_2_ 
+    from
+        membership membership0_ 
+    left outer join
+        membership_product membership1_ 
+            on membership0_.membership_id=membership1_.membership_id 
+    left outer join
+        product product2_ 
+            on membership1_.product_id=product2_.product_id
+Hibernate: 
+    select
+        distinct membership0_.membership_id as membersh1_1_0_,
+        membership1_.prodcut_membership_id as prodcut_1_3_1_,
+        product2_.product_id as product_1_5_2_,
+        membership0_.grade as grade2_1_0_,
+        membership0_.price as price3_1_0_,
+        membership1_.max_num as max_num2_3_1_,
+        membership1_.membership_id as membersh3_3_1_,
+        membership1_.product_id as product_4_3_1_,
+        membership1_.membership_id as membersh3_3_0__,
+        membership1_.prodcut_membership_id as prodcut_1_3_0__,
+        product2_.code as code2_5_2_,
+        product2_.description as descript3_5_2_,
+        product2_.end_time as end_time4_5_2_,
+        product2_.start_time as start_ti5_5_2_,
+        product2_.title as title6_5_2_ 
+    from
+        membership membership0_ 
+    left outer join
+        membership_product membership1_ 
+            on membership0_.membership_id=membership1_.membership_id 
+    left outer join
+        product product2_ 
+            on membership1_.product_id=product2_.product_id
+Hibernate: 
+    select
+        user0_.user_id as user_id1_9_0_,
+        membership1_.membmership_history_id as membmers1_2_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        user0_.email as email2_9_0_,
+        user0_.nickname as nickname3_9_0_,
+        user0_.password as password4_9_0_,
+        user0_.provider as provider5_9_0_,
+        user0_.reg_date as reg_date6_9_0_,
+        user0_.role as role7_9_0_,
+        user0_.username as username8_9_0_,
+        membership1_.clean_use_num as clean_us2_2_1_,
+        membership1_.counsel_use_num as counsel_3_2_1_,
+        membership1_.end_date as end_date4_2_1_,
+        membership1_.membership_id as membersh8_2_1_,
+        membership1_.payment_id as payment_9_2_1_,
+        membership1_.reg_date as reg_date5_2_1_,
+        membership1_.status as status6_2_1_,
+        membership1_.transport_use_num as transpor7_2_1_,
+        membership1_.user_id as user_id10_2_1_,
+        membership1_.user_id as user_id10_2_0__,
+        membership1_.membmership_history_id as membmers1_2_0__,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_ 
+    from
+        user user0_ 
+    left outer join
+        membership_history membership1_ 
+            on user0_.user_id=membership1_.user_id 
+    left outer join
+        membership membership2_ 
+            on membership1_.membership_id=membership2_.membership_id 
+    where
+        user0_.user_id=? 
+    order by
+        membership1_.membmership_history_id desc
+Hibernate: 
+    select
+        membership0_.membership_id as membersh3_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_0_,
+        membership0_.max_num as max_num2_3_0_,
+        membership0_.membership_id as membersh3_3_0_,
+        membership0_.product_id as product_4_3_0_ 
+    from
+        membership_product membership0_ 
+    where
+        membership0_.membership_id=?
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_0_,
+        product0_.code as code2_5_0_,
+        product0_.description as descript3_5_0_,
+        product0_.end_time as end_time4_5_0_,
+        product0_.start_time as start_ti5_5_0_,
+        product0_.title as title6_5_0_ 
+    from
+        product product0_ 
+    where
+        product0_.product_id in (
+            ?, ?, ?
+        )
+Hibernate: 
+    select
+        distinct membership0_.membership_id as membersh1_1_0_,
+        membership1_.prodcut_membership_id as prodcut_1_3_1_,
+        product2_.product_id as product_1_5_2_,
+        membership0_.grade as grade2_1_0_,
+        membership0_.price as price3_1_0_,
+        membership1_.max_num as max_num2_3_1_,
+        membership1_.membership_id as membersh3_3_1_,
+        membership1_.product_id as product_4_3_1_,
+        membership1_.membership_id as membersh3_3_0__,
+        membership1_.prodcut_membership_id as prodcut_1_3_0__,
+        product2_.code as code2_5_2_,
+        product2_.description as descript3_5_2_,
+        product2_.end_time as end_time4_5_2_,
+        product2_.start_time as start_ti5_5_2_,
+        product2_.title as title6_5_2_ 
+    from
+        membership membership0_ 
+    left outer join
+        membership_product membership1_ 
+            on membership0_.membership_id=membership1_.membership_id 
+    left outer join
+        product product2_ 
+            on membership1_.product_id=product2_.product_id
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_,
+        product0_.code as code2_5_,
+        product0_.description as descript3_5_,
+        product0_.end_time as end_time4_5_,
+        product0_.start_time as start_ti5_5_,
+        product0_.title as title6_5_ 
+    from
+        product product0_
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_0_,
+        user1_.user_id as user_id1_9_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        payment3_.payment_id as payment_1_4_3_,
+        membership0_.clean_use_num as clean_us2_2_0_,
+        membership0_.counsel_use_num as counsel_3_2_0_,
+        membership0_.end_date as end_date4_2_0_,
+        membership0_.membership_id as membersh8_2_0_,
+        membership0_.payment_id as payment_9_2_0_,
+        membership0_.reg_date as reg_date5_2_0_,
+        membership0_.status as status6_2_0_,
+        membership0_.transport_use_num as transpor7_2_0_,
+        membership0_.user_id as user_id10_2_0_,
+        user1_.email as email2_9_1_,
+        user1_.nickname as nickname3_9_1_,
+        user1_.password as password4_9_1_,
+        user1_.provider as provider5_9_1_,
+        user1_.reg_date as reg_date6_9_1_,
+        user1_.role as role7_9_1_,
+        user1_.username as username8_9_1_,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_,
+        payment3_.aid as aid2_4_3_,
+        payment3_.cid as cid3_4_3_,
+        payment3_.order_id as order_id4_4_3_,
+        payment3_.price as price5_4_3_,
+        payment3_.reg_date as reg_date6_4_3_,
+        payment3_.sid as sid7_4_3_,
+        payment3_.tid as tid8_4_3_ 
+    from
+        membership_history membership0_ 
+    inner join
+        user user1_ 
+            on membership0_.user_id=user1_.user_id 
+    inner join
+        membership membership2_ 
+            on membership0_.membership_id=membership2_.membership_id 
+    inner join
+        payment payment3_ 
+            on membership0_.payment_id=payment3_.payment_id 
+    where
+        membership0_.user_id=? 
+        and membership0_.status=? limit ?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=?
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_,
+        product0_.code as code2_5_,
+        product0_.description as descript3_5_,
+        product0_.end_time as end_time4_5_,
+        product0_.start_time as start_ti5_5_,
+        product0_.title as title6_5_ 
+    from
+        product product0_ 
+    where
+        product0_.code=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        membership0_.max_num as col_0_0_ 
+    from
+        membership_product membership0_ cross 
+    join
+        product product1_ 
+    where
+        membership0_.product_id=product1_.product_id 
+        and product1_.code=? 
+        and membership0_.membership_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    where
+        product1_.code=? 
+        and reserve0_.reserve_date=? 
+        and reserve0_.reserve_status=? 
+        and reserve0_.reserve_time=?
+Hibernate: 
+    select
+        membership0_.membmership_history_id as membmers1_2_,
+        membership0_.clean_use_num as clean_us2_2_,
+        membership0_.counsel_use_num as counsel_3_2_,
+        membership0_.end_date as end_date4_2_,
+        membership0_.membership_id as membersh8_2_,
+        membership0_.payment_id as payment_9_2_,
+        membership0_.reg_date as reg_date5_2_,
+        membership0_.status as status6_2_,
+        membership0_.transport_use_num as transpor7_2_,
+        membership0_.user_id as user_id10_2_ 
+    from
+        membership_history membership0_ 
+    where
+        membership0_.user_id=? 
+        and membership0_.status='ORDER'
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_0_,
+        product0_.code as code2_5_0_,
+        product0_.description as descript3_5_0_,
+        product0_.end_time as end_time4_5_0_,
+        product0_.start_time as start_ti5_5_0_,
+        product0_.title as title6_5_0_ 
+    from
+        product product0_ 
+    where
+        product0_.product_id=?
+Hibernate: 
+    insert 
+    into
+        reserve
+        (address, detail_address, extra_address, membership_history_id, name, phone_number, postcode, product_id, reg_date, reserve_date, reserve_status, reserve_time) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        membership_history 
+    set
+        clean_use_num=?,
+        counsel_use_num=?,
+        end_date=?,
+        membership_id=?,
+        payment_id=?,
+        reg_date=?,
+        status=?,
+        transport_use_num=?,
+        user_id=? 
+    where
+        membmership_history_id=?
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_,
+        product0_.code as code2_5_,
+        product0_.description as descript3_5_,
+        product0_.end_time as end_time4_5_,
+        product0_.start_time as start_ti5_5_,
+        product0_.title as title6_5_ 
+    from
+        product product0_
+Hibernate: 
+    select
+        user0_.user_id as user_id1_9_0_,
+        membership1_.membmership_history_id as membmers1_2_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        user0_.email as email2_9_0_,
+        user0_.nickname as nickname3_9_0_,
+        user0_.password as password4_9_0_,
+        user0_.provider as provider5_9_0_,
+        user0_.reg_date as reg_date6_9_0_,
+        user0_.role as role7_9_0_,
+        user0_.username as username8_9_0_,
+        membership1_.clean_use_num as clean_us2_2_1_,
+        membership1_.counsel_use_num as counsel_3_2_1_,
+        membership1_.end_date as end_date4_2_1_,
+        membership1_.membership_id as membersh8_2_1_,
+        membership1_.payment_id as payment_9_2_1_,
+        membership1_.reg_date as reg_date5_2_1_,
+        membership1_.status as status6_2_1_,
+        membership1_.transport_use_num as transpor7_2_1_,
+        membership1_.user_id as user_id10_2_1_,
+        membership1_.user_id as user_id10_2_0__,
+        membership1_.membmership_history_id as membmers1_2_0__,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_ 
+    from
+        user user0_ 
+    left outer join
+        membership_history membership1_ 
+            on user0_.user_id=membership1_.user_id 
+    left outer join
+        membership membership2_ 
+            on membership1_.membership_id=membership2_.membership_id 
+    where
+        user0_.user_id=? 
+    order by
+        membership1_.membmership_history_id desc
+Hibernate: 
+    select
+        membership0_.membership_id as membersh3_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_0_,
+        membership0_.max_num as max_num2_3_0_,
+        membership0_.membership_id as membersh3_3_0_,
+        membership0_.product_id as product_4_3_0_ 
+    from
+        membership_product membership0_ 
+    where
+        membership0_.membership_id=?
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_0_,
+        product0_.code as code2_5_0_,
+        product0_.description as descript3_5_0_,
+        product0_.end_time as end_time4_5_0_,
+        product0_.start_time as start_ti5_5_0_,
+        product0_.title as title6_5_0_ 
+    from
+        product product0_ 
+    where
+        product0_.product_id in (
+            ?, ?, ?
+        )
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        membership2_.membmership_history_id as membmers1_2_2_,
+        user3_.user_id as user_id1_9_3_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_,
+        membership2_.clean_use_num as clean_us2_2_2_,
+        membership2_.counsel_use_num as counsel_3_2_2_,
+        membership2_.end_date as end_date4_2_2_,
+        membership2_.membership_id as membersh8_2_2_,
+        membership2_.payment_id as payment_9_2_2_,
+        membership2_.reg_date as reg_date5_2_2_,
+        membership2_.status as status6_2_2_,
+        membership2_.transport_use_num as transpor7_2_2_,
+        membership2_.user_id as user_id10_2_2_,
+        user3_.email as email2_9_3_,
+        user3_.nickname as nickname3_9_3_,
+        user3_.password as password4_9_3_,
+        user3_.provider as provider5_9_3_,
+        user3_.reg_date as reg_date6_9_3_,
+        user3_.role as role7_9_3_,
+        user3_.username as username8_9_3_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    inner join
+        membership_history membership2_ 
+            on reserve0_.membership_history_id=membership2_.membmership_history_id 
+    inner join
+        user user3_ 
+            on membership2_.user_id=user3_.user_id 
+    where
+        membership2_.user_id=? 
+    order by
+        reserve0_.reserve_id desc limit ?
+Hibernate: 
+    select
+        count(reserve0_.reserve_id) as col_0_0_ 
+    from
+        reserve reserve0_ cross 
+    join
+        membership_history membership1_ 
+    where
+        reserve0_.membership_history_id=membership1_.membmership_history_id 
+        and membership1_.user_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        membership2_.membmership_history_id as membmers1_2_2_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_,
+        membership2_.clean_use_num as clean_us2_2_2_,
+        membership2_.counsel_use_num as counsel_3_2_2_,
+        membership2_.end_date as end_date4_2_2_,
+        membership2_.membership_id as membersh8_2_2_,
+        membership2_.payment_id as payment_9_2_2_,
+        membership2_.reg_date as reg_date5_2_2_,
+        membership2_.status as status6_2_2_,
+        membership2_.transport_use_num as transpor7_2_2_,
+        membership2_.user_id as user_id10_2_2_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    inner join
+        membership_history membership2_ 
+            on reserve0_.membership_history_id=membership2_.membmership_history_id 
+    where
+        reserve0_.reserve_id=?
+Hibernate: 
+    update
+        reserve 
+    set
+        address=?,
+        detail_address=?,
+        extra_address=?,
+        membership_history_id=?,
+        name=?,
+        phone_number=?,
+        postcode=?,
+        product_id=?,
+        reg_date=?,
+        reserve_date=?,
+        reserve_status=?,
+        reserve_time=? 
+    where
+        reserve_id=?
+Hibernate: 
+    update
+        membership_history 
+    set
+        clean_use_num=?,
+        counsel_use_num=?,
+        end_date=?,
+        membership_id=?,
+        payment_id=?,
+        reg_date=?,
+        status=?,
+        transport_use_num=?,
+        user_id=? 
+    where
+        membmership_history_id=?
+Hibernate: 
+    select
+        reserve0_.reserve_id as reserve_1_7_0_,
+        product1_.product_id as product_1_5_1_,
+        membership2_.membmership_history_id as membmers1_2_2_,
+        user3_.user_id as user_id1_9_3_,
+        reserve0_.address as address2_7_0_,
+        reserve0_.detail_address as detail_a3_7_0_,
+        reserve0_.extra_address as extra_ad4_7_0_,
+        reserve0_.membership_history_id as members12_7_0_,
+        reserve0_.name as name5_7_0_,
+        reserve0_.phone_number as phone_nu6_7_0_,
+        reserve0_.postcode as postcode7_7_0_,
+        reserve0_.product_id as product13_7_0_,
+        reserve0_.reg_date as reg_date8_7_0_,
+        reserve0_.reserve_date as reserve_9_7_0_,
+        reserve0_.reserve_status as reserve10_7_0_,
+        reserve0_.reserve_time as reserve11_7_0_,
+        product1_.code as code2_5_1_,
+        product1_.description as descript3_5_1_,
+        product1_.end_time as end_time4_5_1_,
+        product1_.start_time as start_ti5_5_1_,
+        product1_.title as title6_5_1_,
+        membership2_.clean_use_num as clean_us2_2_2_,
+        membership2_.counsel_use_num as counsel_3_2_2_,
+        membership2_.end_date as end_date4_2_2_,
+        membership2_.membership_id as membersh8_2_2_,
+        membership2_.payment_id as payment_9_2_2_,
+        membership2_.reg_date as reg_date5_2_2_,
+        membership2_.status as status6_2_2_,
+        membership2_.transport_use_num as transpor7_2_2_,
+        membership2_.user_id as user_id10_2_2_,
+        user3_.email as email2_9_3_,
+        user3_.nickname as nickname3_9_3_,
+        user3_.password as password4_9_3_,
+        user3_.provider as provider5_9_3_,
+        user3_.reg_date as reg_date6_9_3_,
+        user3_.role as role7_9_3_,
+        user3_.username as username8_9_3_ 
+    from
+        reserve reserve0_ 
+    inner join
+        product product1_ 
+            on reserve0_.product_id=product1_.product_id 
+    inner join
+        membership_history membership2_ 
+            on reserve0_.membership_history_id=membership2_.membmership_history_id 
+    inner join
+        user user3_ 
+            on membership2_.user_id=user3_.user_id 
+    where
+        membership2_.user_id=? 
+    order by
+        reserve0_.reserve_id desc limit ?
+Hibernate: 
+    select
+        count(reserve0_.reserve_id) as col_0_0_ 
+    from
+        reserve reserve0_ cross 
+    join
+        membership_history membership1_ 
+    where
+        reserve0_.membership_history_id=membership1_.membmership_history_id 
+        and membership1_.user_id=?
+Hibernate: 
+    select
+        user0_.user_id as user_id1_9_0_,
+        membership1_.membmership_history_id as membmers1_2_1_,
+        membership2_.membership_id as membersh1_1_2_,
+        user0_.email as email2_9_0_,
+        user0_.nickname as nickname3_9_0_,
+        user0_.password as password4_9_0_,
+        user0_.provider as provider5_9_0_,
+        user0_.reg_date as reg_date6_9_0_,
+        user0_.role as role7_9_0_,
+        user0_.username as username8_9_0_,
+        membership1_.clean_use_num as clean_us2_2_1_,
+        membership1_.counsel_use_num as counsel_3_2_1_,
+        membership1_.end_date as end_date4_2_1_,
+        membership1_.membership_id as membersh8_2_1_,
+        membership1_.payment_id as payment_9_2_1_,
+        membership1_.reg_date as reg_date5_2_1_,
+        membership1_.status as status6_2_1_,
+        membership1_.transport_use_num as transpor7_2_1_,
+        membership1_.user_id as user_id10_2_1_,
+        membership1_.user_id as user_id10_2_0__,
+        membership1_.membmership_history_id as membmers1_2_0__,
+        membership2_.grade as grade2_1_2_,
+        membership2_.price as price3_1_2_ 
+    from
+        user user0_ 
+    left outer join
+        membership_history membership1_ 
+            on user0_.user_id=membership1_.user_id 
+    left outer join
+        membership membership2_ 
+            on membership1_.membership_id=membership2_.membership_id 
+    where
+        user0_.user_id=? 
+    order by
+        membership1_.membmership_history_id desc
+Hibernate: 
+    select
+        membership0_.membership_id as membersh3_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_1_,
+        membership0_.prodcut_membership_id as prodcut_1_3_0_,
+        membership0_.max_num as max_num2_3_0_,
+        membership0_.membership_id as membersh3_3_0_,
+        membership0_.product_id as product_4_3_0_ 
+    from
+        membership_product membership0_ 
+    where
+        membership0_.membership_id=?
+Hibernate: 
+    select
+        product0_.product_id as product_1_5_0_,
+        product0_.code as code2_5_0_,
+        product0_.description as descript3_5_0_,
+        product0_.end_time as end_time4_5_0_,
+        product0_.start_time as start_ti5_5_0_,
+        product0_.title as title6_5_0_ 
+    from
+        product product0_ 
+    where
+        product0_.product_id in (
+            ?, ?, ?
+        )
+2022-10-15 01:58:03.024  INFO 19173 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-15 01:58:03.027  INFO 19173 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-10-15 01:58:03.043  INFO 19173 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.3)
+
+2022-10-16 00:41:01.145  INFO 5790 --- [           main] com.example.care.CareApplication         : Starting CareApplication using Java 11.0.16.1 on care with PID 5790 (/home/ec2-user/app/care/Care-0.0.1-SNAPSHOT.jar started by ec2-user in /home/ec2-user/app/care)
+2022-10-16 00:41:01.152 DEBUG 5790 --- [           main] com.example.care.CareApplication         : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-16 00:41:01.153  INFO 5790 --- [           main] com.example.care.CareApplication         : The following 1 profile is active: "oauth"
+2022-10-16 00:41:03.532  INFO 5790 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-16 00:41:04.138  INFO 5790 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 588 ms. Found 10 JPA repository interfaces.
+2022-10-16 00:41:06.042  INFO 5790 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-10-16 00:41:06.078  INFO 5790 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-16 00:41:06.078  INFO 5790 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-16 00:41:06.272  INFO 5790 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-16 00:41:06.277  INFO 5790 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4976 ms
+2022-10-16 00:41:07.586  INFO 5790 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-16 00:41:07.768  INFO 5790 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-16 00:41:08.379  INFO 5790 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-16 00:41:08.839  INFO 5790 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-10-16 00:41:09.116  INFO 5790 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-10-16 00:41:09.380  INFO 5790 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB106Dialect
+2022-10-16 00:41:12.113  INFO 5790 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-16 00:41:12.160  INFO 5790 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-16 00:41:16.769  INFO 5790 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3249e278, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35adf623, org.springframework.security.web.context.SecurityContextPersistenceFilter@3592c1c4, org.springframework.security.web.header.HeaderWriterFilter@33f2cfda, org.springframework.security.web.authentication.logout.LogoutFilter@4f116ca2, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@50b93353, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@44286963, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7b5cc918, org.springframework.security.web.session.ConcurrentSessionFilter@11d2dd2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4aeb0e2b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@648c5fb3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@456f7d9e, org.springframework.security.web.session.SessionManagementFilter@59a2388e, org.springframework.security.web.access.ExceptionTranslationFilter@483f286e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42ea7565]
+2022-10-16 00:41:17.119  WARN 5790 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-16 00:41:17.445  INFO 5790 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-10-16 00:41:18.038  INFO 5790 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-16 00:41:18.075  INFO 5790 --- [           main] com.example.care.CareApplication         : Started CareApplication in 18.234 seconds (JVM running for 19.668)
+2022-10-16 00:45:21.672  INFO 5790 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-16 00:45:21.673  INFO 5790 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-10-16 00:45:21.682  INFO 5790 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2022-10-16 01:00:00.000  INFO 5790 --- [   scheduling-1] c.e.care.util.scheduler.CareScheduler    : [Scheduler] reserveComplete time : 2022-10-16T01:00:00.000700
+Hibernate: 
+    update
+        reserve 
+    set
+        reserve_status=? 
+    where
+        reserve_date<=? 
+        and reserve_time<=? 
+        and reserve_status=?

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.care.membership.domain.MembershipHistoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-14T08:07:52" hostname="DESKTOP-SNBJQ4K" time="0.006">
+<testsuite name="com.example.care.membership.domain.MembershipHistoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-15T15:40:49" hostname="care" time="0.005">
   <properties/>
-  <testcase name="멤버쉽 만료 날짜 계산 테스트" classname="com.example.care.membership.domain.MembershipHistoryTest" time="0.006"/>
+  <testcase name="멤버쉽 만료 날짜 계산 테스트" classname="com.example.care.membership.domain.MembershipHistoryTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
