@@ -16,13 +16,13 @@
           <article class="blog_item">
             <form th:object="${boardDTO}">
               <div class="blog_details">
-                <h2 th:field="*{title}" th:text="${boardDTO.title}"></h2>
+                <h2 th:field="*{title}" th:utext="${boardDTO.title}"></h2>
                 <ul class="blog-info-link">
                   <li><i class="ti-user"></i> [[${boardDTO.userNickname}]]</li>
                   <li ><i class="ti-calendar"></i><span th:text="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}"></span></li>
                   <li><i class="ti-eye"></i> [[${boardDTO.view}]]</li>
                 </ul>
-                <pre  th:field="*{content}" th:text="${boardDTO.content}"></pre>
+                <pre  th:field="*{content}" th:utext="${boardDTO.content}"></pre>
                 <a th:if="${#authentication.name == boardDTO.username}" th:href="@{|/board/${boardDTO.id}/modify|(page=${pageRequestDTO.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
                   <button type="button" class="genric-btn info radius">수정</button>
                 </a>

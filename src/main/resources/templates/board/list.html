@@ -55,8 +55,8 @@
           <tbody>
           <tr th:each="dto : ${result.dtoList}">
             <th scope="row" th:text="${dto.id}"></th>
-            <td >
-              <a th:href="@{|/board/${dto.id}(page=${result.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">[[${dto.title}]]</a>
+            <td>
+              <a th:href="@{|/board/${dto.id}(page=${result.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}" th:utext="${dto.title}"></a>
             </td>
             <td th:text="${dto.userNickname}"></td>
             <td th:text="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"></td>

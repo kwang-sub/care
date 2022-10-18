@@ -7,6 +7,7 @@ import com.example.care.board.dto.BoardListDTO;
 import com.example.care.board.repository.BoardRepository;
 import com.example.care.user.domain.User;
 import com.example.care.user.repository.UserRepository;
+import com.example.care.util.escape.HTMLCharacterEscapes;
 import com.example.care.util.pagin.PageRequestDTO;
 import com.example.care.util.pagin.PageResultDTO;
 import lombok.RequiredArgsConstructor;
