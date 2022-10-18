@@ -1,6 +1,6 @@
 env:  
   S3_BUCKET_NAME: care-service1 
-  PROJECT_NAME: care
+  PROJECT_NAME: Care
 
 name: deploy # (0) GitHub Action에서 보여질 이름을 지정합니다. 
 
