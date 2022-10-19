@@ -19,7 +19,7 @@ function find_idle_profile()
     IDLE_PROFILE=real1
   fi
 
-  echo "IDLE_PROFILE : ${IDLE_PROFILE}"
+  echo "${IDLE_PROFILE}"
 }
 
 #쉬고있는 profile의 port찾기
