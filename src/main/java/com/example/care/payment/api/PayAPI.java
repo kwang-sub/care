@@ -48,9 +48,9 @@ public class PayAPI {
         param.add("quantity", "1");
         param.add("total_amount", String.valueOf(memberShipDTO.getPrice()));
         param.add("tax_free_amount", "0");
-        param.add("approval_url", "http://www.care.p-e.kr:8080/payment/approve?orderId=" + orderId);
-        param.add("cancel_url", "http://www.care.p-e.kr:8080/payment/cancel");
-        param.add("fail_url", "http://www.care.p-e.kr:8080/payment/fail");
+        param.add("approval_url", "https://care.n-e.kr:8080/payment/approve?orderId=" + orderId);
+        param.add("cancel_url", "https://care.n-e.kr:8080/payment/cancel");
+        param.add("fail_url", "https://care.n-e.kr:8080/payment/fail");
 
         KaKaoPayReadyDTO kaKaoPayReadyDTO = kakaoWebClient("/v1/payment/ready", param, KaKaoPayReadyDTO.class);
         kaKaoPayReadyDTO.setOrderId(orderId);
