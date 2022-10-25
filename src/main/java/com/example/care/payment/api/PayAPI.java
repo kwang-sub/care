@@ -51,8 +51,9 @@ public class PayAPI {
         param.add("approval_url", "https://care.n-e.kr/payment/approve?orderId=" + orderId);
         param.add("cancel_url", "https://care.n-e.kr/payment/cancel");
         param.add("fail_url", "https://care.n-e.kr/payment/fail");
+        String uri = "/v1/payment/ready";
 
-        KaKaoPayReadyDTO kaKaoPayReadyDTO = kakaoWebClient("/v1/payment/ready", param, KaKaoPayReadyDTO.class);
+        KaKaoPayReadyDTO kaKaoPayReadyDTO = kakaoWebClient(uri, param, KaKaoPayReadyDTO.class);
         kaKaoPayReadyDTO.setOrderId(orderId);
         return kaKaoPayReadyDTO;
     }
@@ -71,11 +72,11 @@ public class PayAPI {
 
     public void paymentDisabledAPI(String sid) {
         log.debug("정기결제 비활성화 {}", sid);
-        String uri;
         MultiValueMap<String, String> param = new LinkedMultiValueMap();
         param.add("cid", "TCSUBSCRIP");
         param.add("sid", sid);
-        uri = "/v1/payment/manage/subscription/inactive";
+        String uri = "/v1/payment/manage/subscription/inactive";
+
         KaKaoPayDisabledDTO kaKaoPayDisabledDTO = kakaoWebClient(uri, param,
                 KaKaoPayDisabledDTO.class);
     }
