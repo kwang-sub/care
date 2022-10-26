@@ -1,4 +1,4 @@
-package com.example.care.util.SweetAlert;
+package com.example.care.util.sweetalert;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

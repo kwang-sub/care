@@ -25,10 +25,6 @@ repositories {
     mavenCentral()
 }
 
-//test {
-//    exclude '**/*'
-//}
-
 jar {
 enabled = false
 }
