@@ -1,7 +1,7 @@
 package com.example.care.reserve.controller;
 
-import com.example.care.util.SweetAlert.SwalIcon;
-import com.example.care.util.SweetAlert.SwalMessage;
+import com.example.care.util.sweetalert.SwalIcon;
+import com.example.care.util.sweetalert.SwalMessage;
 import com.example.care.util.ex.exception.ReserveFullException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
