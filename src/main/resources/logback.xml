@@ -14,7 +14,7 @@
 
 <!--  일별 로그 파일 저장 되도록 설정-->
     <appender name="FILE-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/home/application/log/app-${BY_DATE}.log</file>
+        <file>/home/ec2-user/application/log/app-${BY_DATE}.log</file>
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
